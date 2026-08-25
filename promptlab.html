@@ -1,35 +1,1482 @@
-const response = await fetch("/api/generate-prompt", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json"
-  },
-  body: JSON.stringify({
-    instruction: instruccion
-  })
-});
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-const data = await response.json();
+<title>PromptLab | Teaching TIC</title>
 
-if (!response.ok) {
-  throw new Error(
-    data?.detail ||
-    data?.error ||
-    "No se pudo conectar con Gemini."
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+  --blue:#0D47C6;
+  --navy:#0B1D3D;
+  --purple:#7C6CF2;
+  --purple-dark:#5B4BE0;
+  --lavender:#F5F2FF;
+  --light:#F2F4F7;
+  --border:#E4E7EC;
+  --text:#1D2939;
+  --muted:#667085;
+  --white:#FFFFFF;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  font-family:"Plus Jakarta Sans",sans-serif;
+  color:var(--text);
+  background:#fff;
+}
+
+a{
+  text-decoration:none;
+  color:inherit;
+}
+
+button,
+input,
+textarea,
+select{
+  font-family:inherit;
+}
+
+/* HEADER */
+
+header{
+  height:76px;
+  position:sticky;
+  top:0;
+  z-index:50;
+  background:rgba(255,255,255,.96);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+}
+
+.nav{
+  width:min(1180px,calc(100% - 36px));
+  margin:auto;
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+}
+
+.brand{
+  font-size:21px;
+  font-weight:800;
+  color:var(--navy);
+}
+
+.brand span{
+  color:var(--purple);
+}
+
+.back{
+  font-size:14px;
+  font-weight:600;
+  color:var(--purple-dark);
+}
+
+/* HERO */
+
+.hero{
+  padding:65px 20px 40px;
+  text-align:center;
+}
+
+.badge{
+  display:inline-block;
+  padding:8px 14px;
+  border-radius:99px;
+  background:var(--lavender);
+  color:var(--purple-dark);
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  margin-bottom:20px;
+}
+
+.hero h1{
+  font-size:clamp(2.5rem,6vw,4.4rem);
+  line-height:1.06;
+  letter-spacing:-.05em;
+  color:var(--navy);
+  margin:0 auto 20px;
+}
+
+.hero h1 span{
+  background:linear-gradient(
+    90deg,
+    var(--blue),
+    var(--purple)
   );
+  -webkit-background-clip:text;
+  color:transparent;
 }
 
-const limpio = String(data.text || "")
-  .replace(/^```[a-z]*\n?/i, "")
-  .replace(/```\s*$/, "")
-  .trim();
-
-if (limpio.length < 100) {
-  throw new Error("Gemini devolvió una respuesta demasiado corta.");
+.hero p{
+  max-width:700px;
+  margin:auto;
+  color:var(--muted);
+  font-size:17px;
+  line-height:1.7;
 }
 
-this.setState({
-  prompt: limpio,
-  afinado: true,
-  generando: false,
-  errorIA: ""
-});
+/* PROGRESS */
+
+.progress{
+  width:min(960px,calc(100% - 36px));
+  margin:35px auto;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+}
+
+.progress-item{
+  padding:13px;
+  border-radius:12px;
+  background:#F8F9FC;
+  color:#98A2B3;
+  font-size:13px;
+  font-weight:700;
+  border:1px solid transparent;
+}
+
+.progress-item.active{
+  color:var(--purple-dark);
+  background:var(--lavender);
+  border-color:#DDD6FE;
+}
+
+/* APP */
+
+.app{
+  width:min(900px,calc(100% - 36px));
+  margin:0 auto 100px;
+}
+
+.card{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:24px;
+  padding:clamp(25px,5vw,50px);
+  box-shadow:0 20px 70px rgba(15,23,42,.06);
+}
+
+.step{
+  display:none;
+}
+
+.step.active{
+  display:block;
+  animation:appear .35s ease;
+}
+
+@keyframes appear{
+  from{
+    opacity:0;
+    transform:translateY(12px);
+  }
+  to{
+    opacity:1;
+    transform:none;
+  }
+}
+
+.step-label{
+  color:var(--purple-dark);
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  margin-bottom:10px;
+}
+
+.step h2{
+  color:var(--navy);
+  font-size:clamp(1.65rem,4vw,2.3rem);
+  line-height:1.2;
+  margin:0 0 30px;
+}
+
+.form-group{
+  margin-bottom:25px;
+}
+
+.form-group label{
+  display:block;
+  font-weight:700;
+  font-size:14px;
+  margin-bottom:9px;
+}
+
+.help{
+  font-weight:400;
+  color:#98A2B3;
+}
+
+input,
+textarea,
+select{
+  width:100%;
+  padding:15px 16px;
+  border:1px solid #D0D5DD;
+  border-radius:11px;
+  background:#fff;
+  color:var(--text);
+  font-size:15px;
+  transition:.2s;
+}
+
+textarea{
+  resize:vertical;
+  min-height:105px;
+  line-height:1.6;
+}
+
+input:focus,
+textarea:focus,
+select:focus{
+  outline:none;
+  border-color:var(--purple);
+  box-shadow:0 0 0 4px rgba(124,108,242,.12);
+}
+
+/* CHIPS */
+
+.chips{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+
+.chip{
+  border:1px solid #D0D5DD;
+  background:#fff;
+  border-radius:99px;
+  padding:11px 16px;
+  font-size:13px;
+  font-weight:700;
+  color:#475467;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.chip:hover{
+  border-color:var(--purple);
+}
+
+.chip.selected{
+  background:var(--lavender);
+  border-color:var(--purple);
+  color:var(--purple-dark);
+}
+
+/* BUTTONS */
+
+.actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:32px;
+}
+
+.btn{
+  border:0;
+  border-radius:10px;
+  padding:14px 23px;
+  font-size:14px;
+  font-weight:800;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.primary{
+  background:linear-gradient(
+    135deg,
+    var(--blue),
+    var(--purple-dark)
+  );
+  color:white;
+}
+
+.primary:hover{
+  transform:translateY(-2px);
+  box-shadow:0 10px 25px rgba(91,75,224,.2);
+}
+
+.secondary{
+  color:var(--purple-dark);
+  background:#fff;
+  border:1px solid #CCC5FF;
+}
+
+/* RESULT */
+
+.result-box{
+  background:#F8F9FC;
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:18px;
+}
+
+#resultado{
+  width:100%;
+  min-height:520px;
+  background:white;
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-size:13px;
+  line-height:1.7;
+}
+
+/* SUCCESS */
+
+.success{
+  display:none;
+  align-items:center;
+  gap:10px;
+  padding:13px 16px;
+  background:#ECFDF3;
+  border:1px solid #ABEFC6;
+  color:#067647;
+  border-radius:10px;
+  margin-bottom:17px;
+  font-size:13px;
+  font-weight:700;
+}
+
+.success.show{
+  display:flex;
+}
+
+/* ERROR */
+
+.error{
+  display:none;
+  padding:14px 16px;
+  border-radius:10px;
+  background:#FEF3F2;
+  border:1px solid #FECDCA;
+  color:#B42318;
+  margin-bottom:17px;
+  font-size:13px;
+}
+
+.error.show{
+  display:block;
+}
+
+/* LOADING */
+
+.loading{
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:999;
+  background:rgba(11,29,61,.55);
+  backdrop-filter:blur(5px);
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+.loading.show{
+  display:flex;
+}
+
+.loading-card{
+  width:min(500px,100%);
+  background:white;
+  border-radius:22px;
+  padding:45px 35px;
+  text-align:center;
+  box-shadow:0 30px 90px rgba(0,0,0,.2);
+}
+
+.spinner{
+  width:60px;
+  height:60px;
+  border-radius:50%;
+  border:5px solid #E9E6FF;
+  border-top-color:var(--purple-dark);
+  margin:0 auto 22px;
+  animation:spin .9s linear infinite;
+}
+
+@keyframes spin{
+  to{
+    transform:rotate(360deg);
+  }
+}
+
+.loading-card h3{
+  color:var(--navy);
+  margin:0 0 10px;
+  font-size:23px;
+}
+
+.loading-card p{
+  color:var(--muted);
+  margin:0;
+  line-height:1.6;
+}
+
+/* FOOTER */
+
+footer{
+  background:var(--navy);
+  color:white;
+  text-align:center;
+  padding:35px 20px;
+}
+
+footer p{
+  color:#AAB4C8;
+  margin:5px 0;
+  font-size:13px;
+}
+
+@media(max-width:700px){
+
+  .progress{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .card{
+    border-radius:18px;
+  }
+
+  .actions{
+    flex-direction:column;
+  }
+
+  .btn{
+    width:100%;
+  }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+<header>
+
+  <div class="nav">
+
+    <a href="index.html" class="brand">
+      Teaching<span>TIC</span>
+    </a>
+
+    <a href="index.html" class="back">
+      ← Volver al inicio
+    </a>
+
+  </div>
+
+</header>
+
+
+<section class="hero">
+
+  <div class="badge">
+    ✨ Teaching TIC · Asistente con IA
+  </div>
+
+  <h1>
+    Prompt<span>Lab</span>
+  </h1>
+
+  <p>
+    Convierte un problema real de tu institución educativa
+    en un prompt profesional listo para construir un prototipo
+    digital con inteligencia artificial.
+  </p>
+
+</section>
+
+
+<div class="progress">
+
+  <div class="progress-item active" id="progress1">
+    01 · Problema
+  </div>
+
+  <div class="progress-item" id="progress2">
+    02 · Usuario
+  </div>
+
+  <div class="progress-item" id="progress3">
+    03 · Solución
+  </div>
+
+  <div class="progress-item" id="progress4">
+    04 · Prompt
+  </div>
+
+</div>
+
+
+<main class="app">
+
+<div class="card">
+
+
+<!-- PASO 1 -->
+
+<section class="step active" id="step1">
+
+  <div class="step-label">
+    Paso 1 · Problema
+  </div>
+
+  <h2>
+    ¿Qué problema quieres resolver?
+  </h2>
+
+  <div class="form-group">
+
+    <label>
+      Describe el problema
+    </label>
+
+    <textarea
+      id="problema"
+      placeholder="Ejemplo: Los estudiantes tienen dificultades para clasificar correctamente los residuos que generan en la escuela."
+    ></textarea>
+
+  </div>
+
+
+  <div class="form-group">
+
+    <label>
+      ¿Dónde ocurre?
+    </label>
+
+    <input
+      id="lugar"
+      placeholder="Ejemplo: En mi institución educativa y comunidad."
+    >
+
+  </div>
+
+
+  <div class="form-group">
+
+    <label>
+      ¿Cómo sabes que existe?
+      <span class="help">(opcional)</span>
+    </label>
+
+    <textarea
+      id="evidencia"
+      placeholder="Ejemplo: Durante los recreos observamos que los residuos se mezclan en los tachos."
+    ></textarea>
+
+  </div>
+
+
+  <div class="actions">
+
+    <button
+      class="btn primary"
+      onclick="nextStep(2)"
+    >
+      Continuar →
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- PASO 2 -->
+
+<section class="step" id="step2">
+
+  <div class="step-label">
+    Paso 2 · Usuario
+  </div>
+
+  <h2>
+    ¿A quién queremos ayudar?
+  </h2>
+
+
+  <div class="form-group">
+
+    <label>
+      Usuario principal
+    </label>
+
+    <div class="chips" id="publicos">
+
+      <button class="chip" data-value="Estudiantes">
+        👧 Estudiantes
+      </button>
+
+      <button class="chip" data-value="Docentes">
+        👩‍🏫 Docentes
+      </button>
+
+      <button class="chip" data-value="Familias">
+        👨‍👩‍👧 Familias
+      </button>
+
+      <button class="chip" data-value="Directivos">
+        🏫 Directivos
+      </button>
+
+      <button class="chip" data-value="Comunidad">
+        🌎 Comunidad
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <div class="form-group">
+
+    <label>
+      Nivel educativo o edad
+    </label>
+
+    <select id="nivel">
+
+      <option value="">
+        Selecciona una opción
+      </option>
+
+      <option>
+        Inicial
+      </option>
+
+      <option>
+        Primaria
+      </option>
+
+      <option>
+        Secundaria
+      </option>
+
+      <option>
+        Educación superior
+      </option>
+
+      <option>
+        Adultos
+      </option>
+
+    </select>
+
+  </div>
+
+
+  <div class="form-group">
+
+    <label>
+      ¿Qué necesitan?
+    </label>
+
+    <textarea
+      id="necesidad"
+      placeholder="Ejemplo: Necesitan una forma visual, sencilla e interactiva de aprender dónde colocar cada residuo."
+    ></textarea>
+
+  </div>
+
+
+  <div class="actions">
+
+    <button
+      class="btn secondary"
+      onclick="nextStep(1)"
+    >
+      ← Atrás
+    </button>
+
+    <button
+      class="btn primary"
+      onclick="nextStep(3)"
+    >
+      Continuar →
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- PASO 3 -->
+
+<section class="step" id="step3">
+
+  <div class="step-label">
+    Paso 3 · Solución
+  </div>
+
+  <h2>
+    ¿Qué te gustaría crear?
+  </h2>
+
+
+  <div class="form-group">
+
+    <label>
+      Tipo de solución
+    </label>
+
+    <select id="solucion">
+
+      <option value="">
+        Ayúdame a elegir
+      </option>
+
+      <option>
+        Aplicación web
+      </option>
+
+      <option>
+        Chatbot educativo
+      </option>
+
+      <option>
+        Experiencia gamificada
+      </option>
+
+      <option>
+        Dashboard
+      </option>
+
+      <option>
+        Recurso interactivo
+      </option>
+
+      <option>
+        Mapa interactivo
+      </option>
+
+      <option>
+        Simulador
+      </option>
+
+      <option>
+        Plataforma educativa
+      </option>
+
+    </select>
+
+  </div>
+
+
+  <div class="form-group">
+
+    <label>
+      ¿Cuál debería ser su función principal?
+    </label>
+
+    <textarea
+      id="funcion"
+      placeholder="Ejemplo: Que el estudiante seleccione un residuo y aprenda de forma visual en qué contenedor debe colocarlo."
+    ></textarea>
+
+  </div>
+
+
+  <div class="form-group">
+
+    <label>
+      ¿Qué otras funciones te gustaría incluir?
+      <span class="help">(opcional)</span>
+    </label>
+
+    <textarea
+      id="extras"
+      placeholder="Ejemplo: retos, puntos, niveles, retroalimentación inmediata o progreso."
+    ></textarea>
+
+  </div>
+
+
+  <div class="actions">
+
+    <button
+      class="btn secondary"
+      onclick="nextStep(2)"
+    >
+      ← Atrás
+    </button>
+
+    <button
+      class="btn primary"
+      onclick="generarPrompt()"
+    >
+      ✨ Generar con IA
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- PASO 4 -->
+
+<section class="step" id="step4">
+
+  <div class="step-label">
+    Paso 4 · Resultado
+  </div>
+
+  <h2>
+    Tu prompt está listo 🚀
+  </h2>
+
+
+  <div
+    class="success"
+    id="success"
+  >
+    ✨ Prompt afinado correctamente con inteligencia artificial.
+  </div>
+
+
+  <div
+    class="error"
+    id="error"
+  ></div>
+
+
+  <div class="result-box">
+
+    <textarea
+      id="resultado"
+    ></textarea>
+
+  </div>
+
+
+  <div class="actions">
+
+    <button
+      class="btn primary"
+      onclick="copiarPrompt()"
+    >
+      📋 Copiar prompt
+    </button>
+
+    <button
+      class="btn secondary"
+      onclick="generarPrompt()"
+    >
+      ✨ Afinar nuevamente
+    </button>
+
+    <button
+      class="btn secondary"
+      onclick="reiniciar()"
+    >
+      🔄 Crear otro
+    </button>
+
+  </div>
+
+</section>
+
+
+</div>
+</main>
+
+
+<div
+  class="loading"
+  id="loading"
+>
+
+  <div class="loading-card">
+
+    <div class="spinner"></div>
+
+    <h3>
+      ✨ Afinando tu prompt con IA
+    </h3>
+
+    <p>
+      Gemini está analizando el problema,
+      organizando tus ideas y preparando
+      un prompt listo para construir tu prototipo.
+    </p>
+
+  </div>
+
+</div>
+
+
+<footer>
+
+  <strong>
+    Teaching TIC
+  </strong>
+
+  <p>
+    Innovación para educar.
+  </p>
+
+  <p>
+    © 2026 Teaching TIC
+  </p>
+
+</footer>
+
+
+<script>
+
+let currentStep = 1;
+let publicoSeleccionado = "";
+
+
+/* =========================
+   SELECCIÓN DE PÚBLICO
+========================= */
+
+document
+  .querySelectorAll("#publicos .chip")
+  .forEach(button => {
+
+    button.addEventListener(
+      "click",
+      () => {
+
+        document
+          .querySelectorAll("#publicos .chip")
+          .forEach(b =>
+            b.classList.remove("selected")
+          );
+
+        button.classList.add("selected");
+
+        publicoSeleccionado =
+          button.dataset.value;
+
+      }
+    );
+
+  });
+
+
+/* =========================
+   NAVEGACIÓN
+========================= */
+
+function nextStep(step){
+
+  if(step === 2){
+
+    const problema =
+      document
+        .getElementById("problema")
+        .value
+        .trim();
+
+    const lugar =
+      document
+        .getElementById("lugar")
+        .value
+        .trim();
+
+    if(!problema || !lugar){
+
+      alert(
+        "Completa el problema y dónde ocurre antes de continuar."
+      );
+
+      return;
+    }
+
+  }
+
+
+  if(step === 3){
+
+    const necesidad =
+      document
+        .getElementById("necesidad")
+        .value
+        .trim();
+
+    if(!publicoSeleccionado){
+
+      alert(
+        "Selecciona a quién quieres ayudar."
+      );
+
+      return;
+    }
+
+    if(!necesidad){
+
+      alert(
+        "Describe qué necesita el usuario."
+      );
+
+      return;
+    }
+
+  }
+
+
+  document
+    .querySelectorAll(".step")
+    .forEach(el =>
+      el.classList.remove("active")
+    );
+
+
+  document
+    .getElementById("step" + step)
+    .classList
+    .add("active");
+
+
+  document
+    .querySelectorAll(".progress-item")
+    .forEach(el =>
+      el.classList.remove("active")
+    );
+
+
+  document
+    .getElementById("progress" + step)
+    .classList
+    .add("active");
+
+
+  currentStep = step;
+
+  window.scrollTo({
+    top:150,
+    behavior:"smooth"
+  });
+
+}
+
+
+/* =========================
+   CONSTRUIR INSTRUCCIÓN
+========================= */
+
+function construirInstruccion(){
+
+  const problema =
+    document
+      .getElementById("problema")
+      .value
+      .trim();
+
+  const lugar =
+    document
+      .getElementById("lugar")
+      .value
+      .trim();
+
+  const evidencia =
+    document
+      .getElementById("evidencia")
+      .value
+      .trim();
+
+  const nivel =
+    document
+      .getElementById("nivel")
+      .value;
+
+  const necesidad =
+    document
+      .getElementById("necesidad")
+      .value
+      .trim();
+
+  const solucion =
+    document
+      .getElementById("solucion")
+      .value;
+
+  const funcion =
+    document
+      .getElementById("funcion")
+      .value
+      .trim();
+
+  const extras =
+    document
+      .getElementById("extras")
+      .value
+      .trim();
+
+
+  return `
+Eres especialista en innovación educativa,
+diseño instruccional, experiencia de usuario
+y creación de prototipos digitales.
+
+Tu tarea es transformar la información proporcionada
+por un docente en un PROMPT MAESTRO profesional,
+preciso y listo para pegar directamente en herramientas
+como Lovable, Claude, Replit, Bolt o plataformas similares.
+
+El resultado debe estar completamente en español.
+
+CONTEXTO DEL PROBLEMA
+
+Problema:
+${problema}
+
+Lugar donde ocurre:
+${lugar}
+
+Evidencia:
+${evidencia || "No especificada"}
+
+USUARIOS
+
+Usuario principal:
+${publicoSeleccionado}
+
+Nivel educativo:
+${nivel || "No especificado"}
+
+NECESIDAD
+
+${necesidad}
+
+TIPO DE SOLUCIÓN
+
+${solucion || "Recomienda la solución digital más apropiada para este problema."}
+
+FUNCIÓN PRINCIPAL
+
+${funcion || "Propón una función principal sencilla, útil y coherente con el problema."}
+
+FUNCIONES ADICIONALES
+
+${extras || "Incluye únicamente funciones esenciales para una primera versión."}
+
+INSTRUCCIONES PARA EL PROMPT FINAL
+
+Crea un prompt profesional para construir un
+PROTOTIPO DIGITAL EDUCATIVO INTERACTIVO.
+
+Debe incluir obligatoriamente:
+
+1. PROBLEMA
+Explica claramente qué problema resolverá.
+
+2. CONTEXTO
+Describe dónde sucede y por qué es relevante.
+
+3. USUARIOS
+Define para quién se diseña.
+
+4. NECESIDAD
+Explica qué necesita realmente el usuario.
+
+5. TIPO DE SOLUCIÓN
+Define el producto digital recomendado.
+
+6. FUNCIÓN PRINCIPAL
+Explica exactamente qué podrá hacer el usuario.
+
+7. FUNCIONES ADICIONALES
+Incluye solo las necesarias para el prototipo 1.0.
+
+8. PANTALLAS
+Describe concretamente las pantallas que debe contener.
+
+9. EXPERIENCIA DE USUARIO
+Explica la navegación y las interacciones principales.
+
+10. DISEÑO VISUAL
+Solicita un diseño moderno, educativo,
+amigable, accesible y responsive.
+
+11. CONTENIDO
+Usa información realista en español.
+No utilices Lorem Ipsum.
+
+12. RETROALIMENTACIÓN
+Incluye estados claros de éxito,
+error, progreso y orientación.
+
+13. RESPONSIVE
+Debe funcionar correctamente
+en computadora, tablet y celular.
+
+14. RESTRICCIONES
+
+No quiero únicamente una landing page que explique la idea.
+Construye un prototipo interactivo que permita al usuario
+experimentar la solución.
+
+No crear login.
+No solicitar registro.
+No configurar base de datos.
+No solicitar claves API.
+No depender de servicios externos innecesarios.
+Simular funciones complejas con datos realistas
+cuando sea necesario.
+
+15. CRITERIOS DE ÉXITO
+
+Incluye entre 3 y 5 criterios concretos
+para comprobar que el prototipo resuelve
+el problema planteado.
+
+Termina exactamente con esta instrucción:
+
+"Crea esta primera versión como PROTOTIPO 1.0
+y comienza construyendo directamente el prototipo."
+
+IMPORTANTE:
+
+Devuelve únicamente el prompt final.
+
+No escribas introducciones.
+
+No escribas explicaciones adicionales.
+
+No utilices bloques de código.
+`.trim();
+
+}
+
+
+/* =========================
+   GEMINI
+========================= */
+
+async function generarPrompt(){
+
+  const instruction =
+    construirInstruccion();
+
+
+  if(
+    !instruction ||
+    instruction.length < 100
+  ){
+
+    alert(
+      "No hay suficiente información para generar el prompt."
+    );
+
+    return;
+
+  }
+
+
+  document
+    .getElementById("loading")
+    .classList
+    .add("show");
+
+
+  document
+    .getElementById("error")
+    .classList
+    .remove("show");
+
+
+  document
+    .getElementById("success")
+    .classList
+    .remove("show");
+
+
+  try{
+
+    const response =
+      await fetch(
+        "/api/generate-prompt",
+        {
+
+          method:"POST",
+
+          headers:{
+            "Content-Type":"application/json"
+          },
+
+          body:JSON.stringify({
+            instruction:instruction
+          })
+
+        }
+      );
+
+
+    const data =
+      await response.json();
+
+
+    if(!response.ok){
+
+      throw new Error(
+        data.detail ||
+        data.error ||
+        "No se pudo generar el prompt."
+      );
+
+    }
+
+
+    if(
+      !data.text ||
+      data.text.trim().length < 50
+    ){
+
+      throw new Error(
+        "Gemini no devolvió contenido suficiente."
+      );
+
+    }
+
+
+    document
+      .getElementById("resultado")
+      .value =
+      data.text.trim();
+
+
+    nextStep(4);
+
+
+    document
+      .getElementById("success")
+      .classList
+      .add("show");
+
+
+    console.log(
+      "Modelo usado:",
+      data.model
+    );
+
+
+  }catch(error){
+
+    console.error(error);
+
+
+    nextStep(4);
+
+
+    const errorBox =
+      document
+        .getElementById("error");
+
+
+    errorBox.textContent =
+      "⚠️ " +
+      error.message;
+
+
+    errorBox
+      .classList
+      .add("show");
+
+  }finally{
+
+    document
+      .getElementById("loading")
+      .classList
+      .remove("show");
+
+  }
+
+}
+
+
+/* =========================
+   COPIAR
+========================= */
+
+async function copiarPrompt(){
+
+  const text =
+    document
+      .getElementById("resultado")
+      .value;
+
+
+  if(!text){
+    return;
+  }
+
+
+  await navigator
+    .clipboard
+    .writeText(text);
+
+
+  alert(
+    "✅ Prompt copiado."
+  );
+
+}
+
+
+/* =========================
+   REINICIAR
+========================= */
+
+function reiniciar(){
+
+  document
+    .querySelectorAll(
+      "input, textarea"
+    )
+    .forEach(el =>
+      el.value = ""
+    );
+
+
+  document
+    .querySelectorAll("select")
+    .forEach(el =>
+      el.selectedIndex = 0
+    );
+
+
+  document
+    .querySelectorAll(".chip")
+    .forEach(el =>
+      el.classList.remove("selected")
+    );
+
+
+  publicoSeleccionado = "";
+
+  nextStep(1);
+
+}
+
+</script>
+
+</body>
+</html>
