@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  html, body { margin: 0; background: #FFFFFF; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  * { box-sizing: border-box; }
+  a { color: #0B47CE; text-decoration: none; }
+  a:hover { color: #003889; }
+</style>
+</helmet>
+
+<div style="font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: #202124; background: #FFFFFF; max-width: 100%">
+
+  <header style="position: sticky; top: 0; z-index: 60; background: #FFFFFF; border-bottom: 1px solid #E7ECF5">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 40px); height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 24px">
+      <a href="Teaching TIC Landing.dc.html" style="display: flex; align-items: center; gap: 10px; color: #202124; flex-shrink: 0; white-space: nowrap">
+        <span style="width: 12px; height: 12px; border-radius: 3px; background: #0B47CE; display: block; flex-shrink: 0"></span>
+        <span style="font-weight: 700; font-size: 19px; letter-spacing: -0.01em; white-space: nowrap">Teaching TIC</span>
+      </a>
+      <div style="display: flex; align-items: center; gap: clamp(14px, 2vw, 26px)">
+        <a href="Teaching TIC Landing.dc.html" style="font-size: 14.5px; font-weight: 500; color: #202124; display: {{ deskNav }}">← Volver al inicio</a>
+        <a href="https://wa.me/51921090875" target="_blank" rel="noopener" style="font-size: 14.5px; font-weight: 600; color: #FFFFFF; background: #0B47CE; padding: 11px 20px; border-radius: 8px" style-hover="background: #003889; color: #FFFFFF">Conversemos</a>
+      </div>
+    </div>
+  </header>
+
+  <section style="background: #FFFFFF; padding: clamp(48px, 6vw, 88px) 0 clamp(32px, 4vw, 48px)">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 40px)">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 22px">
+        <span style="width: 28px; height: 2px; background: #0B47CE; display: block"></span>
+        <span style="font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #0B47CE">Recursos · Herramientas</span>
+      </div>
+      <h1 style="font-weight: 700; font-size: clamp(2.1rem, 4.2vw, 3.4rem); line-height: 1.08; letter-spacing: -0.025em; margin: 0 0 22px; max-width: 22ch; text-wrap: balance">Herramientas educativas, clasificadas por uso</h1>
+      <p style="font-size: clamp(1rem, 1.4vw, 1.15rem); line-height: 1.65; color: #667085; margin: 0 0 12px; max-width: 58ch; text-wrap: pretty">Una selección de herramientas, la mayoría con inteligencia artificial, organizada por el propósito pedagógico al que responde cada una. La pregunta no es qué herramienta usar, sino para qué.</p>
+      <p style="font-size: 0.92rem; line-height: 1.6; color: #97A3BC; margin: 0; max-width: 58ch">Los nombres y marcas mencionadas pertenecen a sus respectivos titulares. Teaching TIC no tiene vínculo comercial con ellas.</p>
+    </div>
+  </section>
+
+  <section style="background: #FFFFFF; padding: 0 0 clamp(24px, 3vw, 40px); position: sticky; top: 78px; z-index: 40">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 16px clamp(20px, 4vw, 40px); background: #FFFFFF">
+      <div style="display: flex; flex-wrap: wrap; gap: 10px">
+        <sc-for list="{{ filtros }}" as="f" hint-placeholder-count="5">
+          <button type="button" onClick="{{ f.onClick }}" style="font-size: 14px; font-weight: 600; padding: 10px 18px; border-radius: 999px; cursor: pointer; font-family: inherit; border: 1px solid {{ f.border }}; background: {{ f.bg }}; color: {{ f.color }}" style-hover="border-color: #0B47CE">{{ f.label }}</button>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section style="background: #FFFFFF; padding: 0 0 clamp(72px, 8vw, 120px)">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 40px); display: grid; gap: clamp(56px, 6vw, 88px)">
+      <sc-for list="{{ categorias }}" as="cat" hint-placeholder-count="4">
+        <div>
+          <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 20px; padding-bottom: 18px; border-bottom: 1px solid #E7ECF5; margin-bottom: clamp(24px, 3vw, 36px)">
+            <div>
+              <h2 style="font-weight: 700; font-size: clamp(1.35rem, 2.4vw, 1.9rem); line-height: 1.2; letter-spacing: -0.02em; color: #003889; margin: 0 0 10px; text-wrap: balance">{{ cat.nombre }}</h2>
+              <p style="font-size: 0.98rem; line-height: 1.6; color: #667085; margin: 0; max-width: 60ch; text-wrap: pretty">{{ cat.para }}</p>
+            </div>
+            <span style="font-size: 12px; font-weight: 600; color: #97A3BC; white-space: nowrap">{{ cat.conteo }}</span>
+          </div>
+          <div style="display: grid; gap: 16px; grid-template-columns: {{ toolCols }}">
+            <sc-for list="{{ cat.tools }}" as="t" hint-placeholder-count="4">
+              <a href="{{ t.url }}" target="_blank" rel="noopener" style="border: 1px solid #E5E7EB; border-radius: 14px; padding: 22px; background: #FFFFFF; display: grid; gap: 14px; align-content: start; color: #202124" style-hover="border-color: #0B47CE; color: #202124">
+                <div style="display: flex; align-items: center; gap: 12px">
+                  <span style="width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 15px; letter-spacing: -0.01em; flex-shrink: 0; color: #FFFFFF; background: {{ t.tono }}">{{ t.sigla }}</span>
+                  <span style="display: block; min-width: 0">
+                    <span style="font-weight: 600; font-size: 1.02rem; color: #202124; display: block">{{ t.nombre }}</span>
+                    <span style="font-size: 12.5px; color: #97A3BC; display: block">{{ t.tipo }}</span>
+                  </span>
+                </div>
+                <p style="font-size: 0.93rem; line-height: 1.6; color: #667085; margin: 0; text-wrap: pretty">{{ t.uso }}</p>
+                <span style="font-size: 12px; font-weight: 600; color: #0B47CE; background: #EEF2F7; padding: 7px 12px; border-radius: 6px; justify-self: start">{{ t.aula }}</span>
+                <span style="font-size: 13px; font-weight: 600; color: #0B47CE; display: block; word-break: break-all">{{ t.dominio }} →</span>
+              </a>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="background: #FFFFFF; padding: 0 clamp(20px, 4vw, 40px) clamp(72px, 8vw, 120px)">
+    <div style="max-width: 1280px; margin: 0 auto; background: #EEF2F7; border-radius: 20px; padding: clamp(36px, 5vw, 72px)">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px">
+        <span style="width: 28px; height: 2px; background: #0B47CE; display: block"></span>
+        <span style="font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #0B47CE">Formación</span>
+      </div>
+      <h2 style="font-weight: 700; font-size: clamp(1.7rem, 3.2vw, 2.6rem); line-height: 1.12; letter-spacing: -0.02em; color: #003889; margin: 0 0 16px; max-width: 26ch; text-wrap: balance">¿Quieres aprender a usarlas con criterio pedagógico?</h2>
+      <p style="font-size: clamp(0.98rem, 1.3vw, 1.12rem); line-height: 1.6; color: #202124; margin: 0 0 32px; max-width: 46ch; text-wrap: pretty">Diseñamos programas de formación docente para integrar estas herramientas de manera ética, responsable y con impacto en el aula.</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 12px">
+        <a href="https://wa.me/51921090875" target="_blank" rel="noopener" style="font-size: 15px; font-weight: 600; color: #FFFFFF; background: #0B47CE; padding: 15px 26px; border-radius: 8px" style-hover="background: #003889; color: #FFFFFF">Conversemos sobre tu proyecto</a>
+        <a href="Teaching TIC Landing.dc.html" style="font-size: 15px; font-weight: 600; color: #003889; background: #FFFFFF; border: 1px solid #CFDCF8; padding: 15px 26px; border-radius: 8px" style-hover="border-color: #0B47CE">Volver al inicio</a>
+      </div>
+    </div>
+  </section>
+
+  <footer style="background: #003889; color: #FFFFFF; padding: clamp(40px, 5vw, 64px) clamp(20px, 4vw, 40px) 28px">
+    <div style="max-width: 1280px; margin: 0 auto; display: grid; gap: 22px">
+      <div style="display: flex; align-items: center; gap: 10px">
+        <span style="width: 12px; height: 12px; border-radius: 3px; background: #8B7CF6; display: block"></span>
+        <span style="font-weight: 700; font-size: 19px; letter-spacing: -0.01em; color: #FFFFFF">Teaching TIC</span>
+      </div>
+      <p style="font-size: 0.98rem; line-height: 1.6; color: #B9CDF2; margin: 0; max-width: 34ch">Innovación y tecnología para transformar la educación.</p>
+      <span style="font-size: 13.5px; color: #93AEDF; border-top: 1px solid #1B4E9E; padding-top: 24px">© 2026 Teaching TIC. Todos los derechos reservados.</span>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { w: typeof window !== 'undefined' ? window.innerWidth : 1440, filtro: 'Todas' };
+
+  componentDidMount() {
+    this._onResize = () => this.setState({ w: window.innerWidth });
+    window.addEventListener('resize', this._onResize);
+    this._onResize();
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this._onResize); }
+
+  get data() {
+    return [
+      { nombre: 'Asistentes de IA conversacional', para: 'Para planificar sesiones, adaptar materiales, redactar y resolver dudas con un asistente de propósito general.', tools: [
+        { nombre: 'ChatGPT', sigla: 'GPT', tipo: 'OpenAI', tono: '#0B47CE', url: 'https://chatgpt.com', uso: 'Asistente conversacional para planificar sesiones, generar ejemplos, adaptar textos por nivel y crear rúbricas.', aula: 'Planificación y materiales' },
+        { nombre: 'Gemini', sigla: 'GM', tipo: 'Google', tono: '#003889', url: 'https://gemini.google.com', uso: 'Asistente integrado al ecosistema de Google, útil para trabajar sobre documentos, correos y presentaciones del aula.', aula: 'Trabajo con documentos' },
+        { nombre: 'Claude', sigla: 'CL', tipo: 'Anthropic', tono: '#8B7CF6', url: 'https://claude.ai', uso: 'Asistente con buen manejo de textos largos: útil para analizar documentos curriculares y producir material extenso.', aula: 'Análisis de documentos' },
+        { nombre: 'Copilot', sigla: 'CP', tipo: 'Microsoft', tono: '#0B47CE', url: 'https://copilot.microsoft.com', uso: 'Asistente integrado a Word, Excel y PowerPoint para redactar, resumir y ordenar información institucional.', aula: 'Gestión y ofimática' }
+      ] },
+      { nombre: 'Investigación y estudio con IA', para: 'Para trabajar con fuentes, sistematizar lecturas y acompañar el estudio autónomo de los estudiantes.', tools: [
+        { nombre: 'NotebookLM', sigla: 'NLM', tipo: 'Google', tono: '#003889', url: 'https://notebooklm.google.com', uso: 'Cuaderno de investigación que responde solo desde los documentos que subes. Útil para trabajar con fuentes verificadas.', aula: 'Trabajo con fuentes' },
+        { nombre: 'Perplexity', sigla: 'PX', tipo: 'Perplexity AI', tono: '#0B47CE', url: 'https://www.perplexity.ai', uso: 'Buscador con IA que entrega respuestas con enlaces a las fuentes, útil para enseñar verificación de información.', aula: 'Búsqueda con citas' },
+        { nombre: 'Consensus', sigla: 'CS', tipo: 'Consensus', tono: '#8B7CF6', url: 'https://consensus.app', uso: 'Búsqueda en artículos científicos. Sirve para fundamentar proyectos y trabajos de investigación escolar.', aula: 'Evidencia científica' },
+        { nombre: 'Elicit', sigla: 'EL', tipo: 'Elicit', tono: '#003889', url: 'https://elicit.com', uso: 'Revisión de literatura asistida: extrae datos de papers y arma tablas comparativas de estudios.', aula: 'Revisión de literatura' }
+      ] },
+      { nombre: 'Simuladores y laboratorios virtuales', para: 'Para experimentar con fenómenos científicos y matemáticos cuando no hay laboratorio o materiales disponibles.', tools: [
+        { nombre: 'PhET', sigla: 'PH', tipo: 'University of Colorado Boulder', tono: '#0B47CE', url: 'https://phet.colorado.edu/es_PE/', uso: 'Simulaciones interactivas gratuitas de física, química, biología y matemática, con guías docentes en español.', aula: 'Laboratorio virtual' },
+        { nombre: 'Nearpod', sigla: 'NP', tipo: 'Nearpod', tono: '#003889', url: 'https://nearpod.com', uso: 'Lecciones interactivas con simulaciones, videos, realidad virtual y preguntas embebidas que responde toda la clase.', aula: 'Clase interactiva' },
+        { nombre: 'GeoGebra', sigla: 'GG', tipo: 'GeoGebra', tono: '#8B7CF6', url: 'https://www.geogebra.org', uso: 'Geometría dinámica, álgebra y cálculo para visualizar y manipular conceptos matemáticos.', aula: 'Matemática visual' },
+        { nombre: 'Desmos', sigla: 'DM', tipo: 'Desmos', tono: '#0B47CE', url: 'https://www.desmos.com/calculator?lang=es', uso: 'Calculadora gráfica y actividades matemáticas para explorar funciones en clase.', aula: 'Funciones y gráficas' },
+        { nombre: 'Labster', sigla: 'LB', tipo: 'Labster', tono: '#003889', url: 'https://www.labster.com', uso: 'Laboratorios virtuales de ciencias con prácticas simuladas para secundaria y educación superior.', aula: 'Prácticas de ciencias' },
+        { nombre: 'Algodoo', sigla: 'AL', tipo: 'Algoryx', tono: '#8B7CF6', url: 'http://www.algodoo.com', uso: 'Simulador de física en 2D para construir máquinas y experimentos de mecánica y fluidos.', aula: 'Física experimental' }
+      ] },
+      { nombre: 'Creación de recursos y contenidos', para: 'Para producir materiales, presentaciones e imágenes de apoyo sin depender de un equipo de diseño.', tools: [
+        { nombre: 'Canva', sigla: 'CV', tipo: 'Canva', tono: '#0B47CE', url: 'https://www.canva.com/es_419/educacion/', uso: 'Diseño de materiales, infografías y presentaciones con plantillas y funciones de IA integradas.', aula: 'Materiales de aula' },
+        { nombre: 'Gamma', sigla: 'GA', tipo: 'Gamma', tono: '#8B7CF6', url: 'https://gamma.app', uso: 'Genera presentaciones completas a partir de un texto o esquema, editables después.', aula: 'Presentaciones' },
+        { nombre: 'Genially', sigla: 'GE', tipo: 'Genially', tono: '#003889', url: 'https://genially.com/es/', uso: 'Creación de contenidos interactivos: imágenes con puntos activos, escapes room y presentaciones navegables.', aula: 'Contenido interactivo' },
+        { nombre: 'Napkin', sigla: 'NK', tipo: 'Napkin AI', tono: '#0B47CE', url: 'https://www.napkin.ai', uso: 'Convierte texto en diagramas y esquemas visuales, útil para explicar procesos y conceptos.', aula: 'Diagramas y esquemas' }
+      ] },
+      { nombre: 'Evaluación y retroalimentación', para: 'Para diseñar instrumentos, corregir con criterios explícitos y devolver retroalimentación más rápida.', tools: [
+        { nombre: 'Quizizz', sigla: 'QZ', tipo: 'Quizizz', tono: '#003889', url: 'https://quizizz.com', uso: 'Cuestionarios y actividades gamificadas con reportes por estudiante y por competencia.', aula: 'Evaluación formativa' },
+        { nombre: 'Kahoot', sigla: 'KH', tipo: 'Kahoot!', tono: '#0B47CE', url: 'https://kahoot.com/schools/', uso: 'Dinámicas de preguntas en vivo para activar conocimientos previos y cerrar sesiones.', aula: 'Activación en clase' },
+        { nombre: 'Formative', sigla: 'FM', tipo: 'Formative', tono: '#8B7CF6', url: 'https://www.formative.com', uso: 'Actividades con seguimiento en tiempo real de las respuestas de cada estudiante.', aula: 'Seguimiento en vivo' },
+        { nombre: 'Google Forms', sigla: 'GF', tipo: 'Google', tono: '#003889', url: 'https://docs.google.com/forms/', uso: 'Instrumentos de evaluación y encuestas con resultados exportables a hojas de cálculo.', aula: 'Instrumentos y datos' }
+      ] },
+      { nombre: 'Audio, video y accesibilidad', para: 'Para producir clases grabadas, subtítulos y recursos accesibles para distintos estudiantes.', tools: [
+        { nombre: 'Loom', sigla: 'LM', tipo: 'Loom', tono: '#0B47CE', url: 'https://www.loom.com', uso: 'Grabación de pantalla y voz para explicar tareas o dejar retroalimentación en video.', aula: 'Clases grabadas' },
+        { nombre: 'Descript', sigla: 'DS', tipo: 'Descript', tono: '#8B7CF6', url: 'https://www.descript.com', uso: 'Edición de audio y video desde la transcripción, con subtítulos automáticos.', aula: 'Edición y subtítulos' },
+        { nombre: 'ElevenLabs', sigla: 'EV', tipo: 'ElevenLabs', tono: '#003889', url: 'https://elevenlabs.io', uso: 'Voz sintética para narrar materiales y apoyar a estudiantes que aprenden mejor escuchando.', aula: 'Accesibilidad auditiva' },
+        { nombre: 'Whisper', sigla: 'WH', tipo: 'OpenAI', tono: '#0B47CE', url: 'https://github.com/openai/whisper', uso: 'Transcripción automática de clases y entrevistas, base para actas y material de estudio.', aula: 'Transcripción' }
+      ] },
+      { nombre: 'Pensamiento computacional y STEAM', para: 'Para llevar programación, robótica y proyectos STEAM al aula con recursos gratuitos.', tools: [
+        { nombre: 'Scratch', sigla: 'SC', tipo: 'MIT', tono: '#003889', url: 'https://scratch.mit.edu', uso: 'Programación por bloques para crear juegos e historias interactivas desde primaria.', aula: 'Programación inicial' },
+        { nombre: 'Tinkercad', sigla: 'TK', tipo: 'Autodesk', tono: '#0B47CE', url: 'https://www.tinkercad.com', uso: 'Diseño 3D y simulación de circuitos en el navegador, sin necesidad de equipos.', aula: 'Diseño y electrónica' },
+        { nombre: 'micro:bit', sigla: 'MB', tipo: 'Micro:bit Foundation', tono: '#8B7CF6', url: 'https://microbit.org', uso: 'Placa programable con editor por bloques para proyectos de sensores y robótica.', aula: 'Robótica y sensores' },
+        { nombre: 'Teachable Machine', sigla: 'TM', tipo: 'Google', tono: '#003889', url: 'https://teachablemachine.withgoogle.com', uso: 'Permite entrenar modelos simples de IA en el navegador para explicar cómo aprende una máquina.', aula: 'IA explicada' }
+      ] }
+    ];
+  }
+
+  renderVals() {
+    const w = this.state.w;
+    const mobile = w < 900;
+    const narrow = w < 620;
+    const activo = this.state.filtro;
+    const nombres = this.data.map(c => c.nombre);
+    const filtros = ['Todas'].concat(nombres).map(label => {
+      const on = label === activo;
+      return {
+        label, onClick: () => this.setState({ filtro: label }),
+        bg: on ? '#0B47CE' : '#FFFFFF',
+        color: on ? '#FFFFFF' : '#202124',
+        border: on ? '#0B47CE' : '#E5E7EB'
+      };
+    });
+    const cats = this.data
+      .filter(c => activo === 'Todas' || c.nombre === activo)
+      .map(c => ({
+        ...c,
+        conteo: c.tools.length + ' herramientas',
+        tools: c.tools.map(t => ({ ...t, dominio: t.url.replace(/^https?:\/\//, '').replace(/^www\./, '').replace(/\/.*$/, '') }))
+      }));
+    return {
+      deskNav: mobile ? 'none' : 'inline',
+      filtros, categorias: cats,
+      toolCols: narrow ? '1fr' : (mobile ? 'repeat(2, minmax(0, 1fr))' : 'repeat(4, minmax(0, 1fr))')
+    };
+  }
+}
+</script>
+</body>
+</html>

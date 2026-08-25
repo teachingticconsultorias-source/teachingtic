@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  html, body { margin: 0; background: #FFFFFF; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  * { box-sizing: border-box; }
+  a { color: #0B47CE; text-decoration: none; }
+  a:hover { color: #003889; }
+</style>
+</helmet>
+
+<div style="font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: #202124; background: #FFFFFF; max-width: 100%">
+
+  <header style="position: sticky; top: 0; z-index: 60; background: #FFFFFF; border-bottom: 1px solid #E7ECF5">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 40px); height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 24px">
+      <a href="Teaching TIC Landing.dc.html" style="display: flex; align-items: center; gap: 10px; color: #202124; flex-shrink: 0; white-space: nowrap">
+        <span style="width: 12px; height: 12px; border-radius: 3px; background: #0B47CE; display: block; flex-shrink: 0"></span>
+        <span style="font-weight: 700; font-size: 19px; letter-spacing: -0.01em; white-space: nowrap">Teaching TIC</span>
+      </a>
+      <div style="display: flex; align-items: center; gap: clamp(14px, 2vw, 26px)">
+        <a href="Teaching TIC Landing.dc.html" style="font-size: 14.5px; font-weight: 500; color: #202124; display: {{ deskNav }}">← Volver al inicio</a>
+        <a href="https://wa.me/51921090875" target="_blank" rel="noopener" style="font-size: 14.5px; font-weight: 600; color: #FFFFFF; background: #0B47CE; padding: 11px 20px; border-radius: 8px" style-hover="background: #003889; color: #FFFFFF">Conversemos</a>
+      </div>
+    </div>
+  </header>
+
+  <section style="background: #FFFFFF; padding: clamp(48px, 6vw, 88px) 0 clamp(40px, 5vw, 64px)">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 40px)">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 22px">
+        <span style="width: 28px; height: 2px; background: #0B47CE; display: block"></span>
+        <span style="font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #0B47CE">Recursos · Guías</span>
+      </div>
+      <h1 style="font-weight: 700; font-size: clamp(2.1rem, 4.2vw, 3.4rem); line-height: 1.08; letter-spacing: -0.025em; margin: 0 0 22px; max-width: 24ch; text-wrap: balance">Guías prácticas para el aula</h1>
+      <p style="font-size: clamp(1rem, 1.4vw, 1.15rem); line-height: 1.65; color: #667085; margin: 0; max-width: 56ch; text-wrap: pretty">Materiales elaborados por el equipo de Teaching TIC para aplicar en la próxima sesión de clase. Descarga gratuita, alineados al CNEB.</p>
+    </div>
+  </section>
+
+  <section style="background: #FFFFFF; padding: 0 0 clamp(56px, 6vw, 88px)">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 40px)">
+      <article style="border: 1px solid #E5E7EB; border-radius: 18px; overflow: hidden; display: grid; grid-template-columns: {{ guideCols }}">
+        <div style="background: #EEF2F7; padding: clamp(28px, 4vw, 44px); display: grid; align-content: space-between; gap: 32px; min-height: 280px">
+          <div>
+            <span style="font-size: 11.5px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #0B47CE; display: block; margin-bottom: 18px">Guía 01 · STEAM</span>
+            <span style="font-weight: 700; font-size: clamp(1.3rem, 2.2vw, 1.7rem); line-height: 1.18; letter-spacing: -0.02em; color: #003889; display: block">Cómo diseñar juegos STEAM que desarrollan competencias</span>
+          </div>
+          <div style="display: grid; gap: 6px">
+            <span style="font-size: 13px; font-weight: 600; color: #202124">Mg. Keytlin García Rurush</span>
+            <span style="font-size: 13px; font-weight: 600; color: #202124">Mg. Gaby Perales</span>
+            <span style="font-size: 12.5px; color: #667085">Teaching TIC · Diseño instruccional · Metodología STEAM</span>
+          </div>
+        </div>
+        <div style="padding: clamp(28px, 4vw, 44px)">
+          <p style="font-size: 1.02rem; line-height: 1.7; color: #202124; margin: 0 0 18px; text-wrap: pretty">Una guía práctica con 17 juegos y una metodología para crear experiencias STEAM en Primaria y Secundaria.</p>
+          <p style="font-size: 0.97rem; line-height: 1.7; color: #667085; margin: 0 0 28px; text-wrap: pretty">Parte de una competencia del CNEB, diseña un reto genuino alrededor de ella y solo al final decide qué materiales o tecnología usar. Cada juego trae competencia explícita, reto con condición de éxito verificable, mecánica paso a paso, una variación para subir o bajar el nivel y una pregunta de reflexión.</p>
+          <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 30px">
+            <span style="font-size: 12.5px; font-weight: 600; color: #0B47CE; background: #EEF2F7; padding: 8px 13px; border-radius: 6px">Primaria y Secundaria</span>
+            <span style="font-size: 12.5px; font-weight: 600; color: #0B47CE; background: #EEF2F7; padding: 8px 13px; border-radius: 6px">Alineada al CNEB</span>
+            <span style="font-size: 12.5px; font-weight: 600; color: #0B47CE; background: #EEF2F7; padding: 8px 13px; border-radius: 6px">17 juegos</span>
+            <span style="font-size: 12.5px; font-weight: 600; color: #0B47CE; background: #EEF2F7; padding: 8px 13px; border-radius: 6px">Plantilla editable</span>
+          </div>
+          <div style="display: flex; flex-wrap: wrap; gap: 12px">
+            <a href="uploads/Guia-Juegos-STEAM-Primaria-Secundaria.docx" download="Guia-Juegos-STEAM-Primaria-Secundaria.docx" style="font-size: 15px; font-weight: 600; color: #FFFFFF; background: #0B47CE; padding: 15px 26px; border-radius: 8px" style-hover="background: #003889; color: #FFFFFF">Descargar la guía</a>
+            <a href="https://wa.me/51921090875" target="_blank" rel="noopener" style="font-size: 15px; font-weight: 600; color: #003889; background: #FFFFFF; border: 1px solid #CFDCF8; padding: 15px 26px; border-radius: 8px" style-hover="border-color: #0B47CE">Solicitar el taller</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section style="background: #F6F8FC; padding: clamp(56px, 7vw, 96px) 0">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 40px)">
+      <h2 style="font-weight: 700; font-size: clamp(1.6rem, 3vw, 2.4rem); line-height: 1.14; letter-spacing: -0.02em; color: #003889; margin: 0 0 16px; max-width: 26ch; text-wrap: balance">Los 17 juegos, uno por uno</h2>
+      <p style="font-size: 1rem; line-height: 1.65; color: #667085; margin: 0 0 clamp(36px, 4vw, 56px); max-width: 52ch; text-wrap: pretty">Cada juego indica el nivel de progresión en el que conviene aplicarlo: Explorar, Resolver, Diseñar u Optimizar.</p>
+      <div style="display: grid; gap: 16px; grid-template-columns: {{ gameCols }}">
+        <sc-for list="{{ juegos }}" as="j" hint-placeholder-count="6">
+          <article style="background: #FFFFFF; border: 1px solid #E5E7EB; border-radius: 14px; padding: 24px; display: grid; gap: 12px; align-content: start" style-hover="border-color: #0B47CE">
+            <span style="font-weight: 700; font-size: 13px; letter-spacing: 0.08em; color: #0B47CE">{{ j.num }}</span>
+            <h3 style="font-weight: 600; font-size: 1.08rem; line-height: 1.3; color: #202124; margin: 0; text-wrap: balance">{{ j.nombre }}</h3>
+            <p style="font-size: 0.92rem; line-height: 1.6; color: #667085; margin: 0; text-wrap: pretty">{{ j.area }}</p>
+          </article>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section style="background: #FFFFFF; padding: clamp(56px, 7vw, 96px) clamp(20px, 4vw, 40px)">
+    <div style="max-width: 1280px; margin: 0 auto; display: grid; gap: clamp(32px, 4vw, 64px); grid-template-columns: {{ twoCols }}">
+      <div>
+        <h2 style="font-weight: 700; font-size: clamp(1.5rem, 2.6vw, 2.1rem); line-height: 1.16; letter-spacing: -0.02em; color: #003889; margin: 0 0 20px; max-width: 22ch; text-wrap: balance">Qué más incluye la guía</h2>
+        <p style="font-size: 0.98rem; line-height: 1.7; color: #667085; margin: 0; max-width: 44ch; text-wrap: pretty">Además del banco de juegos, la guía desarrolla el marco metodológico completo para que puedas diseñar los tuyos.</p>
+      </div>
+      <ul style="margin: 0; padding: 0; list-style: none; display: grid; gap: 14px">
+        <sc-for list="{{ contenidos }}" as="c" hint-placeholder-count="7">
+          <li style="display: flex; align-items: flex-start; gap: 12px; font-size: 1rem; line-height: 1.6; color: #202124; border-bottom: 1px solid #E7ECF5; padding-bottom: 14px">
+            <span style="width: 6px; height: 6px; border-radius: 2px; background: #0B47CE; display: block; flex-shrink: 0; margin-top: 9px"></span>
+            <span>{{ c }}</span>
+          </li>
+        </sc-for>
+      </ul>
+    </div>
+  </section>
+
+  <section style="background: #FFFFFF; padding: 0 clamp(20px, 4vw, 40px) clamp(72px, 8vw, 120px)">
+    <div style="max-width: 1280px; margin: 0 auto; background: #EEF2F7; border-radius: 20px; padding: clamp(36px, 5vw, 72px)">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px">
+        <span style="width: 28px; height: 2px; background: #0B47CE; display: block"></span>
+        <span style="font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #0B47CE">Formación</span>
+      </div>
+      <h2 style="font-weight: 700; font-size: clamp(1.7rem, 3.2vw, 2.6rem); line-height: 1.12; letter-spacing: -0.02em; color: #003889; margin: 0 0 16px; max-width: 26ch; text-wrap: balance">¿Quieres llevar esta guía a tu institución?</h2>
+      <p style="font-size: clamp(0.98rem, 1.3vw, 1.12rem); line-height: 1.6; color: #202124; margin: 0 0 32px; max-width: 46ch; text-wrap: pretty">Diseñamos el taller de acompañamiento para que tu equipo docente aplique la metodología con sus propias unidades didácticas.</p>
+      <a href="https://wa.me/51921090875" target="_blank" rel="noopener" style="font-size: 15px; font-weight: 600; color: #FFFFFF; background: #0B47CE; padding: 15px 26px; border-radius: 8px; display: inline-block" style-hover="background: #003889; color: #FFFFFF">Conversemos sobre tu proyecto</a>
+    </div>
+  </section>
+
+  <footer style="background: #003889; color: #FFFFFF; padding: clamp(40px, 5vw, 64px) clamp(20px, 4vw, 40px) 28px">
+    <div style="max-width: 1280px; margin: 0 auto; display: grid; gap: 22px">
+      <div style="display: flex; align-items: center; gap: 10px">
+        <span style="width: 12px; height: 12px; border-radius: 3px; background: #8B7CF6; display: block"></span>
+        <span style="font-weight: 700; font-size: 19px; letter-spacing: -0.01em; color: #FFFFFF">Teaching TIC</span>
+      </div>
+      <p style="font-size: 0.98rem; line-height: 1.6; color: #B9CDF2; margin: 0; max-width: 34ch">Innovación y tecnología para transformar la educación.</p>
+      <span style="font-size: 13.5px; color: #93AEDF; border-top: 1px solid #1B4E9E; padding-top: 24px">© 2026 Teaching TIC. Todos los derechos reservados.</span>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { w: typeof window !== 'undefined' ? window.innerWidth : 1440 };
+
+  componentDidMount() {
+    this._onResize = () => this.setState({ w: window.innerWidth });
+    window.addEventListener('resize', this._onResize);
+    this._onResize();
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this._onResize); }
+
+  renderVals() {
+    const w = this.state.w;
+    const mobile = w < 900;
+    const narrow = w < 620;
+    const nombres = [
+      ['El agente que navega el aula', 'Pensamiento computacional · programación'],
+      ['Semáforo inteligente', 'Diseña y construye soluciones tecnológicas'],
+      ['La hoja de cálculo detective', 'Gestión de datos e incertidumbre'],
+      ['Depuradores en parejas', 'Programación · depuración de errores'],
+      ['El puente estructural', 'Matemática y Ciencia y Tecnología'],
+      ['Prototipo con restricción de presupuesto', 'Diseño de soluciones con restricciones'],
+      ['Reto de la torre sísmica', 'Explica el mundo físico · prototipado'],
+      ['Rediseña el envase', 'Diseño, arte y sostenibilidad'],
+      ['El laboratorio de variables', 'Indaga mediante métodos científicos'],
+      ['Encuesta con propósito', 'Gestión de datos e incertidumbre'],
+      ['CSI del aula: evidencia y argumento', 'Indagación y argumentación'],
+      ['Modela el ecosistema', 'Explica el mundo físico · modelamiento'],
+      ['La escala del plano', 'Forma, movimiento y localización'],
+      ['El presupuesto imposible', 'Resuelve problemas de cantidad'],
+      ['Patrones que predicen', 'Regularidad, equivalencia y cambio'],
+      ['Infografía con datos propios', 'Datos, comunicación y arte'],
+      ['El reto final STEAM: proyecto integrador', 'Proyecto integrador para feria STEAM']
+    ];
+    return {
+      deskNav: mobile ? 'none' : 'inline',
+      guideCols: mobile ? '1fr' : 'minmax(0, 0.85fr) minmax(0, 1.15fr)',
+      twoCols: mobile ? '1fr' : 'minmax(0, 0.8fr) minmax(0, 1.2fr)',
+      gameCols: narrow ? '1fr' : (mobile ? 'repeat(2, minmax(0, 1fr))' : 'repeat(3, minmax(0, 1fr))'),
+      juegos: nombres.map(([nombre, area], i) => ({ num: String(i + 1).padStart(2, '0'), nombre, area })),
+      contenidos: [
+        'El principio fundamental: competencia CNEB → reto → mecánica → materiales → tecnología → reflexión',
+        'Tabla de competencias del CNEB que un juego STEAM puede desarrollar, con indicadores de observación',
+        'Los 5 principios de un buen juego STEAM',
+        'Cómo diseñar un juego, paso a paso, con niveles de progresión por ciclo',
+        'El papel del docente durante el juego',
+        'Cómo evaluar sin interrumpir el juego',
+        'Checklist para docentes y plantilla para diseñar tu propio juego STEAM'
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
