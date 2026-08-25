@@ -14,33 +14,31 @@ export default async function handler(req, res) {
     });
   }
 
-  const { instruction } = req.body || {};
+  const body = req.body || {};
+
+  const instruction =
+    body.instruction ||
+    body.prompt ||
+    body.message ||
+    body.input ||
+    body.text ||
+    "";
 
   if (
-    !instruction ||
     typeof instruction !== "string" ||
-    instruction.trim().length < 20
+    instruction.trim().length < 5
   ) {
+    console.log("Body recibido:", body);
+
     return res.status(400).json({
-      error: "La información enviada no es suficiente."
+      error: "PromptLab no recibió correctamente la información del formulario."
     });
   }
-
-  /*
-  =====================================
-  MODELOS
-  =====================================
-
-  Primero intentamos Gemini 3 Flash.
-  Si la API key no tiene acceso,
-  usamos Gemini 2.5 Flash.
-  */
 
   const models = [
     "gemini-3-flash-preview",
     "gemini-2.5-flash"
   ];
-
 
   async function generarConModelo(model) {
 
@@ -63,20 +61,20 @@ export default async function handler(req, res) {
             role: "user",
             parts: [
               {
-                text: instruction
+                text: instruction.trim()
               }
             ]
           }
         ],
 
         generationConfig: {
+          temperature: 0.4,
           maxOutputTokens: 4000
         }
 
       })
 
     });
-
 
     const data = await response.json();
 
@@ -92,20 +90,12 @@ export default async function handler(req, res) {
 
     let ultimoError = null;
 
-
     for (const model of models) {
 
-      console.log("Intentando modelo:", model);
+      console.log("PromptLab intentando modelo:", model);
 
       const resultado =
         await generarConModelo(model);
-
-
-      /*
-      ================================
-      SI FUNCIONA
-      ================================
-      */
 
       if (resultado.response.ok) {
 
@@ -115,81 +105,43 @@ export default async function handler(req, res) {
             .join("")
             .trim();
 
-
         if (!text) {
-
           ultimoError =
-            "El modelo respondió pero no generó contenido.";
-
+            "Gemini respondió pero no generó contenido.";
           continue;
         }
 
-
-        console.log(
-          "PromptLab funcionando con:",
-          resultado.model
-        );
-
-
         return res.status(200).json({
-
           text,
-
           model: resultado.model
-
         });
-
       }
 
-
-      /*
-      ================================
-      SI EL MODELO NO ESTÁ DISPONIBLE
-      ================================
-      */
-
       console.error(
-        `Error usando ${model}:`,
+        "Error Gemini:",
+        model,
         resultado.data
       );
 
-
       ultimoError =
         resultado.data?.error?.message ||
-        "Modelo no disponible";
-
+        "Modelo no disponible.";
     }
 
-
-    /*
-    =====================================
-    NINGÚN MODELO FUNCIONÓ
-    =====================================
-    */
-
     return res.status(502).json({
-
-      error:
-        "No se pudo conectar con un modelo Gemini disponible.",
-
+      error: "No se pudo generar el prompt con Gemini.",
       detail: ultimoError
-
     });
-
 
   } catch (error) {
 
     console.error(
-      "Error PromptLab:",
+      "Error interno PromptLab:",
       error
     );
 
-
     return res.status(500).json({
-
-      error:
-        "Ocurrió un error al conectar PromptLab con Gemini."
-
+      error: "Error interno al conectar PromptLab con Gemini."
     });
 
   }
