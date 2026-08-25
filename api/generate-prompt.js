@@ -1,5 +1,4 @@
 export default async function handler(req, res) {
-
   if (req.method !== "POST") {
     return res.status(405).json({
       error: "Método no permitido."
@@ -14,7 +13,22 @@ export default async function handler(req, res) {
     });
   }
 
-  const body = req.body || {};
+  let body = req.body;
+
+  // Si Vercel entrega el body como texto, lo convertimos a JSON
+  if (typeof body === "string") {
+    try {
+      body = JSON.parse(body);
+    } catch (e) {
+      console.error("No se pudo parsear req.body:", body);
+      body = {};
+    }
+  }
+
+  // Si no llegó nada, intentamos reconstruir el body crudo
+  if (!body || typeof body !== "object") {
+    body = {};
+  }
 
   const instruction =
     body.instruction ||
@@ -24,14 +38,19 @@ export default async function handler(req, res) {
     body.text ||
     "";
 
+  console.log("BODY RECIBIDO:", body);
+  console.log("INSTRUCTION LENGTH:", instruction?.length);
+
   if (
     typeof instruction !== "string" ||
     instruction.trim().length < 5
   ) {
-    console.log("Body recibido:", body);
-
     return res.status(400).json({
-      error: "PromptLab no recibió correctamente la información del formulario."
+      error: "PromptLab no recibió correctamente la información del formulario.",
+      debug: {
+        bodyType: typeof req.body,
+        keys: Object.keys(body || {})
+      }
     });
   }
 
@@ -41,21 +60,16 @@ export default async function handler(req, res) {
   ];
 
   async function generarConModelo(model) {
-
     const url =
       `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`;
 
     const response = await fetch(url, {
-
       method: "POST",
-
       headers: {
         "Content-Type": "application/json",
         "x-goog-api-key": apiKey
       },
-
       body: JSON.stringify({
-
         contents: [
           {
             role: "user",
@@ -66,14 +80,11 @@ export default async function handler(req, res) {
             ]
           }
         ],
-
         generationConfig: {
           temperature: 0.4,
           maxOutputTokens: 4000
         }
-
       })
-
     });
 
     const data = await response.json();
@@ -85,20 +96,15 @@ export default async function handler(req, res) {
     };
   }
 
-
   try {
-
     let ultimoError = null;
 
     for (const model of models) {
+      console.log("Intentando modelo:", model);
 
-      console.log("PromptLab intentando modelo:", model);
-
-      const resultado =
-        await generarConModelo(model);
+      const resultado = await generarConModelo(model);
 
       if (resultado.response.ok) {
-
         const text =
           resultado.data?.candidates?.[0]?.content?.parts
             ?.map(part => part?.text || "")
@@ -134,16 +140,10 @@ export default async function handler(req, res) {
     });
 
   } catch (error) {
-
-    console.error(
-      "Error interno PromptLab:",
-      error
-    );
+    console.error("Error interno PromptLab:", error);
 
     return res.status(500).json({
       error: "Error interno al conectar PromptLab con Gemini."
     });
-
   }
-
 }
