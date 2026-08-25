@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  html, body { margin: 0; background: #FFFFFF; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  * { box-sizing: border-box; }
+  a { color: #5B4BE0; text-decoration: none; }
+  a:hover { color: #3E2FB5; }
+  input:focus, textarea:focus, select:focus { outline: 2px solid #5B4BE0; outline-offset: 1px; }
+  a:focus-visible, button:focus-visible { outline: 2px solid #5B4BE0; outline-offset: 3px; border-radius: 6px; }
+</style>
+</helmet>
+
+<div style="font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: #1B1B33; background: #FFFFFF; max-width: 100%">
+
+  <header style="position: sticky; top: 0; z-index: 60; background: #FFFFFF; border-bottom: 1px solid #ECEBFA">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 0 clamp(18px, 4vw, 40px); height: 80px; display: flex; align-items: center; justify-content: space-between; gap: 20px">
+      <a href="index.html" style="display: flex; align-items: center; flex-shrink: 0">
+        <img src="uploads/logo-teaching-tic-transparente.png" alt="Teaching TIC · Innovación para educar" style="height: 44px; width: auto; display: block" />
+      </a>
+      <div style="display: flex; align-items: center; gap: clamp(14px, 2vw, 26px)">
+        <a href="index.html" style="font-size: 14px; font-weight: 500; color: #43435C; display: {{ deskNav }}">← Volver al inicio</a>
+        <a href="https://wa.me/51921090875" target="_blank" rel="noopener" style="font-size: 14px; font-weight: 600; color: #FFFFFF; background: #5B4BE0; padding: 12px 20px; border-radius: 10px; white-space: nowrap" style-hover="background: #3E2FB5; color: #FFFFFF">Conversemos</a>
+      </div>
+    </div>
+  </header>
+
+  <section style="background: #FFFFFF; padding: clamp(40px, 5vw, 72px) clamp(18px, 4vw, 40px) clamp(24px, 3vw, 36px)">
+    <div style="max-width: 900px; margin: 0 auto">
+      <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 22px">
+        <span style="width: 44px; height: 44px; border-radius: 12px; background: #F4F2FE; display: flex; align-items: center; justify-content: center; font-size: 22px">📕</span>
+        <span style="font-size: 11.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #5B4BE0">Libro de Reclamaciones virtual</span>
+      </div>
+      <h1 style="font-weight: 800; font-size: clamp(1.9rem, 3.8vw, 2.8rem); line-height: 1.12; letter-spacing: -0.03em; margin: 0 0 18px; max-width: 24ch; text-wrap: balance">Registra tu queja o reclamo</h1>
+      <p style="font-size: 1rem; line-height: 1.7; color: #62627E; margin: 0 0 14px; max-width: 62ch; text-wrap: pretty">Conforme al Código de Protección y Defensa del Consumidor (Ley N° 29571), Teaching TIC pone a tu disposición este Libro de Reclamaciones. Completa el formulario y recibirás una respuesta en un plazo no mayor de quince (15) días hábiles.</p>
+      <p style="font-size: 0.9rem; line-height: 1.6; color: #8B8BA6; margin: 0; max-width: 62ch; text-wrap: pretty">La formulación del reclamo no impide acudir a otras vías de solución de controversias ni es requisito previo para denunciar ante Indecopi.</p>
+    </div>
+  </section>
+
+  <section style="background: #FFFFFF; padding: 0 clamp(18px, 4vw, 40px) clamp(56px, 6vw, 96px)">
+    <div style="max-width: 900px; margin: 0 auto">
+
+      <sc-if value="{{ mostrarFormulario }}" hint-placeholder-val="{{ true }}">
+        <div style="border: 1px solid #ECEBFA; border-radius: 20px; padding: clamp(24px, 3.5vw, 44px); display: grid; gap: clamp(28px, 3vw, 40px)">
+
+          <div style="display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: baseline; justify-content: space-between; border-bottom: 1px solid #F2F1FB; padding-bottom: 20px">
+            <span style="font-size: 13.5px; font-weight: 700; color: #3E2FB5">Hoja de reclamación N° {{ numeroHoja }}</span>
+            <span style="font-size: 13.5px; color: #74748C">Fecha: {{ fechaHoy }}</span>
+          </div>
+
+          <div style="display: grid; gap: 18px">
+            <span style="font-size: 11.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #5B4BE0">1. Identificación del consumidor</span>
+            <div style="display: grid; gap: 16px; grid-template-columns: {{ twoCols }}">
+              <label style="display: grid; gap: 8px">
+                <span style="font-size: 13.5px; font-weight: 600; color: #43435C">Nombres y apellidos *</span>
+                <input value="{{ nombre }}" onChange="{{ setNombre }}" placeholder="Nombre completo" style="border: 1px solid #E7E5F8; border-radius: 10px; padding: 13px 14px; font-size: 0.95rem; color: #1B1B33; background: #FFFFFF" />
+              </label>
+              <label style="display: grid; gap: 8px">
+                <span style="font-size: 13.5px; font-weight: 600; color: #43435C">DNI / CE / RUC *</span>
+                <input value="{{ documento }}" onChange="{{ setDocumento }}" placeholder="Número de documento" style="border: 1px solid #E7E5F8; border-radius: 10px; padding: 13px 14px; font-size: 0.95rem; color: #1B1B33; background: #FFFFFF" />
+              </label>
+              <label style="display: grid; gap: 8px">
+                <span style="font-size: 13.5px; font-weight: 600; color: #43435C">Correo electrónico *</span>
+                <input value="{{ correo }}" onChange="{{ setCorreo }}" placeholder="correo@ejemplo.com" style="border: 1px solid #E7E5F8; border-radius: 10px; padding: 13px 14px; font-size: 0.95rem; color: #1B1B33; background: #FFFFFF" />
+              </label>
+              <label style="display: grid; gap: 8px">
+                <span style="font-size: 13.5px; font-weight: 600; color: #43435C">Teléfono *</span>
+                <input value="{{ telefono }}" onChange="{{ setTelefono }}" placeholder="Número de contacto" style="border: 1px solid #E7E5F8; border-radius: 10px; padding: 13px 14px; font-size: 0.95rem; color: #1B1B33; background: #FFFFFF" />
+              </label>
+              <label style="display: grid; gap: 8px">
+                <span style="font-size: 13.5px; font-weight: 600; color: #43435C">Domicilio *</span>
+                <input value="{{ domicilio }}" onChange="{{ setDomicilio }}" placeholder="Dirección, distrito, provincia" style="border: 1px solid #E7E5F8; border-radius: 10px; padding: 13px 14px; font-size: 0.95rem; color: #1B1B33; background: #FFFFFF" />
+              </label>
+              <label style="display: grid; gap: 8px">
+                <span style="font-size: 13.5px; font-weight: 600; color: #43435C">Padre o madre (si eres menor de edad)</span>
+                <input value="{{ apoderado }}" onChange="{{ setApoderado }}" placeholder="Nombre del apoderado" style="border: 1px solid #E7E5F8; border-radius: 10px; padding: 13px 14px; font-size: 0.95rem; color: #1B1B33; background: #FFFFFF" />
+              </label>
+            </div>
+          </div>
+
+          <div style="display: grid; gap: 18px; border-top: 1px solid #F2F1FB; padding-top: clamp(24px, 3vw, 34px)">
+            <span style="font-size: 11.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #5B4BE0">2. Identificación del servicio contratado</span>
+            <div style="display: grid; gap: 16px; grid-template-columns: {{ twoCols }}">
+              <label style="display: grid; gap: 8px">
+                <span style="font-size: 13.5px; font-weight: 600; color: #43435C">Servicio o programa *</span>
+                <input value="{{ servicio }}" onChange="{{ setServicio }}" placeholder="Ejemplo: programa de formación docente" style="border: 1px solid #E7E5F8; border-radius: 10px; padding: 13px 14px; font-size: 0.95rem; color: #1B1B33; background: #FFFFFF" />
+              </label>
+              <label style="display: grid; gap: 8px">
+                <span style="font-size: 13.5px; font-weight: 600; color: #43435C">Monto reclamado (S/)</span>
+                <input value="{{ monto }}" onChange="{{ setMonto }}" placeholder="Opcional" style="border: 1px solid #E7E5F8; border-radius: 10px; padding: 13px 14px; font-size: 0.95rem; color: #1B1B33; background: #FFFFFF" />
+              </label>
+            </div>
+          </div>
+
+          <div style="display: grid; gap: 18px; border-top: 1px solid #F2F1FB; padding-top: clamp(24px, 3vw, 34px)">
+            <span style="font-size: 11.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #5B4BE0">3. Detalle</span>
+            <div style="display: grid; gap: 12px">
+              <span style="font-size: 13.5px; font-weight: 600; color: #43435C">Tipo de solicitud *</span>
+              <div style="display: flex; flex-wrap: wrap; gap: 10px">
+                <sc-for list="{{ tipos }}" as="t" hint-placeholder-count="2">
+                  <button type="button" onClick="{{ t.onClick }}" style="text-align: left; padding: 14px 18px; border-radius: 12px; cursor: pointer; font-family: inherit; background: {{ t.bg }}; border: 1px solid {{ t.border }}; display: grid; gap: 4px; min-width: 220px">
+                    <span style="font-size: 14.5px; font-weight: 700; color: {{ t.color }}">{{ t.label }}</span>
+                    <span style="font-size: 12.5px; line-height: 1.5; color: #74748C">{{ t.ayuda }}</span>
+                  </button>
+                </sc-for>
+              </div>
+            </div>
+            <label style="display: grid; gap: 8px">
+              <span style="font-size: 13.5px; font-weight: 600; color: #43435C">Detalle de la queja o reclamo *</span>
+              <textarea value="{{ detalle }}" onChange="{{ setDetalle }}" rows="5" placeholder="Describe con claridad qué ocurrió, cuándo y con qué servicio." style="border: 1px solid #E7E5F8; border-radius: 12px; padding: 14px; font-size: 0.95rem; line-height: 1.6; color: #1B1B33; background: #FFFFFF; resize: vertical"></textarea>
+            </label>
+            <label style="display: grid; gap: 8px">
+              <span style="font-size: 13.5px; font-weight: 600; color: #43435C">Pedido concreto *</span>
+              <textarea value="{{ pedido }}" onChange="{{ setPedido }}" rows="3" placeholder="Qué solicitas que haga Teaching TIC para resolverlo." style="border: 1px solid #E7E5F8; border-radius: 12px; padding: 14px; font-size: 0.95rem; line-height: 1.6; color: #1B1B33; background: #FFFFFF; resize: vertical"></textarea>
+            </label>
+          </div>
+
+          <div style="border-top: 1px solid #F2F1FB; padding-top: clamp(24px, 3vw, 34px); display: grid; gap: 20px">
+            <label style="display: flex; align-items: flex-start; gap: 12px; cursor: pointer">
+              <input type="checkbox" checked="{{ acepta }}" onChange="{{ toggleAcepta }}" style="width: 20px; height: 20px; margin: 2px 0 0; accent-color: #5B4BE0; flex-shrink: 0" />
+              <span style="font-size: 0.92rem; line-height: 1.6; color: #62627E; text-wrap: pretty">Declaro que la información proporcionada es verdadera y autorizo a Teaching TIC a usar mis datos de contacto únicamente para responder esta solicitud.</span>
+            </label>
+            <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center">
+              <button type="button" onClick="{{ enviar }}" disabled="{{ bloqueado }}" style="font-size: 15px; font-weight: 600; color: #FFFFFF; background: #5B4BE0; border: 0; padding: 15px 28px; border-radius: 10px; cursor: {{ cursor }}; opacity: {{ opacidad }}; font-family: inherit">Enviar mi reclamo</button>
+              <span style="font-size: 13.5px; color: #8B8BA6">{{ avisoValidacion }}</span>
+              <span style="font-size: 13.5px; font-weight: 600; color: #5B4BE0">{{ estadoEnvio }}</span>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ mostrarResultado }}" hint-placeholder-val="{{ false }}">
+        <div style="display: grid; gap: 22px">
+          <div style="background: #F4F2FE; border-radius: 20px; padding: clamp(26px, 3.5vw, 44px)">
+            <h2 style="font-weight: 800; font-size: clamp(1.4rem, 2.8vw, 2rem); line-height: 1.16; letter-spacing: -0.02em; color: #3E2FB5; margin: 0 0 14px; text-wrap: balance">{{ tituloResultado }}</h2>
+            <p style="font-size: 1rem; line-height: 1.7; color: #43435C; margin: 0 0 8px; max-width: 56ch; text-wrap: pretty">{{ mensajeResultado }}</p>
+            <p style="font-size: 0.94rem; line-height: 1.6; color: #62627E; margin: 0; max-width: 56ch; text-wrap: pretty">Hoja de reclamación N° {{ numeroHoja }} del {{ fechaHoy }}. Guarda este número: es tu referencia para hacer seguimiento.</p>
+          </div>
+          <div style="border: 1px solid #ECEBFA; border-radius: 20px; padding: clamp(22px, 3vw, 36px)">
+            <span style="font-size: 11.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #5B4BE0; display: block; margin-bottom: 18px">Constancia</span>
+            <p style="font-size: 0.92rem; line-height: 1.6; color: #62627E; margin: 0 0 18px; max-width: 60ch; text-wrap: pretty">{{ notaConstancia }}</p>
+            <textarea value="{{ constancia }}" readOnly="{{ true }}" rows="16" style="width: 100%; border: 1px solid #E7E5F8; border-radius: 12px; padding: 18px; font-size: 0.88rem; line-height: 1.7; color: #1B1B33; background: #FBFAFF; resize: vertical; font-family: ui-monospace, Menlo, monospace"></textarea>
+            <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-top: 22px">
+              <a href="{{ enlaceWhatsApp }}" target="_blank" rel="noopener" onClick="{{ marcarEnviado }}" style="font-size: 15px; font-weight: 600; color: #3E2FB5; background: #FFFFFF; border: 1px solid #D9D5FA; padding: 15px 26px; border-radius: 10px" style-hover="border-color: #5B4BE0">También enviar por WhatsApp</a>
+              <button type="button" onClick="{{ copiar }}" style="font-size: 15px; font-weight: 600; color: #3E2FB5; background: #FFFFFF; border: 1px solid #D9D5FA; padding: 15px 26px; border-radius: 10px; cursor: pointer; font-family: inherit" style-hover="border-color: #5B4BE0">Copiar constancia</button>
+              <button type="button" onClick="{{ nuevo }}" style="font-size: 15px; font-weight: 600; color: #3E2FB5; background: #FFFFFF; border: 1px solid #D9D5FA; padding: 15px 26px; border-radius: 10px; cursor: pointer; font-family: inherit" style-hover="border-color: #5B4BE0">Registrar otra</button>
+              <span style="font-size: 13.5px; font-weight: 600; color: #5B4BE0">{{ aviso }}</span>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+
+    </div>
+  </section>
+
+  <footer style="background: #101A4C; color: #FFFFFF; padding: clamp(36px, 4vw, 56px) clamp(18px, 4vw, 40px) 26px">
+    <div style="max-width: 1280px; margin: 0 auto; display: grid; gap: 20px">
+      <img src="uploads/logo-teaching-tic-blanco.png" alt="Teaching TIC" style="height: 40px; width: auto; display: block" />
+      <p style="font-size: 0.94rem; line-height: 1.7; color: #A9B4DC; margin: 0; max-width: 40ch">Teaching TIC · Lima, Perú · WhatsApp +51 921 090 875</p>
+      <span style="font-size: 13px; color: #8C99C9; border-top: 1px solid #24306B; padding-top: 22px">© 2026 Teaching TIC. Todos los derechos reservados.</span>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = {
+    w: typeof window !== 'undefined' ? window.innerWidth : 1440,
+    tipo: '', nombre: '', documento: '', correo: '', telefono: '', domicilio: '', apoderado: '',
+    servicio: '', monto: '', detalle: '', pedido: '', acepta: false,
+    enviado: false, numero: '', fecha: '', aviso: '', enviando: false, error: false
+  };
+
+  // Correo que recibe los reclamos. FormSubmit funciona en cualquier hosting estático (Vercel).
+  static get DESTINO() { return 'teachingticconsultorias@gmail.com'; }
+
+  async enviarReclamo() {
+    if (this.state.enviando) return;
+    const s = this.state;
+    const texto = this.constancia();
+    this.setState({ enviando: true, error: false });
+    const cuerpo = {
+      _subject: 'Libro de Reclamaciones — Hoja N° ' + s.numero,
+      _template: 'table',
+      _cc: s.correo.trim(),
+      'Hoja de reclamación N°': s.numero,
+      'Fecha de registro': s.fecha,
+      'Tipo de solicitud': s.tipo,
+      'Nombres y apellidos': s.nombre,
+      'Documento de identidad': s.documento,
+      'Correo electrónico': s.correo,
+      'Teléfono': s.telefono,
+      'Domicilio': s.domicilio,
+      'Apoderado (si es menor de edad)': s.apoderado || 'No aplica',
+      'Servicio o programa': s.servicio,
+      'Monto reclamado': s.monto ? 'S/ ' + s.monto : 'No indicado',
+      'Detalle': s.detalle,
+      'Pedido': s.pedido,
+      'Constancia completa': texto
+    };
+    try {
+      const r = await fetch('https://formsubmit.co/ajax/' + Component.DESTINO, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(cuerpo)
+      });
+      if (!r.ok) throw new Error('http ' + r.status);
+      this.setState({ enviando: false, enviado: true, error: false });
+    } catch (e) {
+      this.setState({ enviando: false, enviado: true, error: true });
+    }
+    try {
+      localStorage.setItem('ttic-reclamo-borrador', JSON.stringify({ ...this.state, enviado: true, enviando: false }));
+    } catch (e) {}
+  }
+
+  componentDidMount() {
+    this._onResize = () => this.setState({ w: window.innerWidth });
+    window.addEventListener('resize', this._onResize);
+    this._onResize();
+    let guardado = null;
+    try { guardado = JSON.parse(localStorage.getItem('ttic-reclamo-borrador') || 'null'); } catch (e) {}
+    if (guardado && guardado.numero) this.setState(guardado);
+    else this.setState({ numero: this.nuevoNumero(), fecha: this.hoy() });
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this._onResize); }
+
+  hoy() {
+    const d = new Date();
+    const p = n => String(n).padStart(2, '0');
+    return p(d.getDate()) + '/' + p(d.getMonth() + 1) + '/' + d.getFullYear();
+  }
+
+  nuevoNumero() {
+    const d = new Date();
+    const p = n => String(n).padStart(2, '0');
+    const serie = String(Math.floor(Math.random() * 9000) + 1000);
+    return d.getFullYear() + p(d.getMonth() + 1) + p(d.getDate()) + '-' + serie;
+  }
+
+  field(k) { return e => this.setState({ [k]: e.target.value }); }
+
+  constancia() {
+    const s = this.state;
+    const v = x => (x && x.trim() ? x.trim() : 'No indicado');
+    return [
+      'TEACHING TIC — LIBRO DE RECLAMACIONES',
+      'Hoja de reclamación N° ' + s.numero,
+      'Fecha de registro: ' + s.fecha,
+      '',
+      '1. IDENTIFICACIÓN DEL CONSUMIDOR',
+      'Nombres y apellidos: ' + v(s.nombre),
+      'Documento de identidad: ' + v(s.documento),
+      'Correo electrónico: ' + v(s.correo),
+      'Teléfono: ' + v(s.telefono),
+      'Domicilio: ' + v(s.domicilio),
+      'Padre o madre (si es menor de edad): ' + v(s.apoderado),
+      '',
+      '2. IDENTIFICACIÓN DEL SERVICIO CONTRATADO',
+      'Servicio o programa: ' + v(s.servicio),
+      'Monto reclamado: ' + (s.monto && s.monto.trim() ? 'S/ ' + s.monto.trim() : 'No indicado'),
+      '',
+      '3. DETALLE',
+      'Tipo de solicitud: ' + v(s.tipo),
+      'Detalle: ' + v(s.detalle),
+      'Pedido: ' + v(s.pedido),
+      '',
+      'El consumidor declara que la información proporcionada es verdadera.',
+      'Teaching TIC responderá en un plazo no mayor de quince (15) días hábiles.',
+      'La formulación del reclamo no impide acudir a otras vías de solución de controversias',
+      'ni es requisito previo para denunciar ante Indecopi.'
+    ].join('\n');
+  }
+
+  renderVals() {
+    const s = this.state;
+    const mobile = s.w < 820;
+    const invalido = !(s.tipo && s.nombre.trim() && s.documento.trim() && s.correo.trim() &&
+      s.telefono.trim() && s.servicio.trim() && s.detalle.trim() && s.pedido.trim() && s.acepta);
+    const texto = s.enviado ? this.constancia() : '';
+
+    return {
+      deskNav: mobile ? 'none' : 'inline-block',
+      twoCols: mobile ? '1fr' : 'repeat(2, minmax(0, 1fr))',
+      numeroHoja: s.numero, fechaHoy: s.fecha,
+      mostrarFormulario: !s.enviado,
+      mostrarResultado: s.enviado,
+      nombre: s.nombre, documento: s.documento, correo: s.correo, telefono: s.telefono,
+      domicilio: s.domicilio, apoderado: s.apoderado, servicio: s.servicio, monto: s.monto,
+      detalle: s.detalle, pedido: s.pedido, acepta: s.acepta,
+      setNombre: this.field('nombre'), setDocumento: this.field('documento'),
+      setCorreo: this.field('correo'), setTelefono: this.field('telefono'),
+      setDomicilio: this.field('domicilio'), setApoderado: this.field('apoderado'),
+      setServicio: this.field('servicio'), setMonto: this.field('monto'),
+      setDetalle: this.field('detalle'), setPedido: this.field('pedido'),
+      toggleAcepta: () => this.setState(st => ({ acepta: !st.acepta })),
+      tipos: [
+        ['Reclamo', 'Disconformidad con el servicio recibido.'],
+        ['Queja', 'Malestar por la atención, no por el servicio en sí.']
+      ].map(([label, ayuda]) => {
+        const activo = s.tipo === label;
+        return {
+          label, ayuda,
+          bg: activo ? '#F4F2FE' : '#FFFFFF',
+          color: activo ? '#3E2FB5' : '#1B1B33',
+          border: activo ? '#5B4BE0' : '#E7E5F8',
+          onClick: () => this.setState({ tipo: label })
+        };
+      }),
+      invalido,
+      bloqueado: invalido || s.enviando,
+      cursor: (invalido || s.enviando) ? 'not-allowed' : 'pointer',
+      opacidad: (invalido || s.enviando) ? 0.45 : 1,
+      avisoValidacion: invalido ? 'Completa los campos obligatorios (*) y acepta la declaración.' : '',
+      enviar: () => this.enviarReclamo(),
+      estadoEnvio: s.enviando ? 'Enviando…' : '',
+      tituloResultado: s.error ? 'No pudimos enviar tu reclamo' : 'Solicitud registrada',
+      mensajeResultado: s.error
+        ? 'El envío automático falló. Tu constancia está abajo: envíala por WhatsApp para que quede registrada.'
+        : 'Tu reclamo fue enviado a Teaching TIC y recibirás una copia en tu correo. Responderemos en un plazo no mayor de quince (15) días hábiles.',
+      notaConstancia: s.error
+        ? 'Guarda esta constancia y envíala por WhatsApp para completar el registro.'
+        : 'Guarda esta constancia como respaldo de tu solicitud.',
+      marcarEnviado: () => this.setState({ aviso: 'Constancia enviada por WhatsApp.' }),
+      constancia: texto,
+      enlaceWhatsApp: 'https://wa.me/51921090875?text=' + encodeURIComponent(texto || 'Libro de Reclamaciones — Teaching TIC'),
+      copiar: async () => {
+        try {
+          await navigator.clipboard.writeText(this.constancia());
+          this.setState({ aviso: 'Constancia copiada.' });
+        } catch (e) {
+          this.setState({ aviso: 'Selecciona el texto y cópialo manualmente.' });
+        }
+        setTimeout(() => this.setState({ aviso: '' }), 2600);
+      },
+      aviso: s.aviso,
+      nuevo: () => {
+        try { localStorage.removeItem('ttic-reclamo-borrador'); } catch (e) {}
+        this.setState({
+        tipo: '', nombre: '', documento: '', correo: '', telefono: '', domicilio: '', apoderado: '',
+        servicio: '', monto: '', detalle: '', pedido: '', acepta: false,
+          enviado: false, aviso: '', enviando: false, error: false, numero: this.nuevoNumero(), fecha: this.hoy()
+        });
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>

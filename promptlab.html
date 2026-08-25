@@ -15,25 +15,24 @@
 <style>
   html, body { margin: 0; background: #FFFFFF; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
   * { box-sizing: border-box; }
-  a { color: #0B47CE; text-decoration: none; }
-  a:hover { color: #003889; }
+  a { color: #5B4BE0; text-decoration: none; }
+  a:hover { color: #3E2FB5; }
   @keyframes plStep { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
   textarea, input, button { font-family: inherit; }
-  textarea:focus, input:focus { outline: 2px solid #0B47CE; outline-offset: 1px; }
+  textarea:focus, input:focus { outline: 2px solid #5B4BE0; outline-offset: 1px; }
 </style>
 </helmet>
 
-<div style="font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: #202124; background: #FFFFFF; max-width: 100%">
+<div style="font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: #1B1B33; background: #FFFFFF; max-width: 100%">
 
-  <header style="position: sticky; top: 0; z-index: 60; background: #FFFFFF; border-bottom: 1px solid #E7ECF5">
+  <header style="position: sticky; top: 0; z-index: 60; background: #FFFFFF; border-bottom: 1px solid #ECEBFA">
     <div style="max-width: 1280px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 40px); height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 24px">
-      <a href="index.html" style="display: flex; align-items: center; gap: 10px; color: #202124; flex-shrink: 0; white-space: nowrap">
-        <span style="width: 12px; height: 12px; border-radius: 3px; background: #0B47CE; display: block; flex-shrink: 0"></span>
-        <span style="font-weight: 700; font-size: 19px; letter-spacing: -0.01em; white-space: nowrap">Teaching TIC</span>
+      <a href="index.html" style="display: flex; align-items: center; flex-shrink: 0">
+        <img src="uploads/logo-teaching-tic-transparente.png" alt="Teaching TIC · Innovación para educar" style="height: 44px; width: auto; display: block" />
       </a>
       <div style="display: flex; align-items: center; gap: clamp(14px, 2vw, 26px)">
-        <a href="index.html" style="font-size: 14.5px; font-weight: 500; color: #202124; display: {{ deskNav }}">← Volver al inicio</a>
-        <a href="https://wa.me/51921090875" target="_blank" rel="noopener" style="font-size: 14.5px; font-weight: 600; color: #FFFFFF; background: #0B47CE; padding: 11px 20px; border-radius: 8px" style-hover="background: #003889; color: #FFFFFF">Conversemos</a>
+        <a href="index.html" style="font-size: 14.5px; font-weight: 500; color: #1B1B33; display: {{ deskNav }}">← Volver al inicio</a>
+        <a href="https://wa.me/51921090875" target="_blank" rel="noopener" style="font-size: 14.5px; font-weight: 600; color: #FFFFFF; background: #5B4BE0; padding: 11px 20px; border-radius: 8px" style-hover="background: #101A4C; color: #FFFFFF">Conversemos</a>
       </div>
     </div>
   </header>
@@ -41,12 +40,12 @@
   <section style="background: #FFFFFF; padding: clamp(44px, 5vw, 76px) 0 clamp(28px, 3vw, 40px)">
     <div style="max-width: 1280px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 40px)">
       <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 22px">
-        <span style="width: 28px; height: 2px; background: #0B47CE; display: block"></span>
-        <span style="font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #0B47CE">Recursos · Asistente</span>
+        <span style="width: 28px; height: 2px; background: #5B4BE0; display: block"></span>
+        <span style="font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #5B4BE0">Recursos · Asistente</span>
       </div>
       <h1 style="font-weight: 700; font-size: clamp(2.1rem, 4.2vw, 3.4rem); line-height: 1.08; letter-spacing: -0.025em; margin: 0 0 18px; max-width: 22ch; text-wrap: balance">✨ PromptLab</h1>
-      <p style="font-size: clamp(1.05rem, 1.6vw, 1.35rem); font-weight: 600; line-height: 1.4; color: #003889; margin: 0 0 16px; max-width: 30ch; text-wrap: pretty">De un problema real a un prompt listo para crear.</p>
-      <p style="font-size: 1.02rem; line-height: 1.7; color: #667085; margin: 0; max-width: 62ch; text-wrap: pretty">Responde unas preguntas sobre el problema que quieres resolver. PromptLab organizará tus ideas y generará un prompt que podrás utilizar para construir tu prototipo digital.</p>
+      <p style="font-size: clamp(1.05rem, 1.6vw, 1.35rem); font-weight: 600; line-height: 1.4; color: #3E2FB5; margin: 0 0 16px; max-width: 30ch; text-wrap: pretty">De un problema real a un prompt listo para crear.</p>
+      <p style="font-size: 1.02rem; line-height: 1.7; color: #62627E; margin: 0; max-width: 62ch; text-wrap: pretty">Responde unas preguntas sobre el problema que quieres resolver. PromptLab organizará tus ideas y generará un prompt que podrás utilizar para construir tu prototipo digital.</p>
     </div>
   </section>
 
@@ -70,37 +69,37 @@
     <div style="max-width: 1280px; margin: 0 auto">
 
       <sc-if value="{{ esPaso1 }}" hint-placeholder-val="{{ true }}">
-        <div style="border: 1px solid #E5E7EB; border-radius: 18px; padding: clamp(26px, 4vw, 52px); animation: plStep 0.35s ease both; max-width: 860px">
-          <span style="font-size: 11.5px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #0B47CE; display: block; margin-bottom: 14px">Paso 1 · Problema</span>
-          <h2 style="font-weight: 700; font-size: clamp(1.5rem, 2.8vw, 2.1rem); line-height: 1.16; letter-spacing: -0.02em; color: #003889; margin: 0 0 32px; max-width: 24ch; text-wrap: balance">¿Qué problema quieres resolver?</h2>
+        <div style="border: 1px solid #ECEBFA; border-radius: 18px; padding: clamp(26px, 4vw, 52px); animation: plStep 0.35s ease both; max-width: 860px">
+          <span style="font-size: 11.5px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #5B4BE0; display: block; margin-bottom: 14px">Paso 1 · Problema</span>
+          <h2 style="font-weight: 700; font-size: clamp(1.5rem, 2.8vw, 2.1rem); line-height: 1.16; letter-spacing: -0.02em; color: #3E2FB5; margin: 0 0 32px; max-width: 24ch; text-wrap: balance">¿Qué problema quieres resolver?</h2>
           <div style="display: grid; gap: 26px">
             <label style="display: grid; gap: 10px">
-              <span style="font-size: 14.5px; font-weight: 600; color: #202124">Describe el problema</span>
-              <textarea value="{{ problema }}" onChange="{{ setProblema }}" rows="4" placeholder="Ejemplo: En mi escuela los estudiantes tienen dificultades para clasificar correctamente los residuos." style="width: 100%; border: 1px solid #E5E7EB; border-radius: 10px; padding: 15px 16px; font-size: 1rem; line-height: 1.6; color: #202124; resize: vertical; background: #FFFFFF"></textarea>
+              <span style="font-size: 14.5px; font-weight: 600; color: #1B1B33">Describe el problema</span>
+              <textarea value="{{ problema }}" onChange="{{ setProblema }}" rows="4" placeholder="Ejemplo: En mi escuela los estudiantes tienen dificultades para clasificar correctamente los residuos." style="width: 100%; border: 1px solid #ECEBFA; border-radius: 10px; padding: 15px 16px; font-size: 1rem; line-height: 1.6; color: #1B1B33; resize: vertical; background: #FFFFFF"></textarea>
             </label>
             <label style="display: grid; gap: 10px">
-              <span style="font-size: 14.5px; font-weight: 600; color: #202124">¿Dónde ocurre?</span>
-              <input value="{{ lugar }}" onChange="{{ setLugar }}" placeholder="Ejemplo: En mi institución educativa y comunidad." style="width: 100%; border: 1px solid #E5E7EB; border-radius: 10px; padding: 15px 16px; font-size: 1rem; color: #202124; background: #FFFFFF" />
+              <span style="font-size: 14.5px; font-weight: 600; color: #1B1B33">¿Dónde ocurre?</span>
+              <input value="{{ lugar }}" onChange="{{ setLugar }}" placeholder="Ejemplo: En mi institución educativa y comunidad." style="width: 100%; border: 1px solid #ECEBFA; border-radius: 10px; padding: 15px 16px; font-size: 1rem; color: #1B1B33; background: #FFFFFF" />
             </label>
             <label style="display: grid; gap: 10px">
-              <span style="font-size: 14.5px; font-weight: 600; color: #202124">¿Cómo sabes que este problema existe? <span style="font-weight: 500; color: #97A3BC">(opcional)</span></span>
-              <textarea value="{{ evidencia }}" onChange="{{ setEvidencia }}" rows="3" placeholder="Ejemplo: Observamos diariamente residuos mezclados en los tachos del patio." style="width: 100%; border: 1px solid #E5E7EB; border-radius: 10px; padding: 15px 16px; font-size: 1rem; line-height: 1.6; color: #202124; resize: vertical; background: #FFFFFF"></textarea>
+              <span style="font-size: 14.5px; font-weight: 600; color: #1B1B33">¿Cómo sabes que este problema existe? <span style="font-weight: 500; color: #8B8BA6">(opcional)</span></span>
+              <textarea value="{{ evidencia }}" onChange="{{ setEvidencia }}" rows="3" placeholder="Ejemplo: Observamos diariamente residuos mezclados en los tachos del patio." style="width: 100%; border: 1px solid #ECEBFA; border-radius: 10px; padding: 15px 16px; font-size: 1rem; line-height: 1.6; color: #1B1B33; resize: vertical; background: #FFFFFF"></textarea>
             </label>
           </div>
           <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-top: 34px">
-            <button type="button" onClick="{{ next }}" disabled="{{ p1Invalido }}" style="font-size: 15px; font-weight: 600; color: #FFFFFF; padding: 15px 26px; border-radius: 8px; border: 0; cursor: {{ p1Cursor }}; opacity: {{ p1Opacidad }}; background: #0B47CE">Continuar →</button>
-            <span style="font-size: 13.5px; color: #97A3BC">{{ p1Aviso }}</span>
+            <button type="button" onClick="{{ next }}" disabled="{{ p1Invalido }}" style="font-size: 15px; font-weight: 600; color: #FFFFFF; padding: 15px 26px; border-radius: 8px; border: 0; cursor: {{ p1Cursor }}; opacity: {{ p1Opacidad }}; background: #5B4BE0">Continuar →</button>
+            <span style="font-size: 13.5px; color: #8B8BA6">{{ p1Aviso }}</span>
           </div>
         </div>
       </sc-if>
 
       <sc-if value="{{ esPaso2 }}" hint-placeholder-val="{{ false }}">
-        <div style="border: 1px solid #E5E7EB; border-radius: 18px; padding: clamp(26px, 4vw, 52px); animation: plStep 0.35s ease both; max-width: 860px">
-          <span style="font-size: 11.5px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #0B47CE; display: block; margin-bottom: 14px">Paso 2 · Usuario</span>
-          <h2 style="font-weight: 700; font-size: clamp(1.5rem, 2.8vw, 2.1rem); line-height: 1.16; letter-spacing: -0.02em; color: #003889; margin: 0 0 32px; max-width: 24ch; text-wrap: balance">¿A quién queremos ayudar?</h2>
+        <div style="border: 1px solid #ECEBFA; border-radius: 18px; padding: clamp(26px, 4vw, 52px); animation: plStep 0.35s ease both; max-width: 860px">
+          <span style="font-size: 11.5px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #5B4BE0; display: block; margin-bottom: 14px">Paso 2 · Usuario</span>
+          <h2 style="font-weight: 700; font-size: clamp(1.5rem, 2.8vw, 2.1rem); line-height: 1.16; letter-spacing: -0.02em; color: #3E2FB5; margin: 0 0 32px; max-width: 24ch; text-wrap: balance">¿A quién queremos ayudar?</h2>
           <div style="display: grid; gap: 12px; grid-template-columns: {{ userCols }}; margin-bottom: 34px">
             <sc-for list="{{ publicos }}" as="u" hint-placeholder-count="5">
-              <button type="button" onClick="{{ u.onClick }}" style="display: grid; gap: 10px; justify-items: start; text-align: left; padding: 20px; border-radius: 12px; cursor: pointer; background: {{ u.bg }}; border: 1px solid {{ u.border }}" style-hover="border-color: #0B47CE">
+              <button type="button" onClick="{{ u.onClick }}" style="display: grid; gap: 10px; justify-items: start; text-align: left; padding: 20px; border-radius: 12px; cursor: pointer; background: {{ u.bg }}; border: 1px solid {{ u.border }}" style-hover="border-color: #5B4BE0">
                 <span style="font-size: 24px; line-height: 1">{{ u.icono }}</span>
                 <span style="font-size: 15px; font-weight: 600; color: {{ u.color }}">{{ u.label }}</span>
               </button>
@@ -108,117 +107,117 @@
           </div>
           <div style="display: grid; gap: 26px">
             <div style="display: grid; gap: 12px">
-              <span style="font-size: 14.5px; font-weight: 600; color: #202124">¿Qué nivel o edad aproximada tienen?</span>
+              <span style="font-size: 14.5px; font-weight: 600; color: #1B1B33">¿Qué nivel o edad aproximada tienen?</span>
               <div style="display: flex; flex-wrap: wrap; gap: 10px">
                 <sc-for list="{{ niveles }}" as="n" hint-placeholder-count="5">
-                  <button type="button" onClick="{{ n.onClick }}" style="font-size: 14px; font-weight: 600; padding: 11px 18px; border-radius: 999px; cursor: pointer; background: {{ n.bg }}; color: {{ n.color }}; border: 1px solid {{ n.border }}" style-hover="border-color: #0B47CE">{{ n.label }}</button>
+                  <button type="button" onClick="{{ n.onClick }}" style="font-size: 14px; font-weight: 600; padding: 11px 18px; border-radius: 999px; cursor: pointer; background: {{ n.bg }}; color: {{ n.color }}; border: 1px solid {{ n.border }}" style-hover="border-color: #5B4BE0">{{ n.label }}</button>
                 </sc-for>
               </div>
             </div>
             <label style="display: grid; gap: 10px">
-              <span style="font-size: 14.5px; font-weight: 600; color: #202124">¿Qué necesitan?</span>
-              <textarea value="{{ necesidad }}" onChange="{{ setNecesidad }}" rows="3" placeholder="Ejemplo: Necesitan una manera sencilla y visual de identificar dónde colocar cada residuo." style="width: 100%; border: 1px solid #E5E7EB; border-radius: 10px; padding: 15px 16px; font-size: 1rem; line-height: 1.6; color: #202124; resize: vertical; background: #FFFFFF"></textarea>
+              <span style="font-size: 14.5px; font-weight: 600; color: #1B1B33">¿Qué necesitan?</span>
+              <textarea value="{{ necesidad }}" onChange="{{ setNecesidad }}" rows="3" placeholder="Ejemplo: Necesitan una manera sencilla y visual de identificar dónde colocar cada residuo." style="width: 100%; border: 1px solid #ECEBFA; border-radius: 10px; padding: 15px 16px; font-size: 1rem; line-height: 1.6; color: #1B1B33; resize: vertical; background: #FFFFFF"></textarea>
             </label>
           </div>
           <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-top: 34px">
-            <button type="button" onClick="{{ back }}" style="font-size: 15px; font-weight: 600; color: #003889; background: #FFFFFF; border: 1px solid #CFDCF8; padding: 15px 26px; border-radius: 8px; cursor: pointer" style-hover="border-color: #0B47CE">← Atrás</button>
-            <button type="button" onClick="{{ next }}" disabled="{{ p2Invalido }}" style="font-size: 15px; font-weight: 600; color: #FFFFFF; padding: 15px 26px; border-radius: 8px; border: 0; cursor: {{ p2Cursor }}; opacity: {{ p2Opacidad }}; background: #0B47CE">Continuar →</button>
-            <span style="font-size: 13.5px; color: #97A3BC">{{ p2Aviso }}</span>
+            <button type="button" onClick="{{ back }}" style="font-size: 15px; font-weight: 600; color: #3E2FB5; background: #FFFFFF; border: 1px solid #D9D5FA; padding: 15px 26px; border-radius: 8px; cursor: pointer" style-hover="border-color: #5B4BE0">← Atrás</button>
+            <button type="button" onClick="{{ next }}" disabled="{{ p2Invalido }}" style="font-size: 15px; font-weight: 600; color: #FFFFFF; padding: 15px 26px; border-radius: 8px; border: 0; cursor: {{ p2Cursor }}; opacity: {{ p2Opacidad }}; background: #5B4BE0">Continuar →</button>
+            <span style="font-size: 13.5px; color: #8B8BA6">{{ p2Aviso }}</span>
           </div>
         </div>
       </sc-if>
 
       <sc-if value="{{ esPaso3 }}" hint-placeholder-val="{{ false }}">
-        <div style="border: 1px solid #E5E7EB; border-radius: 18px; padding: clamp(26px, 4vw, 52px); animation: plStep 0.35s ease both; max-width: 940px">
-          <span style="font-size: 11.5px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #0B47CE; display: block; margin-bottom: 14px">Paso 3 · Solución</span>
-          <h2 style="font-weight: 700; font-size: clamp(1.5rem, 2.8vw, 2.1rem); line-height: 1.16; letter-spacing: -0.02em; color: #003889; margin: 0 0 32px; max-width: 24ch; text-wrap: balance">¿Qué te gustaría crear?</h2>
+        <div style="border: 1px solid #ECEBFA; border-radius: 18px; padding: clamp(26px, 4vw, 52px); animation: plStep 0.35s ease both; max-width: 940px">
+          <span style="font-size: 11.5px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #5B4BE0; display: block; margin-bottom: 14px">Paso 3 · Solución</span>
+          <h2 style="font-weight: 700; font-size: clamp(1.5rem, 2.8vw, 2.1rem); line-height: 1.16; letter-spacing: -0.02em; color: #3E2FB5; margin: 0 0 32px; max-width: 24ch; text-wrap: balance">¿Qué te gustaría crear?</h2>
           <div style="display: grid; gap: 12px; grid-template-columns: {{ solutionCols }}; margin-bottom: 26px">
             <sc-for list="{{ soluciones }}" as="s" hint-placeholder-count="8">
-              <button type="button" onClick="{{ s.onClick }}" style="display: grid; gap: 10px; justify-items: start; text-align: left; padding: 20px; border-radius: 12px; cursor: pointer; background: {{ s.bg }}; border: 1px solid {{ s.border }}" style-hover="border-color: #0B47CE">
+              <button type="button" onClick="{{ s.onClick }}" style="display: grid; gap: 10px; justify-items: start; text-align: left; padding: 20px; border-radius: 12px; cursor: pointer; background: {{ s.bg }}; border: 1px solid {{ s.border }}" style-hover="border-color: #5B4BE0">
                 <span style="font-size: 24px; line-height: 1">{{ s.icono }}</span>
                 <span style="font-size: 14.5px; font-weight: 600; line-height: 1.35; color: {{ s.color }}">{{ s.label }}</span>
               </button>
             </sc-for>
           </div>
           <sc-if value="{{ mostrarSugerencia }}" hint-placeholder-val="{{ false }}">
-            <div style="background: #EEF2F7; border-radius: 12px; padding: 22px; margin-bottom: 30px">
-              <span style="font-size: 11.5px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #0B47CE; display: block; margin-bottom: 10px">Sugerencia de PromptLab</span>
-              <p style="font-size: 1rem; line-height: 1.65; color: #202124; margin: 0 0 16px; text-wrap: pretty">{{ sugerencia }}</p>
-              <button type="button" onClick="{{ aceptarSugerencia }}" style="font-size: 14px; font-weight: 600; color: #FFFFFF; background: #0B47CE; border: 0; padding: 12px 20px; border-radius: 8px; cursor: pointer">Usar esta sugerencia</button>
+            <div style="background: #F4F2FE; border-radius: 12px; padding: 22px; margin-bottom: 30px">
+              <span style="font-size: 11.5px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #5B4BE0; display: block; margin-bottom: 10px">Sugerencia de PromptLab</span>
+              <p style="font-size: 1rem; line-height: 1.65; color: #1B1B33; margin: 0 0 16px; text-wrap: pretty">{{ sugerencia }}</p>
+              <button type="button" onClick="{{ aceptarSugerencia }}" style="font-size: 14px; font-weight: 600; color: #FFFFFF; background: #5B4BE0; border: 0; padding: 12px 20px; border-radius: 8px; cursor: pointer">Usar esta sugerencia</button>
             </div>
           </sc-if>
           <div style="display: grid; gap: 26px">
             <label style="display: grid; gap: 10px">
-              <span style="font-size: 14.5px; font-weight: 600; color: #202124">¿Qué debería poder hacer el usuario?</span>
-              <textarea value="{{ funcion }}" onChange="{{ setFuncion }}" rows="3" placeholder="Ejemplo: Seleccionar un residuo y descubrir en qué contenedor debe colocarlo." style="width: 100%; border: 1px solid #E5E7EB; border-radius: 10px; padding: 15px 16px; font-size: 1rem; line-height: 1.6; color: #202124; resize: vertical; background: #FFFFFF"></textarea>
+              <span style="font-size: 14.5px; font-weight: 600; color: #1B1B33">¿Qué debería poder hacer el usuario?</span>
+              <textarea value="{{ funcion }}" onChange="{{ setFuncion }}" rows="3" placeholder="Ejemplo: Seleccionar un residuo y descubrir en qué contenedor debe colocarlo." style="width: 100%; border: 1px solid #ECEBFA; border-radius: 10px; padding: 15px 16px; font-size: 1rem; line-height: 1.6; color: #1B1B33; resize: vertical; background: #FFFFFF"></textarea>
             </label>
             <label style="display: grid; gap: 10px">
-              <span style="font-size: 14.5px; font-weight: 600; color: #202124">¿Qué otra función te gustaría incluir? <span style="font-weight: 500; color: #97A3BC">(opcional)</span></span>
-              <textarea value="{{ extras }}" onChange="{{ setExtras }}" rows="2" placeholder="Ejemplo: retos, recomendaciones, quiz, puntos, consejos..." style="width: 100%; border: 1px solid #E5E7EB; border-radius: 10px; padding: 15px 16px; font-size: 1rem; line-height: 1.6; color: #202124; resize: vertical; background: #FFFFFF"></textarea>
+              <span style="font-size: 14.5px; font-weight: 600; color: #1B1B33">¿Qué otra función te gustaría incluir? <span style="font-weight: 500; color: #8B8BA6">(opcional)</span></span>
+              <textarea value="{{ extras }}" onChange="{{ setExtras }}" rows="2" placeholder="Ejemplo: retos, recomendaciones, quiz, puntos, consejos..." style="width: 100%; border: 1px solid #ECEBFA; border-radius: 10px; padding: 15px 16px; font-size: 1rem; line-height: 1.6; color: #1B1B33; resize: vertical; background: #FFFFFF"></textarea>
             </label>
           </div>
           <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-top: 34px">
-            <button type="button" onClick="{{ back }}" style="font-size: 15px; font-weight: 600; color: #003889; background: #FFFFFF; border: 1px solid #CFDCF8; padding: 15px 26px; border-radius: 8px; cursor: pointer" style-hover="border-color: #0B47CE">← Atrás</button>
-            <button type="button" onClick="{{ generar }}" disabled="{{ p3Invalido }}" style="font-size: 15.5px; font-weight: 700; color: #FFFFFF; padding: 16px 30px; border-radius: 8px; border: 0; cursor: {{ p3Cursor }}; opacity: {{ p3Opacidad }}; background: #0B47CE">✨ Generar mi prompt</button>
-            <span style="font-size: 13.5px; color: #97A3BC">{{ p3Aviso }}</span>
+            <button type="button" onClick="{{ back }}" style="font-size: 15px; font-weight: 600; color: #3E2FB5; background: #FFFFFF; border: 1px solid #D9D5FA; padding: 15px 26px; border-radius: 8px; cursor: pointer" style-hover="border-color: #5B4BE0">← Atrás</button>
+            <button type="button" onClick="{{ generar }}" disabled="{{ p3Invalido }}" style="font-size: 15.5px; font-weight: 700; color: #FFFFFF; padding: 16px 30px; border-radius: 8px; border: 0; cursor: {{ p3Cursor }}; opacity: {{ p3Opacidad }}; background: #5B4BE0">✨ Generar mi prompt</button>
+            <span style="font-size: 13.5px; color: #8B8BA6">{{ p3Aviso }}</span>
           </div>
         </div>
       </sc-if>
 
       <sc-if value="{{ esPaso4 }}" hint-placeholder-val="{{ false }}">
         <div style="animation: plStep 0.4s ease both; display: grid; gap: 24px">
-          <div style="background: #EEF2F7; border-radius: 18px; padding: clamp(26px, 4vw, 48px)">
-            <h2 style="font-weight: 700; font-size: clamp(1.6rem, 3vw, 2.3rem); line-height: 1.14; letter-spacing: -0.02em; color: #003889; margin: 0 0 12px; text-wrap: balance">🎉 ¡Tu prompt está listo!</h2>
-            <p style="font-size: 1.05rem; font-weight: 600; line-height: 1.5; color: #202124; margin: 0">Ya puedes utilizarlo para crear tu Prototipo 1.0.</p>
+          <div style="background: #F4F2FE; border-radius: 18px; padding: clamp(26px, 4vw, 48px)">
+            <h2 style="font-weight: 700; font-size: clamp(1.6rem, 3vw, 2.3rem); line-height: 1.14; letter-spacing: -0.02em; color: #3E2FB5; margin: 0 0 12px; text-wrap: balance">🎉 ¡Tu prompt está listo!</h2>
+            <p style="font-size: 1.05rem; font-weight: 600; line-height: 1.5; color: #1B1B33; margin: 0">Ya puedes utilizarlo para crear tu Prototipo 1.0.</p>
           </div>
 
-          <div style="border: 1px solid #E5E7EB; border-radius: 18px; padding: clamp(24px, 3vw, 40px)">
-            <span style="font-size: 11.5px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #0B47CE; display: block; margin-bottom: 22px">Tu idea</span>
+          <div style="border: 1px solid #ECEBFA; border-radius: 18px; padding: clamp(24px, 3vw, 40px)">
+            <span style="font-size: 11.5px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #5B4BE0; display: block; margin-bottom: 22px">Tu idea</span>
             <div style="display: grid; gap: 18px">
               <sc-for list="{{ resumen }}" as="r" hint-placeholder-count="4">
-                <div style="display: grid; gap: 6px 20px; align-items: baseline; padding-bottom: 16px; border-bottom: 1px solid #E7ECF5; grid-template-columns: {{ resumeCols }}">
-                  <span style="font-size: 13.5px; font-weight: 700; color: #003889">{{ r.k }}</span>
-                  <span style="font-size: 1rem; line-height: 1.6; color: #202124; text-wrap: pretty">{{ r.v }}</span>
+                <div style="display: grid; gap: 6px 20px; align-items: baseline; padding-bottom: 16px; border-bottom: 1px solid #ECEBFA; grid-template-columns: {{ resumeCols }}">
+                  <span style="font-size: 13.5px; font-weight: 700; color: #3E2FB5">{{ r.k }}</span>
+                  <span style="font-size: 1rem; line-height: 1.6; color: #1B1B33; text-wrap: pretty">{{ r.v }}</span>
                 </div>
               </sc-for>
             </div>
           </div>
 
-          <div style="border: 1px solid #E5E7EB; border-radius: 18px; padding: clamp(24px, 3vw, 40px)">
+          <div style="border: 1px solid #ECEBFA; border-radius: 18px; padding: clamp(24px, 3vw, 40px)">
             <div style="display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 14px; margin-bottom: 22px">
-              <span style="font-size: 11.5px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #0B47CE">Prompt generado</span>
-              <span style="font-size: 12.5px; color: #97A3BC">{{ conteoPrompt }}</span>
+              <span style="font-size: 11.5px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #5B4BE0">Prompt generado</span>
+              <span style="font-size: 12.5px; color: #8B8BA6">{{ conteoPrompt }}</span>
             </div>
             <sc-if value="{{ generando }}" hint-placeholder-val="{{ false }}">
-              <div style="background: #EEF2F7; border-radius: 10px; padding: 16px 18px; margin-bottom: 18px; display: flex; align-items: center; gap: 12px">
-                <span style="width: 8px; height: 8px; border-radius: 999px; background: #0B47CE; display: block; flex-shrink: 0"></span>
-                <span style="font-size: 14px; font-weight: 600; color: #003889">PromptLab está afinando tu prompt con IA…</span>
+              <div style="background: #F4F2FE; border-radius: 10px; padding: 16px 18px; margin-bottom: 18px; display: flex; align-items: center; gap: 12px">
+                <span style="width: 8px; height: 8px; border-radius: 999px; background: #5B4BE0; display: block; flex-shrink: 0"></span>
+                <span style="font-size: 14px; font-weight: 600; color: #3E2FB5">PromptLab está afinando tu prompt con IA…</span>
               </div>
             </sc-if>
             <sc-if value="{{ afinado }}" hint-placeholder-val="{{ false }}">
-              <div style="background: #EEF2F7; border-radius: 10px; padding: 14px 18px; margin-bottom: 18px">
-                <span style="font-size: 13.5px; font-weight: 600; color: #003889">✨ Prompt afinado con IA a partir de tus respuestas.</span>
+              <div style="background: #F4F2FE; border-radius: 10px; padding: 14px 18px; margin-bottom: 18px">
+                <span style="font-size: 13.5px; font-weight: 600; color: #3E2FB5">✨ Prompt afinado con IA a partir de tus respuestas.</span>
               </div>
             </sc-if>
             <sc-if value="{{ errorIA }}" hint-placeholder-val="{{ false }}">
-              <div style="border: 1px solid #E5E7EB; border-radius: 10px; padding: 14px 18px; margin-bottom: 18px">
-                <span style="font-size: 13.5px; color: #667085">{{ errorIA }}</span>
+              <div style="border: 1px solid #ECEBFA; border-radius: 10px; padding: 14px 18px; margin-bottom: 18px">
+                <span style="font-size: 13.5px; color: #62627E">{{ errorIA }}</span>
               </div>
             </sc-if>
-            <textarea value="{{ prompt }}" onChange="{{ setPrompt }}" readOnly="{{ soloLectura }}" rows="18" style="width: 100%; border: 1px solid #E5E7EB; border-radius: 12px; padding: 20px; font-size: 0.92rem; line-height: 1.7; color: #202124; resize: vertical; background: {{ promptBg }}; font-family: ui-monospace, Menlo, monospace"></textarea>
+            <textarea value="{{ prompt }}" onChange="{{ setPrompt }}" readOnly="{{ soloLectura }}" rows="18" style="width: 100%; border: 1px solid #ECEBFA; border-radius: 12px; padding: 20px; font-size: 0.92rem; line-height: 1.7; color: #1B1B33; resize: vertical; background: {{ promptBg }}; font-family: ui-monospace, Menlo, monospace"></textarea>
             <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-top: 24px">
-              <button type="button" onClick="{{ copiar }}" style="font-size: 15px; font-weight: 600; color: #FFFFFF; background: #0B47CE; border: 0; padding: 15px 26px; border-radius: 8px; cursor: pointer" style-hover="background: #003889">📋 Copiar prompt</button>
-              <button type="button" onClick="{{ afinar }}" disabled="{{ generando }}" style="font-size: 15px; font-weight: 600; color: #003889; background: #FFFFFF; border: 1px solid #CFDCF8; padding: 15px 26px; border-radius: 8px; cursor: {{ afinarCursor }}; opacity: {{ afinarOpacidad }}" style-hover="border-color: #0B47CE">{{ labelAfinar }}</button>
-              <button type="button" onClick="{{ toggleEditar }}" style="font-size: 15px; font-weight: 600; color: #003889; background: #FFFFFF; border: 1px solid #CFDCF8; padding: 15px 26px; border-radius: 8px; cursor: pointer" style-hover="border-color: #0B47CE">{{ labelEditar }}</button>
-              <button type="button" onClick="{{ reiniciar }}" style="font-size: 15px; font-weight: 600; color: #003889; background: #FFFFFF; border: 1px solid #CFDCF8; padding: 15px 26px; border-radius: 8px; cursor: pointer" style-hover="border-color: #0B47CE">🔄 Crear otro</button>
-              <span style="font-size: 13.5px; font-weight: 600; color: #0B47CE">{{ aviso }}</span>
+              <button type="button" onClick="{{ copiar }}" style="font-size: 15px; font-weight: 600; color: #FFFFFF; background: #5B4BE0; border: 0; padding: 15px 26px; border-radius: 8px; cursor: pointer" style-hover="background: #3E2FB5">📋 Copiar prompt</button>
+              <button type="button" onClick="{{ afinar }}" disabled="{{ generando }}" style="font-size: 15px; font-weight: 600; color: #3E2FB5; background: #FFFFFF; border: 1px solid #D9D5FA; padding: 15px 26px; border-radius: 8px; cursor: {{ afinarCursor }}; opacity: {{ afinarOpacidad }}" style-hover="border-color: #5B4BE0">{{ labelAfinar }}</button>
+              <button type="button" onClick="{{ toggleEditar }}" style="font-size: 15px; font-weight: 600; color: #3E2FB5; background: #FFFFFF; border: 1px solid #D9D5FA; padding: 15px 26px; border-radius: 8px; cursor: pointer" style-hover="border-color: #5B4BE0">{{ labelEditar }}</button>
+              <button type="button" onClick="{{ reiniciar }}" style="font-size: 15px; font-weight: 600; color: #3E2FB5; background: #FFFFFF; border: 1px solid #D9D5FA; padding: 15px 26px; border-radius: 8px; cursor: pointer" style-hover="border-color: #5B4BE0">🔄 Crear otro</button>
+              <span style="font-size: 13.5px; font-weight: 600; color: #5B4BE0">{{ aviso }}</span>
             </div>
           </div>
 
-          <div style="background: #EEF2F7; border-radius: 18px; padding: clamp(26px, 4vw, 48px)">
-            <h3 style="font-weight: 700; font-size: clamp(1.35rem, 2.4vw, 1.9rem); line-height: 1.18; letter-spacing: -0.02em; color: #003889; margin: 0 0 14px; max-width: 26ch; text-wrap: balance">🚀 El siguiente paso: convierte tu prompt en un prototipo</h3>
-            <p style="font-size: 1.02rem; line-height: 1.65; color: #202124; margin: 0 0 28px; max-width: 48ch; text-wrap: pretty">Copia tu prompt y utilízalo en Lovable para construir y probar tu primera versión.</p>
-            <a href="https://lovable.dev" target="_blank" rel="noopener" style="font-size: 15px; font-weight: 600; color: #FFFFFF; background: #0B47CE; padding: 15px 26px; border-radius: 8px; display: inline-block" style-hover="background: #003889; color: #FFFFFF">Crear mi prototipo →</a>
+          <div style="background: #F4F2FE; border-radius: 18px; padding: clamp(26px, 4vw, 48px)">
+            <h3 style="font-weight: 700; font-size: clamp(1.35rem, 2.4vw, 1.9rem); line-height: 1.18; letter-spacing: -0.02em; color: #3E2FB5; margin: 0 0 14px; max-width: 26ch; text-wrap: balance">🚀 El siguiente paso: convierte tu prompt en un prototipo</h3>
+            <p style="font-size: 1.02rem; line-height: 1.65; color: #1B1B33; margin: 0 0 28px; max-width: 48ch; text-wrap: pretty">Copia tu prompt y utilízalo en Lovable para construir y probar tu primera versión.</p>
+            <a href="https://lovable.dev" target="_blank" rel="noopener" style="font-size: 15px; font-weight: 600; color: #FFFFFF; background: #5B4BE0; padding: 15px 26px; border-radius: 8px; display: inline-block" style-hover="background: #101A4C; color: #FFFFFF">Crear mi prototipo →</a>
           </div>
         </div>
       </sc-if>
@@ -226,14 +225,11 @@
     </div>
   </section>
 
-  <footer style="background: #003889; color: #FFFFFF; padding: clamp(40px, 5vw, 64px) clamp(20px, 4vw, 40px) 28px">
+  <footer style="background: #101A4C; color: #FFFFFF; padding: clamp(40px, 5vw, 64px) clamp(20px, 4vw, 40px) 28px">
     <div style="max-width: 1280px; margin: 0 auto; display: grid; gap: 22px">
-      <div style="display: flex; align-items: center; gap: 10px">
-        <span style="width: 12px; height: 12px; border-radius: 3px; background: #8B7CF6; display: block"></span>
-        <span style="font-weight: 700; font-size: 19px; letter-spacing: -0.01em; color: #FFFFFF">Teaching TIC</span>
-      </div>
-      <p style="font-size: 0.98rem; line-height: 1.6; color: #B9CDF2; margin: 0; max-width: 34ch">Innovación y tecnología para transformar la educación.</p>
-      <span style="font-size: 13.5px; color: #93AEDF; border-top: 1px solid #1B4E9E; padding-top: 24px">© 2026 Teaching TIC. Todos los derechos reservados.</span>
+      <img src="uploads/logo-teaching-tic-blanco.png" alt="Teaching TIC" style="height: 40px; width: auto; display: block" />
+      <p style="font-size: 0.98rem; line-height: 1.6; color: #A9B4DC; margin: 0; max-width: 34ch">Innovación y tecnología para transformar la educación.</p>
+      <span style="font-size: 13.5px; color: #8C99C9; border-top: 1px solid #24306B; padding-top: 24px">© 2026 Teaching TIC. Todos los derechos reservados.</span>
     </div>
   </footer>
 
@@ -253,6 +249,19 @@ class Component extends DCLogic {
     this._onResize = () => this.setState({ w: window.innerWidth });
     window.addEventListener('resize', this._onResize);
     this._onResize();
+    try {
+      const raw = localStorage.getItem('ttic-promptlab-idea');
+      if (raw) {
+        const d = JSON.parse(raw);
+        localStorage.removeItem('ttic-promptlab-idea');
+        const nivelMap = { Inicial: 'Inicial', Primaria: 'Primaria', Secundaria: 'Secundaria', Superior: 'Adultos' };
+        this.setState({
+          problema: d.idea || '',
+          nivel: nivelMap[d.nivel] || '',
+          lugar: d.area ? 'Área curricular: ' + d.area : ''
+        });
+      }
+    } catch (e) {}
   }
   componentWillUnmount() { window.removeEventListener('resize', this._onResize); }
 
@@ -384,9 +393,9 @@ class Component extends DCLogic {
     const labels = ['Problema', 'Usuario', 'Solución', 'Prompt'];
     const chip = (label, activo, extra) => ({
       label, onClick: extra,
-      bg: activo ? '#EEF2F7' : '#FFFFFF',
-      color: activo ? '#003889' : '#202124',
-      border: activo ? '#0B47CE' : '#E5E7EB'
+      bg: activo ? '#F4F2FE' : '#FFFFFF',
+      color: activo ? '#3E2FB5' : '#1B1B33',
+      border: activo ? '#5B4BE0' : '#ECEBFA'
     });
     const p1Invalido = !s.problema.trim();
     const p2Invalido = !s.publico || !s.necesidad.trim();
@@ -397,7 +406,7 @@ class Component extends DCLogic {
       progressCols: narrow ? 'repeat(2, minmax(0, 1fr))' : 'repeat(4, minmax(0, 1fr))',
       pasos: labels.map((label, i) => {
         const activo = paso >= i + 1;
-        return { label, num: '0' + (i + 1), barra: activo ? '#0B47CE' : '#E3E8F2', color: activo ? '#003889' : '#97A3BC' };
+        return { label, num: '0' + (i + 1), barra: activo ? '#5B4BE0' : '#E7E5F8', color: activo ? '#3E2FB5' : '#8B8BA6' };
       }),
       esPaso1: paso === 1, esPaso2: paso === 2, esPaso3: paso === 3, esPaso4: paso === 4,
       problema: s.problema, lugar: s.lugar, evidencia: s.evidencia,
@@ -453,7 +462,7 @@ class Component extends DCLogic {
         { k: 'Objetivo', v: s.funcion || '—' }
       ],
       soloLectura: !s.editando,
-      promptBg: s.editando ? '#FFFFFF' : '#F6F8FC',
+      promptBg: s.editando ? '#FFFFFF' : '#F7F6FE',
       labelEditar: s.editando ? '✏️ Terminar edición' : '✏️ Editar prompt',
       conteoPrompt: s.prompt ? s.prompt.length + ' caracteres' : '',
       toggleEditar: () => this.setState(st => ({ editando: !st.editando, aviso: '' })),
