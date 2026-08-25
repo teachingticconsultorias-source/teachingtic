@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  html, body { margin: 0; background: #FFFFFF; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  * { box-sizing: border-box; }
+  a { color: #0B47CE; text-decoration: none; }
+  a:hover { color: #003889; }
+  @keyframes tt-marquee { from { transform: translate3d(0,0,0); } to { transform: translate3d(-50%,0,0); } }
+</style>
+</helmet>
+
+<div style="font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: #202124; background: #FFFFFF; max-width: 100%">
+
+  <header style="position: sticky; top: 0; z-index: 60; background: #FFFFFF; border-bottom: 1px solid #E7ECF5">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 40px); height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 32px">
+      <a href="#inicio" style="display: flex; align-items: center; gap: 10px; color: #202124; flex-shrink: 0; white-space: nowrap">
+        <span style="width: 12px; height: 12px; border-radius: 3px; background: #0B47CE; display: block; flex-shrink: 0"></span>
+        <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 19px; letter-spacing: -0.01em; white-space: nowrap">Teaching TIC</span>
+      </a>
+      <nav style="display: flex; align-items: center; gap: clamp(14px, 2vw, 30px)">
+        <a href="#inicio" style="font-size: 14.5px; font-weight: 500; color: #202124; display: {{ deskNav }}">Inicio</a>
+        <a href="#nosotros" style="font-size: 14.5px; font-weight: 500; color: #202124; display: {{ deskNav }}">Nosotros</a>
+        <a href="#servicios" style="font-size: 14.5px; font-weight: 500; color: #202124; display: {{ deskNav }}">Servicios</a>
+        <a href="#programas" style="font-size: 14.5px; font-weight: 500; color: #202124; display: {{ deskNav }}">Programas</a>
+        <a href="#impacto" style="font-size: 14.5px; font-weight: 500; color: #202124; display: {{ deskNav }}">Impacto</a>
+        <a href="#recursos" style="font-size: 14.5px; font-weight: 500; color: #202124; display: {{ deskNav }}">Recursos</a>
+        <a href="#comunidad" style="font-size: 14.5px; font-weight: 500; color: #202124; display: {{ deskNav }}">Comunidad</a>
+        <a href="https://wa.me/51921090875" target="_blank" rel="noopener" style="font-size: 14.5px; font-weight: 600; color: #FFFFFF; background: #0B47CE; padding: 11px 20px; border-radius: 8px" style-hover="background: #003889; color: #FFFFFF">Conversemos</a>
+        <button type="button" onClick="{{ toggleMenu }}" aria-label="Menú" style="display: {{ burger }}; align-items: center; justify-content: center; width: 42px; height: 42px; background: #FFFFFF; border: 1px solid #E5E7EB; border-radius: 8px; cursor: pointer; flex-direction: column; gap: 4px">
+          <span style="width: 17px; height: 1.5px; background: #202124; display: block"></span>
+          <span style="width: 17px; height: 1.5px; background: #202124; display: block"></span>
+          <span style="width: 17px; height: 1.5px; background: #202124; display: block"></span>
+        </button>
+      </nav>
+    </div>
+    <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+      <div style="border-top: 1px solid #E7ECF5; padding: 12px clamp(20px, 5vw, 40px) 24px; display: grid; gap: 2px; background: #FFFFFF">
+        <a href="#inicio" style="font-size: 16px; font-weight: 500; color: #202124; padding: 13px 0">Inicio</a>
+        <a href="#nosotros" style="font-size: 16px; font-weight: 500; color: #202124; padding: 13px 0">Nosotros</a>
+        <a href="#servicios" style="font-size: 16px; font-weight: 500; color: #202124; padding: 13px 0">Servicios</a>
+        <a href="#programas" style="font-size: 16px; font-weight: 500; color: #202124; padding: 13px 0">Programas</a>
+        <a href="#impacto" style="font-size: 16px; font-weight: 500; color: #202124; padding: 13px 0">Impacto</a>
+        <a href="#recursos" style="font-size: 16px; font-weight: 500; color: #202124; padding: 13px 0">Recursos</a>
+        <a href="#comunidad" style="font-size: 16px; font-weight: 500; color: #202124; padding: 13px 0">Comunidad</a>
+      </div>
+    </sc-if>
+  </header>
+
+  <section id="inicio" data-screen-label="Hero" style="background: #FFFFFF; padding: clamp(56px, 7vw, 104px) 0 clamp(48px, 5vw, 72px)">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 40px); display: grid; gap: clamp(40px, 5vw, 72px); align-items: center; grid-template-columns: {{ heroCols }}">
+      <div>
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 26px">
+          <span style="width: 28px; height: 2px; background: #0B47CE; display: block"></span>
+          <span style="font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #0B47CE">Consultora educativa</span>
+        </div>
+        <h1 style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.06; letter-spacing: -0.025em; margin: 0 0 24px; color: #202124; text-wrap: balance">Innovación educativa que <span style="color: #0B47CE">transforma</span></h1>
+        <p style="font-size: clamp(1.05rem, 1.5vw, 1.3rem); font-weight: 500; line-height: 1.5; color: #202124; margin: 0 0 18px; max-width: 30ch; text-wrap: pretty">Diseñamos soluciones educativas que conectan pedagogía, tecnología e innovación para generar impacto real.</p>
+        <p style="font-size: 1rem; line-height: 1.65; color: #667085; margin: 0 0 36px; max-width: 46ch; text-wrap: pretty">Acompañamos a instituciones, organizaciones y docentes en el diseño e implementación de experiencias, programas y soluciones educativas.</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 14px">
+          <a href="#servicios" style="font-size: 15px; font-weight: 600; color: #FFFFFF; background: #0B47CE; padding: 15px 26px; border-radius: 8px" style-hover="background: #003889; color: #FFFFFF">Conoce nuestros servicios</a>
+          <a href="https://wa.me/51921090875" target="_blank" rel="noopener" style="font-size: 15px; font-weight: 600; color: #003889; background: #FFFFFF; border: 1px solid #CFDCF8; padding: 15px 26px; border-radius: 8px" style-hover="border-color: #0B47CE; background: #F6F8FC">Conversemos</a>
+        </div>
+      </div>
+      <div style="position: relative">
+        <div style="position: relative; border-radius: 16px; overflow: hidden; border: 1px solid #E5E7EB; aspect-ratio: 4 / 3.2; background-color: #F6F8FC; background-image: repeating-linear-gradient(135deg, #EDF1F8 0 14px, #F6F8FC 14px 28px); display: flex; align-items: flex-end; padding: 18px">
+          <sc-if value="{{ showPhotoLabels }}" hint-placeholder-val="{{ true }}"><span style="font-family: ui-monospace, Menlo, monospace; font-size: 11px; letter-spacing: 0.05em; color: #667085; background: #FFFFFF; border: 1px solid #E5E7EB; padding: 7px 11px; border-radius: 6px">FOTO · docentes peruanos en taller de formación con laptops</span></sc-if>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px">
+          <span style="font-size: 13px; font-weight: 600; color: #003889; background: #EEF2F7; padding: 9px 14px; border-radius: 999px">Innovación educativa</span>
+          <span style="font-size: 13px; font-weight: 600; color: #003889; background: #EEF2F7; padding: 9px 14px; border-radius: 999px">Tecnología con propósito</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="Franja de confianza" style="background: #FFFFFF; border-top: 1px solid #E7ECF5; border-bottom: 1px solid #E7ECF5; padding: 30px 0">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 40px); display: flex; flex-wrap: wrap; align-items: baseline; gap: 14px 28px">
+      <span style="font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #0B47CE">Creamos soluciones para</span>
+      <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 16px; color: #667085; font-size: 14.5px; font-weight: 500">
+        <span>Instituciones educativas</span><span style="color: #C7D0E2">·</span>
+        <span>Universidades</span><span style="color: #C7D0E2">·</span>
+        <span>UGEL</span><span style="color: #C7D0E2">·</span>
+        <span>ONG</span><span style="color: #C7D0E2">·</span>
+        <span>Empresas</span><span style="color: #C7D0E2">·</span>
+        <span>Organizaciones</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="nosotros" data-screen-label="Nosotros" style="background: #FFFFFF; padding: clamp(72px, 8vw, 128px) 0">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 40px); display: grid; gap: clamp(40px, 5vw, 80px); align-items: start; grid-template-columns: {{ aboutCols }}">
+      <div>
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 22px">
+          <span style="width: 28px; height: 2px; background: #0B47CE; display: block"></span>
+          <span style="font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #0B47CE">Sobre Teaching TIC</span>
+        </div>
+        <h2 style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: clamp(1.9rem, 3.4vw, 2.9rem); line-height: 1.14; letter-spacing: -0.02em; color: #003889; margin: 0 0 26px; max-width: 22ch; text-wrap: balance">Educación, tecnología e innovación con propósito</h2>
+        <p style="font-size: 1.02rem; line-height: 1.7; color: #667085; margin: 0 0 18px; max-width: 52ch; text-wrap: pretty">Teaching TIC es una consultora educativa que diseña experiencias, programas y soluciones para responder a los nuevos desafíos de la educación.</p>
+        <p style="font-size: 1.02rem; line-height: 1.7; color: #667085; margin: 0; max-width: 52ch; text-wrap: pretty">Combinamos conocimiento pedagógico, tecnología y diseño para crear propuestas contextualizadas, escalables y centradas en las personas.</p>
+      </div>
+      <div>
+        <div style="position: relative; border-radius: 16px; overflow: hidden; border: 1px solid #E5E7EB; aspect-ratio: 5 / 4; background-color: #F6F8FC; background-image: repeating-linear-gradient(135deg, #EDF1F8 0 14px, #F6F8FC 14px 28px); display: flex; align-items: flex-end; padding: 18px">
+          <sc-if value="{{ showPhotoLabels }}" hint-placeholder-val="{{ true }}"><span style="font-family: ui-monospace, Menlo, monospace; font-size: 11px; letter-spacing: 0.05em; color: #667085; background: #FFFFFF; border: 1px solid #E5E7EB; padding: 7px 11px; border-radius: 6px">FOTO · trabajo colaborativo en aula</span></sc-if>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: #E5E7EB; border: 1px solid #E5E7EB; border-radius: 12px; overflow: hidden; margin-top: 20px">
+          <div style="background: #FFFFFF; padding: 20px 16px">
+            <div style="width: 8px; height: 8px; border-radius: 2px; background: #0B47CE; margin-bottom: 12px"></div>
+            <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; font-size: 15px; color: #202124">Pedagogía</span>
+          </div>
+          <div style="background: #FFFFFF; padding: 20px 16px">
+            <div style="width: 8px; height: 8px; border-radius: 999px; background: #0B47CE; margin-bottom: 12px"></div>
+            <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; font-size: 15px; color: #202124">Tecnología</span>
+          </div>
+          <div style="background: #FFFFFF; padding: 20px 16px">
+            <div style="width: 8px; height: 8px; background: #8B7CF6; transform: rotate(45deg); margin-bottom: 12px"></div>
+            <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; font-size: 15px; color: #202124">Innovación</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="servicios" data-screen-label="Servicios" style="background: #F6F8FC; padding: clamp(72px, 8vw, 128px) 0">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 40px)">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 22px">
+        <span style="width: 28px; height: 2px; background: #0B47CE; display: block"></span>
+        <span style="font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #0B47CE">Nuestros servicios</span>
+      </div>
+      <div style="display: grid; gap: clamp(20px, 4vw, 64px); align-items: end; grid-template-columns: {{ aboutCols }}; margin-bottom: clamp(40px, 5vw, 64px)">
+        <h2 style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: clamp(1.9rem, 3.4vw, 2.9rem); line-height: 1.14; letter-spacing: -0.02em; color: #202124; margin: 0; max-width: 24ch; text-wrap: balance">Soluciones diseñadas para cada desafío educativo</h2>
+        <p style="font-size: 1.02rem; line-height: 1.7; color: #667085; margin: 0; max-width: 46ch; text-wrap: pretty">Trabajamos junto a organizaciones e instituciones para diseñar soluciones que generen cambios sostenibles.</p>
+      </div>
+      <div style="display: grid; gap: 20px; grid-template-columns: {{ servicesCols }}">
+        <article style="background: #FFFFFF; border: 1px solid #E5E7EB; border-radius: 14px; padding: clamp(28px, 3vw, 40px)" style-hover="border-color: #0B47CE">
+          <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 2.6rem; line-height: 1; color: #C3D3F7; display: block; margin-bottom: 22px">01</span>
+          <h3 style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; font-size: 1.28rem; line-height: 1.3; color: #202124; margin: 0 0 12px">Formación y capacitación docente</h3>
+          <p style="font-size: 0.97rem; line-height: 1.65; color: #667085; margin: 0 0 22px; max-width: 44ch; text-wrap: pretty">Diseñamos talleres, programas y rutas formativas para fortalecer competencias pedagógicas y digitales.</p>
+          <button type="button" onClick="{{ openS1 }}" style="font-size: 14.5px; font-weight: 600; color: #0B47CE; background: none; border: 0; padding: 0; cursor: pointer; font-family: inherit">Conocer más →</button>
+        </article>
+        <article style="background: #FFFFFF; border: 1px solid #E5E7EB; border-radius: 14px; padding: clamp(28px, 3vw, 40px)" style-hover="border-color: #0B47CE">
+          <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 2.6rem; line-height: 1; color: #C3D3F7; display: block; margin-bottom: 22px">02</span>
+          <h3 style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; font-size: 1.28rem; line-height: 1.3; color: #202124; margin: 0 0 12px">Consultoría en innovación educativa</h3>
+          <p style="font-size: 0.97rem; line-height: 1.65; color: #667085; margin: 0 0 22px; max-width: 44ch; text-wrap: pretty">Acompañamos el diagnóstico, diseño, implementación y evaluación de proyectos de transformación educativa.</p>
+          <button type="button" onClick="{{ openS2 }}" style="font-size: 14.5px; font-weight: 600; color: #0B47CE; background: none; border: 0; padding: 0; cursor: pointer; font-family: inherit">Conocer más →</button>
+        </article>
+        <article style="background: #FFFFFF; border: 1px solid #E5E7EB; border-radius: 14px; padding: clamp(28px, 3vw, 40px)" style-hover="border-color: #0B47CE">
+          <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 2.6rem; line-height: 1; color: #C3D3F7; display: block; margin-bottom: 22px">03</span>
+          <h3 style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; font-size: 1.28rem; line-height: 1.3; color: #202124; margin: 0 0 12px">Inteligencia Artificial en educación</h3>
+          <p style="font-size: 0.97rem; line-height: 1.65; color: #667085; margin: 0 0 22px; max-width: 44ch; text-wrap: pretty">Diseñamos estrategias, programas y soluciones para integrar la IA de manera pedagógica, ética y responsable.</p>
+          <button type="button" onClick="{{ openS3 }}" style="font-size: 14.5px; font-weight: 600; color: #0B47CE; background: none; border: 0; padding: 0; cursor: pointer; font-family: inherit">Conocer más →</button>
+        </article>
+        <article style="background: #FFFFFF; border: 1px solid #E5E7EB; border-radius: 14px; padding: clamp(28px, 3vw, 40px)" style-hover="border-color: #0B47CE">
+          <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 2.6rem; line-height: 1; color: #C3D3F7; display: block; margin-bottom: 22px">04</span>
+          <h3 style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; font-size: 1.28rem; line-height: 1.3; color: #202124; margin: 0 0 12px">Diseño de programas educativos</h3>
+          <p style="font-size: 0.97rem; line-height: 1.65; color: #667085; margin: 0 0 22px; max-width: 44ch; text-wrap: pretty">Convertimos necesidades educativas en programas estructurados, contextualizados y orientados a resultados.</p>
+          <button type="button" onClick="{{ openS4 }}" style="font-size: 14.5px; font-weight: 600; color: #0B47CE; background: none; border: 0; padding: 0; cursor: pointer; font-family: inherit">Conocer más →</button>
+        </article>
+        <article style="background: #FFFFFF; border: 1px solid #E5E7EB; border-radius: 14px; padding: clamp(28px, 3vw, 40px)" style-hover="border-color: #0B47CE">
+          <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 2.6rem; line-height: 1; color: #C3D3F7; display: block; margin-bottom: 22px">05</span>
+          <h3 style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; font-size: 1.28rem; line-height: 1.3; color: #202124; margin: 0 0 12px">Diseño de experiencias de aprendizaje</h3>
+          <p style="font-size: 0.97rem; line-height: 1.65; color: #667085; margin: 0 0 22px; max-width: 44ch; text-wrap: pretty">Creamos experiencias, recursos, proyectos STEAM y estrategias educativas centradas en docentes y estudiantes.</p>
+          <button type="button" onClick="{{ openS5 }}" style="font-size: 14.5px; font-weight: 600; color: #0B47CE; background: none; border: 0; padding: 0; cursor: pointer; font-family: inherit">Conocer más →</button>
+        </article>
+        <article style="background: #FFFFFF; border: 1px solid #E5E7EB; border-radius: 14px; padding: clamp(28px, 3vw, 40px)" style-hover="border-color: #0B47CE">
+          <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 2.6rem; line-height: 1; color: #C3D3F7; display: block; margin-bottom: 22px">06</span>
+          <h3 style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; font-size: 1.28rem; line-height: 1.3; color: #202124; margin: 0 0 12px">Soluciones EdTech</h3>
+          <p style="font-size: 0.97rem; line-height: 1.65; color: #667085; margin: 0 0 22px; max-width: 44ch; text-wrap: pretty">Diseñamos y prototipamos plataformas, asistentes con IA y herramientas digitales para resolver desafíos educativos.</p>
+          <button type="button" onClick="{{ openS6 }}" style="font-size: 14.5px; font-weight: 600; color: #0B47CE; background: none; border: 0; padding: 0; cursor: pointer; font-family: inherit">Conocer más →</button>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="Metodología" style="background: #FFFFFF; padding: clamp(72px, 8vw, 128px) 0">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 40px)">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 22px">
+        <span style="width: 28px; height: 2px; background: #0B47CE; display: block"></span>
+        <span style="font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #0B47CE">Nuestra metodología</span>
+      </div>
+      <h2 style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: clamp(1.9rem, 3.4vw, 2.9rem); line-height: 1.14; letter-spacing: -0.02em; color: #003889; margin: 0 0 clamp(44px, 5vw, 72px); max-width: 26ch; text-wrap: balance">De un desafío educativo a una solución con impacto</h2>
+      <div style="display: grid; gap: 0; background: #FFFFFF; border-top: 1px solid #E5E7EB; grid-template-columns: {{ phaseCols }}">
+        <div style="background: #FFFFFF; padding: 30px 26px; border-bottom: 1px solid #E5E7EB; border-right: 1px solid #E5E7EB">
+          <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 13px; color: #0B47CE; letter-spacing: 0.08em; display: block; margin-bottom: 14px">01</span>
+          <h3 style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; font-size: 1.1rem; color: #202124; margin: 0 0 8px">Diagnóstico</h3>
+          <p style="font-size: 0.92rem; line-height: 1.55; color: #667085; margin: 0">Entendemos el contexto, las necesidades y los objetivos.</p>
+        </div>
+        <div style="background: #FFFFFF; padding: 30px 26px; border-bottom: 1px solid #E5E7EB; border-right: 1px solid #E5E7EB">
+          <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 13px; color: #0B47CE; letter-spacing: 0.08em; display: block; margin-bottom: 14px">02</span>
+          <h3 style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; font-size: 1.1rem; color: #202124; margin: 0 0 8px">Diseño</h3>
+          <p style="font-size: 0.92rem; line-height: 1.55; color: #667085; margin: 0">Definimos la propuesta pedagógica y tecnológica a medida.</p>
+        </div>
+        <div style="background: #FFFFFF; padding: 30px 26px; border-bottom: 1px solid #E5E7EB; border-right: 1px solid #E5E7EB">
+          <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 13px; color: #0B47CE; letter-spacing: 0.08em; display: block; margin-bottom: 14px">03</span>
+          <h3 style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; font-size: 1.1rem; color: #202124; margin: 0 0 8px">Implementación</h3>
+          <p style="font-size: 0.92rem; line-height: 1.55; color: #667085; margin: 0">Ejecutamos la solución junto a los equipos de la institución.</p>
+        </div>
+        <div style="background: #FFFFFF; padding: 30px 26px; border-bottom: 1px solid #E5E7EB; border-right: 1px solid #E5E7EB">
+          <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 13px; color: #0B47CE; letter-spacing: 0.08em; display: block; margin-bottom: 14px">04</span>
+          <h3 style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; font-size: 1.1rem; color: #202124; margin: 0 0 8px">Acompañamiento</h3>
+          <p style="font-size: 0.92rem; line-height: 1.55; color: #667085; margin: 0">Sostenemos el proceso con mentoría y soporte continuo.</p>
+        </div>
+        <div style="background: #FFFFFF; padding: 30px 26px; border-bottom: 1px solid #E5E7EB">
+          <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 13px; color: #0B47CE; letter-spacing: 0.08em; display: block; margin-bottom: 14px">05</span>
+          <h3 style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; font-size: 1.1rem; color: #202124; margin: 0 0 8px">Evaluación</h3>
+          <p style="font-size: 0.92rem; line-height: 1.55; color: #667085; margin: 0">Medimos resultados y ajustamos para asegurar impacto.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="Diferencial" style="background: #FFFFFF; padding: 0 0 clamp(72px, 8vw, 128px)">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 40px); display: grid; gap: clamp(40px, 5vw, 80px); align-items: start; grid-template-columns: {{ aboutCols }}">
+      <h2 style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: clamp(1.9rem, 3.4vw, 2.9rem); line-height: 1.14; letter-spacing: -0.02em; color: #202124; margin: 0; max-width: 18ch; text-wrap: balance">¿Por qué trabajar con Teaching TIC?</h2>
+      <div style="display: grid; gap: 40px; grid-template-columns: {{ twoCols }}">
+        <div>
+          <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 13px; color: #0B47CE; letter-spacing: 0.08em; display: block; margin-bottom: 14px">01</span>
+          <h3 style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; font-size: 1.15rem; color: #202124; margin: 0 0 10px">Pedagogía primero</h3>
+          <p style="font-size: 0.97rem; line-height: 1.65; color: #667085; margin: 0; max-width: 34ch">La tecnología responde a un propósito educativo.</p>
+        </div>
+        <div>
+          <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 13px; color: #0B47CE; letter-spacing: 0.08em; display: block; margin-bottom: 14px">02</span>
+          <h3 style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; font-size: 1.15rem; color: #202124; margin: 0 0 10px">Diseño contextualizado</h3>
+          <p style="font-size: 0.97rem; line-height: 1.65; color: #667085; margin: 0; max-width: 34ch">Partimos de las necesidades reales de cada comunidad u organización.</p>
+        </div>
+        <div>
+          <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 13px; color: #0B47CE; letter-spacing: 0.08em; display: block; margin-bottom: 14px">03</span>
+          <h3 style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; font-size: 1.15rem; color: #202124; margin: 0 0 10px">Innovación aplicada</h3>
+          <p style="font-size: 0.97rem; line-height: 1.65; color: #667085; margin: 0; max-width: 34ch">Convertimos IA, STEAM y tecnología educativa en soluciones concretas.</p>
+        </div>
+        <div>
+          <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 13px; color: #0B47CE; letter-spacing: 0.08em; display: block; margin-bottom: 14px">04</span>
+          <h3 style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; font-size: 1.15rem; color: #202124; margin: 0 0 10px">Acompañamiento</h3>
+          <p style="font-size: 0.97rem; line-height: 1.65; color: #667085; margin: 0; max-width: 34ch">Trabajamos desde el diagnóstico hasta la implementación y evaluación.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="Áreas de especialidad" style="background: #FFFFFF; padding: 0 0 clamp(72px, 8vw, 128px)">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 40px); border-top: 1px solid #E7ECF5; padding-top: clamp(56px, 6vw, 88px)">
+      <h2 style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: clamp(1.7rem, 3vw, 2.5rem); line-height: 1.16; letter-spacing: -0.02em; color: #003889; margin: 0 0 clamp(32px, 4vw, 48px); max-width: 28ch; text-wrap: balance">Nuestra experiencia conecta educación y tecnología</h2>
+      <div style="display: flex; flex-wrap: wrap; gap: 10px 12px">
+        <span style="font-size: 15px; font-weight: 500; color: #202124; border: 1px solid #E5E7EB; border-radius: 999px; padding: 11px 20px">Inteligencia Artificial</span>
+        <span style="font-size: 15px; font-weight: 500; color: #202124; border: 1px solid #E5E7EB; border-radius: 999px; padding: 11px 20px">STEAM</span>
+        <span style="font-size: 15px; font-weight: 500; color: #202124; border: 1px solid #E5E7EB; border-radius: 999px; padding: 11px 20px">Tecnología educativa</span>
+        <span style="font-size: 15px; font-weight: 500; color: #202124; border: 1px solid #E5E7EB; border-radius: 999px; padding: 11px 20px">Formación docente</span>
+        <span style="font-size: 15px; font-weight: 500; color: #202124; border: 1px solid #E5E7EB; border-radius: 999px; padding: 11px 20px">Innovación educativa</span>
+        <span style="font-size: 15px; font-weight: 500; color: #202124; border: 1px solid #E5E7EB; border-radius: 999px; padding: 11px 20px">Diseño instruccional</span>
+        <span style="font-size: 15px; font-weight: 500; color: #202124; border: 1px solid #E5E7EB; border-radius: 999px; padding: 11px 20px">Evaluación y retroalimentación</span>
+        <span style="font-size: 15px; font-weight: 500; color: #202124; border: 1px solid #E5E7EB; border-radius: 999px; padding: 11px 20px">Soluciones EdTech</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="programas" data-screen-label="Programas para docentes" style="background: #F6F8FC; padding: clamp(72px, 8vw, 128px) 0">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 40px)">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 22px">
+        <span style="width: 28px; height: 2px; background: #0B47CE; display: block"></span>
+        <span style="font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #0B47CE">Formación</span>
+      </div>
+      <h2 style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: clamp(1.9rem, 3.4vw, 2.9rem); line-height: 1.14; letter-spacing: -0.02em; color: #202124; margin: 0 0 clamp(40px, 5vw, 64px); max-width: 26ch; text-wrap: balance">Programas para docentes que quieren transformar sus aulas</h2>
+      <div style="display: grid; gap: 20px; grid-template-columns: {{ programCols }}">
+        <article style="background: #FFFFFF; border: 1px solid #E5E7EB; border-radius: 14px; overflow: hidden" style-hover="border-color: #0B47CE">
+          <div style="aspect-ratio: 4 / 3; background-color: #F2F5FB; background-image: repeating-linear-gradient(135deg, #E7EDF8 0 12px, #F5F8FD 12px 24px); display: flex; align-items: flex-end; padding: 12px">
+            <sc-if value="{{ showPhotoLabels }}" hint-placeholder-val="{{ true }}"><span style="font-family: ui-monospace, Menlo, monospace; font-size: 10px; color: #667085; background: #FFFFFF; border: 1px solid #E5E7EB; padding: 5px 8px; border-radius: 5px">FOTO · taller de IA</span></sc-if>
+          </div>
+          <div style="padding: 22px; display: grid; gap: 14px">
+            <h3 style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; font-size: 1.08rem; line-height: 1.35; color: #202124; margin: 0">Inteligencia Artificial para docentes</h3>
+            <a href="https://wa.me/51921090875" target="_blank" rel="noopener" style="font-size: 14px; font-weight: 600; color: #0B47CE">Más información →</a>
+          </div>
+        </article>
+        <article style="background: #FFFFFF; border: 1px solid #E5E7EB; border-radius: 14px; overflow: hidden" style-hover="border-color: #0B47CE">
+          <div style="aspect-ratio: 4 / 3; background-color: #F2F5FB; background-image: repeating-linear-gradient(135deg, #E7EDF8 0 12px, #F5F8FD 12px 24px); display: flex; align-items: flex-end; padding: 12px">
+            <sc-if value="{{ showPhotoLabels }}" hint-placeholder-val="{{ true }}"><span style="font-family: ui-monospace, Menlo, monospace; font-size: 10px; color: #667085; background: #FFFFFF; border: 1px solid #E5E7EB; padding: 5px 8px; border-radius: 5px">FOTO · actividad STEAM</span></sc-if>
+          </div>
+          <div style="padding: 22px; display: grid; gap: 14px">
+            <h3 style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; font-size: 1.08rem; line-height: 1.35; color: #202124; margin: 0">Educación STEAM</h3>
+            <a href="https://wa.me/51921090875" target="_blank" rel="noopener" style="font-size: 14px; font-weight: 600; color: #0B47CE">Más información →</a>
+          </div>
+        </article>
+        <article style="background: #FFFFFF; border: 1px solid #E5E7EB; border-radius: 14px; overflow: hidden" style-hover="border-color: #0B47CE">
+          <div style="aspect-ratio: 4 / 3; background-color: #F2F5FB; background-image: repeating-linear-gradient(135deg, #E7EDF8 0 12px, #F5F8FD 12px 24px); display: flex; align-items: flex-end; padding: 12px">
+            <sc-if value="{{ showPhotoLabels }}" hint-placeholder-val="{{ true }}"><span style="font-family: ui-monospace, Menlo, monospace; font-size: 10px; color: #667085; background: #FFFFFF; border: 1px solid #E5E7EB; padding: 5px 8px; border-radius: 5px">FOTO · docentes con laptops</span></sc-if>
+          </div>
+          <div style="padding: 22px; display: grid; gap: 14px">
+            <h3 style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; font-size: 1.08rem; line-height: 1.35; color: #202124; margin: 0">Competencias digitales</h3>
+            <a href="https://wa.me/51921090875" target="_blank" rel="noopener" style="font-size: 14px; font-weight: 600; color: #0B47CE">Más información →</a>
+          </div>
+        </article>
+        <article style="background: #FFFFFF; border: 1px solid #E5E7EB; border-radius: 14px; overflow: hidden" style-hover="border-color: #0B47CE">
+          <div style="aspect-ratio: 4 / 3; background-color: #F2F5FB; background-image: repeating-linear-gradient(135deg, #E7EDF8 0 12px, #F5F8FD 12px 24px); display: flex; align-items: flex-end; padding: 12px">
+            <sc-if value="{{ showPhotoLabels }}" hint-placeholder-val="{{ true }}"><span style="font-family: ui-monospace, Menlo, monospace; font-size: 10px; color: #667085; background: #FFFFFF; border: 1px solid #E5E7EB; padding: 5px 8px; border-radius: 5px">FOTO · capacitación institucional</span></sc-if>
+          </div>
+          <div style="padding: 22px; display: grid; gap: 14px">
+            <h3 style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; font-size: 1.08rem; line-height: 1.35; color: #202124; margin: 0">Innovación educativa</h3>
+            <a href="https://wa.me/51921090875" target="_blank" rel="noopener" style="font-size: 14px; font-weight: 600; color: #0B47CE">Más información →</a>
+          </div>
+        </article>
+      </div>
+      <div style="margin-top: 40px">
+        <a href="https://wa.me/51921090875" target="_blank" rel="noopener" style="font-size: 15px; font-weight: 600; color: #FFFFFF; background: #0B47CE; padding: 15px 26px; border-radius: 8px; display: inline-block" style-hover="background: #003889; color: #FFFFFF">Conoce nuestros programas</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="impacto" data-screen-label="Impacto" style="background: #FFFFFF; padding: clamp(72px, 8vw, 128px) 0">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 40px)">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 22px">
+        <span style="width: 28px; height: 2px; background: #0B47CE; display: block"></span>
+        <span style="font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #0B47CE">Nuestro impacto</span>
+      </div>
+      <h2 style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: clamp(1.9rem, 3.4vw, 2.9rem); line-height: 1.14; letter-spacing: -0.02em; color: #003889; margin: 0 0 clamp(48px, 6vw, 80px); max-width: 24ch; text-wrap: balance">Transformamos capacidades para transformar aulas</h2>
+      <div style="display: grid; gap: clamp(32px, 4vw, 48px); grid-template-columns: {{ statCols }}">
+        <div>
+          <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: clamp(3rem, 5.5vw, 4.4rem); line-height: 1; letter-spacing: -0.03em; color: #0B47CE; display: block; margin-bottom: 12px">+1000</span>
+          <span style="font-size: 15px; font-weight: 500; color: #667085">Docentes capacitados</span>
+        </div>
+        <div>
+          <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: clamp(3rem, 5.5vw, 4.4rem); line-height: 1; letter-spacing: -0.03em; color: #0B47CE; display: block; margin-bottom: 12px">10</span>
+          <span style="font-size: 15px; font-weight: 500; color: #667085">Instituciones</span>
+        </div>
+        <div>
+          <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: clamp(3rem, 5.5vw, 4.4rem); line-height: 1; letter-spacing: -0.03em; color: #0B47CE; display: block; margin-bottom: 12px">5</span>
+          <span style="font-size: 15px; font-weight: 500; color: #667085">Programas</span>
+        </div>
+        <div>
+          <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: clamp(3rem, 5.5vw, 4.4rem); line-height: 1; letter-spacing: -0.03em; color: #0B47CE; display: block; margin-bottom: 12px">12</span>
+          <span style="font-size: 15px; font-weight: 500; color: #667085">Regiones del Perú</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="comunidad" data-screen-label="Proyectos" style="background: #FFFFFF; padding: 0 0 clamp(72px, 8vw, 128px)">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 40px); border-top: 1px solid #E7ECF5; padding-top: clamp(56px, 6vw, 96px)">
+      <h2 style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: clamp(1.9rem, 3.4vw, 2.9rem); line-height: 1.14; letter-spacing: -0.02em; color: #202124; margin: 0 0 clamp(40px, 5vw, 64px); max-width: 24ch; text-wrap: balance">Proyectos que convierten ideas en experiencias</h2>
+      <div style="display: grid; gap: 24px; grid-template-columns: {{ projectCols }}">
+        <article style="border: 1px solid #E5E7EB; border-radius: 16px; overflow: hidden; background: #FFFFFF" style-hover="border-color: #0B47CE">
+          <div style="aspect-ratio: 16 / 10; background-color: #F6F8FC; background-image: repeating-linear-gradient(135deg, #EDF1F8 0 14px, #F6F8FC 14px 28px); display: flex; align-items: flex-end; padding: 14px">
+            <sc-if value="{{ showPhotoLabels }}" hint-placeholder-val="{{ true }}"><span style="font-family: ui-monospace, Menlo, monospace; font-size: 10px; color: #667085; background: #FFFFFF; border: 1px solid #E5E7EB; padding: 5px 8px; border-radius: 5px">FOTO · docentes en sesión STEAM</span></sc-if>
+          </div>
+          <div style="padding: clamp(24px, 2.5vw, 32px)">
+            <span style="font-size: 11.5px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #0B47CE; display: block; margin-bottom: 14px">Formación docente · STEAM</span>
+            <h3 style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; font-size: 1.2rem; line-height: 1.3; color: #202124; margin: 0 0 12px">Pedagogía Digital STEAM</h3>
+            <p style="font-size: 0.95rem; line-height: 1.65; color: #667085; margin: 0 0 18px; text-wrap: pretty">Programa de formación docente que integra pensamiento computacional, STEAM y uso pedagógico de la tecnología en instituciones educativas de distintas regiones del país.</p>
+            <p style="font-size: 0.9rem; font-weight: 500; color: #003889; margin: 0 0 22px; padding-top: 16px; border-top: 1px solid #E7ECF5">Impacto: docentes formados en 12 regiones del Perú.</p>
+            <button type="button" onClick="{{ openP1 }}" style="font-size: 14.5px; font-weight: 600; color: #0B47CE; background: none; border: 0; padding: 0; cursor: pointer; font-family: inherit">Ver proyecto →</button>
+          </div>
+        </article>
+        <article style="border: 1px solid #E5E7EB; border-radius: 16px; overflow: hidden; background: #FFFFFF" style-hover="border-color: #0B47CE">
+          <div style="aspect-ratio: 16 / 10; background-color: #F6F8FC; background-image: repeating-linear-gradient(135deg, #EDF1F8 0 14px, #F6F8FC 14px 28px); display: flex; align-items: flex-end; padding: 14px">
+            <sc-if value="{{ showPhotoLabels }}" hint-placeholder-val="{{ true }}"><span style="font-family: ui-monospace, Menlo, monospace; font-size: 10px; color: #667085; background: #FFFFFF; border: 1px solid #E5E7EB; padding: 5px 8px; border-radius: 5px">FOTO · actividad con institución aliada</span></sc-if>
+          </div>
+          <div style="padding: clamp(24px, 2.5vw, 32px)">
+            <span style="font-size: 11.5px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #0B47CE; display: block; margin-bottom: 14px">Alianza institucional</span>
+            <h3 style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; font-size: 1.2rem; line-height: 1.3; color: #202124; margin: 0 0 12px">Alianza con Concytec</h3>
+            <p style="font-size: 0.95rem; line-height: 1.65; color: #667085; margin: 0 0 18px; text-wrap: pretty">Colaboración orientada a fortalecer la cultura científica y tecnológica en la comunidad educativa, articulando formación docente e innovación.</p>
+            <p style="font-size: 0.9rem; font-weight: 500; color: #003889; margin: 0 0 22px; padding-top: 16px; border-top: 1px solid #E7ECF5">Impacto: articulación con instituciones educativas y actores del ecosistema de ciencia y tecnología.</p>
+            <button type="button" onClick="{{ openP2 }}" style="font-size: 14.5px; font-weight: 600; color: #0B47CE; background: none; border: 0; padding: 0; cursor: pointer; font-family: inherit">Ver proyecto →</button>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <sc-if value="{{ showTestimonios }}" hint-placeholder-val="{{ true }}">
+  <section data-screen-label="Testimonios" style="background: #FFFFFF; padding: 0 0 clamp(72px, 8vw, 128px)">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 40px); border-top: 1px solid #E7ECF5; padding-top: clamp(56px, 6vw, 96px)">
+      <h2 style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: clamp(1.7rem, 3vw, 2.5rem); line-height: 1.16; letter-spacing: -0.02em; color: #003889; margin: 0 0 clamp(40px, 5vw, 64px); max-width: 24ch; text-wrap: balance">Lo que dicen quienes trabajan con nosotros</h2>
+      <div style="display: grid; gap: clamp(32px, 4vw, 56px); grid-template-columns: {{ testimonialCols }}">
+        <figure style="margin: 0">
+          <blockquote style="font-size: 1.05rem; line-height: 1.7; color: #202124; margin: 0 0 24px; text-wrap: pretty">“El acompañamiento de Teaching TIC nos permitió pasar de ideas aisladas a un plan de innovación con metas claras para toda la institución.”</blockquote>
+          <figcaption style="display: flex; align-items: center; gap: 12px">
+            <span style="width: 44px; height: 44px; border-radius: 999px; background-color: #F2F5FB; background-image: repeating-linear-gradient(135deg, #E7EDF8 0 8px, #F5F8FD 8px 16px); border: 1px solid #E5E7EB; display: block; flex-shrink: 0"></span>
+            <span style="display: block">
+              <span style="font-size: 14.5px; font-weight: 600; color: #202124; display: block">Nombre del director(a)</span>
+              <span style="font-size: 13.5px; color: #667085; display: block">Dirección académica · Institución educativa</span>
+            </span>
+          </figcaption>
+        </figure>
+        <figure style="margin: 0">
+          <blockquote style="font-size: 1.05rem; line-height: 1.7; color: #202124; margin: 0 0 24px; text-wrap: pretty">“Después del programa dejé de ver la tecnología como un añadido: hoy diseño mis sesiones STEAM partiendo de lo que mis estudiantes necesitan.”</blockquote>
+          <figcaption style="display: flex; align-items: center; gap: 12px">
+            <span style="width: 44px; height: 44px; border-radius: 999px; background-color: #F2F5FB; background-image: repeating-linear-gradient(135deg, #E7EDF8 0 8px, #F5F8FD 8px 16px); border: 1px solid #E5E7EB; display: block; flex-shrink: 0"></span>
+            <span style="display: block">
+              <span style="font-size: 14.5px; font-weight: 600; color: #202124; display: block">Nombre del docente</span>
+              <span style="font-size: 13.5px; color: #667085; display: block">Docente de secundaria · Región del Perú</span>
+            </span>
+          </figcaption>
+        </figure>
+        <figure style="margin: 0">
+          <blockquote style="font-size: 1.05rem; line-height: 1.7; color: #202124; margin: 0 0 24px; text-wrap: pretty">“Trabajar con inteligencia artificial en el aula me parecía lejano. Ahora la uso para retroalimentar mejor y ganar tiempo para acompañar a mis estudiantes.”</blockquote>
+          <figcaption style="display: flex; align-items: center; gap: 12px">
+            <span style="width: 44px; height: 44px; border-radius: 999px; background-color: #F2F5FB; background-image: repeating-linear-gradient(135deg, #E7EDF8 0 8px, #F5F8FD 8px 16px); border: 1px solid #E5E7EB; display: block; flex-shrink: 0"></span>
+            <span style="display: block">
+              <span style="font-size: 14.5px; font-weight: 600; color: #202124; display: block">Nombre del docente</span>
+              <span style="font-size: 13.5px; color: #667085; display: block">Docente de primaria · Región del Perú</span>
+            </span>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+  </sc-if>
+
+  <section data-screen-label="Alianzas" style="background: #FFFFFF; padding: 0 0 clamp(72px, 8vw, 128px)">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 40px)">
+      <h2 style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: clamp(1.5rem, 2.4vw, 2rem); line-height: 1.2; letter-spacing: -0.02em; color: #202124; margin: 0 0 clamp(36px, 4vw, 56px)">Construimos impacto en colaboración</h2>
+      <div style="overflow: hidden; mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent)">
+        <div style="display: flex; align-items: center; gap: clamp(56px, 7vw, 96px); width: max-content; animation: tt-marquee 34s linear infinite">
+          <div style="display: flex; align-items: center; gap: clamp(56px, 7vw, 96px)">
+          <img src="uploads/concytec-trim.png" alt="Concytec" style="height: 44px; width: auto; object-fit: contain; display: block; flex-shrink: 0" />
+          <img src="uploads/cppe-trim.png" alt="Colegio de Profesores del Perú" style="height: 40px; width: auto; object-fit: contain; display: block; flex-shrink: 0" />
+          <img src="uploads/teomatics-trim.png" alt="Teomatics" style="height: 62px; width: auto; object-fit: contain; display: block; flex-shrink: 0" />
+          <img src="uploads/1CDUonIXnM.svg" alt="Aliado institucional" style="height: 52px; width: auto; object-fit: contain; display: block; flex-shrink: 0" />
+          <img src="uploads/creactivo-trim.png" alt="Creactivo Consultoría Educativa" style="height: 44px; width: auto; object-fit: contain; display: block; flex-shrink: 0" />
+          <img src="uploads/people-academy-trim.png" alt="People Academy" style="height: 42px; width: auto; object-fit: contain; display: block; flex-shrink: 0" />
+          </div>
+          <div style="display: flex; align-items: center; gap: clamp(56px, 7vw, 96px)">
+          <img src="uploads/concytec-trim.png" alt="" aria-hidden="true" style="height: 44px; width: auto; object-fit: contain; display: block; flex-shrink: 0" />
+          <img src="uploads/cppe-trim.png" alt="" aria-hidden="true" style="height: 40px; width: auto; object-fit: contain; display: block; flex-shrink: 0" />
+          <img src="uploads/teomatics-trim.png" alt="" aria-hidden="true" style="height: 62px; width: auto; object-fit: contain; display: block; flex-shrink: 0" />
+          <img src="uploads/1CDUonIXnM.svg" alt="" aria-hidden="true" style="height: 52px; width: auto; object-fit: contain; display: block; flex-shrink: 0" />
+          <img src="uploads/creactivo-trim.png" alt="" aria-hidden="true" style="height: 44px; width: auto; object-fit: contain; display: block; flex-shrink: 0" />
+          <img src="uploads/people-academy-trim.png" alt="" aria-hidden="true" style="height: 42px; width: auto; object-fit: contain; display: block; flex-shrink: 0" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="recursos" data-screen-label="Recursos" style="background: #F6F8FC; padding: clamp(72px, 8vw, 128px) 0">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 40px)">
+      <h2 style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: clamp(1.9rem, 3.4vw, 2.9rem); line-height: 1.14; letter-spacing: -0.02em; color: #202124; margin: 0 0 clamp(40px, 5vw, 64px); max-width: 24ch; text-wrap: balance">Ideas y recursos para transformar la educación</h2>
+      <div style="background: #FFFFFF; border: 1px solid #CFDCF8; border-radius: 18px; padding: clamp(26px, 3.5vw, 44px); margin-bottom: clamp(32px, 4vw, 48px); display: grid; gap: clamp(24px, 3vw, 48px); align-items: center; grid-template-columns: {{ promptCols }}">
+        <div>
+          <span style="font-size: 11.5px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #0B47CE; display: block; margin-bottom: 14px">Nuevo · Asistente</span>
+          <h3 style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: clamp(1.5rem, 2.6vw, 2.1rem); line-height: 1.16; letter-spacing: -0.02em; color: #003889; margin: 0 0 14px">✨ PromptLab</h3>
+          <p style="font-size: 1.02rem; line-height: 1.65; color: #667085; margin: 0; max-width: 52ch; text-wrap: pretty">Convierte un problema de tu escuela o comunidad en un prompt listo para crear tu prototipo digital.</p>
+        </div>
+        <a href="promptlab.html" style="font-size: 15px; font-weight: 600; color: #FFFFFF; background: #0B47CE; padding: 16px 28px; border-radius: 8px; justify-self: start; white-space: nowrap" style-hover="background: #003889; color: #FFFFFF">Crear mi prompt →</a>
+      </div>
+      <div style="display: grid; gap: 0; border-top: 1px solid #E3E8F2">
+        <a href="promptlab.html" style="display: grid; gap: 8px 32px; align-items: baseline; padding: 26px 4px; border-bottom: 1px solid #E3E8F2; color: #202124; grid-template-columns: {{ resourceCols }}" style-hover="background: #FFFFFF; color: #003889">
+          <span style="font-size: 11.5px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #0B47CE">PromptLab</span>
+          <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; font-size: 1.12rem; color: inherit">De un problema real a un prompt listo para crear</span>
+          <span style="font-size: 0.95rem; color: #667085">Asistente guiado: problema, usuario, solución y prompt.</span>
+        </a>
+        <a href="guias.html" style="display: grid; gap: 8px 32px; align-items: baseline; padding: 26px 4px; border-bottom: 1px solid #E3E8F2; color: #202124; grid-template-columns: {{ resourceCols }}" style-hover="background: #FFFFFF; color: #003889">
+          <span style="font-size: 11.5px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #0B47CE">Guías</span>
+          <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; font-size: 1.12rem; color: inherit">Guías prácticas para el aula</span>
+          <span style="font-size: 0.95rem; color: #667085">Materiales descargables para aplicar de inmediato.</span>
+        </a>
+        <a href="herramientas.html" style="display: grid; gap: 8px 32px; align-items: baseline; padding: 26px 4px; border-bottom: 1px solid #E3E8F2; color: #202124; grid-template-columns: {{ resourceCols }}" style-hover="background: #FFFFFF; color: #003889">
+          <span style="font-size: 11.5px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #0B47CE">Herramientas</span>
+          <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; font-size: 1.12rem; color: inherit">Selección de herramientas educativas</span>
+          <span style="font-size: 0.95rem; color: #667085">¿Qué usar, cuándo y con qué propósito pedagógico?</span>
+        </a>
+        <button type="button" onClick="{{ openR3 }}" style="display: grid; gap: 8px 32px; align-items: baseline; text-align: left; width: 100%; padding: 26px 4px; border: 0; border-bottom: 1px solid #E3E8F2; background: none; cursor: pointer; font-family: inherit; color: #202124; grid-template-columns: {{ resourceCols }}" style-hover="background: #FFFFFF; color: #003889">
+          <span style="font-size: 11.5px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #0B47CE">Recursos de IA</span>
+          <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; font-size: 1.12rem; color: inherit">Inteligencia Artificial aplicada a la enseñanza</span>
+          <span style="font-size: 0.95rem; color: #667085">Usos responsables y ejemplos concretos.</span>
+        </button>
+        <button type="button" onClick="{{ openR4 }}" style="display: grid; gap: 8px 32px; align-items: baseline; text-align: left; width: 100%; padding: 26px 4px; border: 0; border-bottom: 1px solid #E3E8F2; background: none; cursor: pointer; font-family: inherit; color: #202124; grid-template-columns: {{ resourceCols }}" style-hover="background: #FFFFFF; color: #003889">
+          <span style="font-size: 11.5px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #0B47CE">STEAM</span>
+          <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; font-size: 1.12rem; color: inherit">Proyectos STEAM listos para adaptar
+</span>
+          <span style="font-size: 0.95rem; color: #667085">Secuencias de trabajo por proyectos para distintos niveles.</span>
+        </button>
+        
+        </div>
+    </div>
+  </section>
+
+  <section id="contacto" data-screen-label="CTA institucional" style="background: #FFFFFF; padding: clamp(72px, 8vw, 128px) clamp(20px, 4vw, 40px)">
+    <div style="max-width: 1280px; margin: 0 auto; background: #EEF2F7; border-radius: 20px; padding: clamp(44px, 6vw, 88px)">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 22px">
+        <span style="width: 28px; height: 2px; background: #0B47CE; display: block"></span>
+        <span style="font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #0B47CE">Trabajemos juntos</span>
+      </div>
+      <h2 style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: clamp(2.1rem, 4vw, 3.3rem); line-height: 1.1; letter-spacing: -0.025em; color: #003889; margin: 0 0 18px; max-width: 20ch; text-wrap: balance">¿Tienes un desafío educativo?</h2>
+      <p style="font-size: clamp(1rem, 1.4vw, 1.2rem); font-weight: 500; line-height: 1.6; color: #202124; margin: 0 0 36px; max-width: 40ch; text-wrap: pretty">Diseñemos juntos una solución que genere impacto.</p>
+      <a href="https://wa.me/51921090875" target="_blank" rel="noopener" style="font-size: 15px; font-weight: 600; color: #FFFFFF; background: #0B47CE; padding: 16px 28px; border-radius: 8px; display: inline-block" style-hover="background: #003889; color: #FFFFFF">Conversemos sobre tu proyecto</a>
+    </div>
+  </section>
+
+  <sc-if value="{{ modalOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closeModal }}" style="position: fixed; inset: 0; z-index: 90; background: rgba(16, 24, 40, 0.55); display: flex; align-items: flex-end; justify-content: center; padding: 0">
+      <div onClick="{{ stop }}" role="dialog" aria-modal="true" style="background: #FFFFFF; width: 100%; max-width: 720px; max-height: 88vh; overflow-y: auto; border-radius: 20px 20px 0 0; padding: clamp(28px, 4vw, 48px); margin: 0 auto; align-self: {{ modalAlign }}; border-radius: {{ modalRadius }}">
+        <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; margin-bottom: 22px">
+          <span style="font-size: 11.5px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #0B47CE; padding-top: 8px">{{ modalEyebrow }}</span>
+          <button type="button" onClick="{{ closeModal }}" aria-label="Cerrar" style="width: 38px; height: 38px; flex-shrink: 0; border: 1px solid #E5E7EB; background: #FFFFFF; border-radius: 999px; font-size: 18px; line-height: 1; color: #667085; cursor: pointer; font-family: inherit" style-hover="border-color: #0B47CE; color: #0B47CE">×</button>
+        </div>
+        <h3 style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: clamp(1.5rem, 3vw, 2.1rem); line-height: 1.16; letter-spacing: -0.02em; color: #003889; margin: 0 0 16px; text-wrap: balance">{{ modalTitle }}</h3>
+        <p style="font-size: 1.02rem; line-height: 1.7; color: #667085; margin: 0 0 28px; text-wrap: pretty">{{ modalDesc }}</p>
+        <div style="border-top: 1px solid #E7ECF5; padding-top: 24px; margin-bottom: 32px">
+          <span style="font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #202124; display: block; margin-bottom: 16px">{{ modalListTitle }}</span>
+          <ul style="margin: 0; padding: 0; list-style: none; display: grid; gap: 12px">
+            <sc-for list="{{ modalItems }}" as="item" hint-placeholder-count="4">
+              <li style="display: flex; align-items: flex-start; gap: 12px; font-size: 0.98rem; line-height: 1.6; color: #202124">
+                <span style="width: 6px; height: 6px; border-radius: 2px; background: #0B47CE; display: block; flex-shrink: 0; margin-top: 9px"></span>
+                <span>{{ item }}</span>
+              </li>
+            </sc-for>
+          </ul>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 12px">
+          <a href="https://wa.me/51921090875" target="_blank" rel="noopener" style="font-size: 15px; font-weight: 600; color: #FFFFFF; background: #0B47CE; padding: 15px 26px; border-radius: 8px" style-hover="background: #003889; color: #FFFFFF">Conversemos sobre esto</a>
+          <button type="button" onClick="{{ closeModal }}" style="font-size: 15px; font-weight: 600; color: #003889; background: #FFFFFF; border: 1px solid #CFDCF8; padding: 15px 26px; border-radius: 8px; cursor: pointer; font-family: inherit" style-hover="border-color: #0B47CE">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <footer data-screen-label="Footer" style="background: #003889; color: #FFFFFF; padding: clamp(56px, 6vw, 88px) clamp(20px, 4vw, 40px) 32px">
+    <div style="max-width: 1280px; margin: 0 auto">
+      <div style="display: grid; gap: clamp(40px, 5vw, 72px); grid-template-columns: {{ footerCols }}; padding-bottom: clamp(40px, 5vw, 64px)">
+        <div>
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 18px">
+            <span style="width: 12px; height: 12px; border-radius: 3px; background: #8B7CF6; display: block"></span>
+            <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 19px; letter-spacing: -0.01em; color: #FFFFFF">Teaching TIC</span>
+          </div>
+          <p style="font-size: 0.98rem; line-height: 1.6; color: #B9CDF2; margin: 0; max-width: 30ch; text-wrap: pretty">Innovación y tecnología para transformar la educación.</p>
+        </div>
+        <div style="display: grid; gap: clamp(32px, 4vw, 48px); grid-template-columns: {{ footerLinkCols }}">
+          <div>
+            <h3 style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; font-size: 14px; color: #FFFFFF; margin: 0 0 16px">Teaching TIC</h3>
+            <div style="display: grid; gap: 11px">
+              <a href="#nosotros" style="font-size: 14.5px; color: #B9CDF2" style-hover="color: #FFFFFF">Nosotros</a>
+              <a href="#servicios" style="font-size: 14.5px; color: #B9CDF2" style-hover="color: #FFFFFF">Servicios</a>
+              <a href="#impacto" style="font-size: 14.5px; color: #B9CDF2" style-hover="color: #FFFFFF">Impacto</a>
+              <a href="#comunidad" style="font-size: 14.5px; color: #B9CDF2" style-hover="color: #FFFFFF">Comunidad</a>
+            </div>
+          </div>
+          <div>
+            <h3 style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; font-size: 14px; color: #FFFFFF; margin: 0 0 16px">Soluciones</h3>
+            <div style="display: grid; gap: 11px">
+              <a href="#servicios" style="font-size: 14.5px; color: #B9CDF2" style-hover="color: #FFFFFF">Formación docente</a>
+              <a href="#servicios" style="font-size: 14.5px; color: #B9CDF2" style-hover="color: #FFFFFF">Innovación educativa</a>
+              <a href="#servicios" style="font-size: 14.5px; color: #B9CDF2" style-hover="color: #FFFFFF">Inteligencia Artificial</a>
+            </div>
+          </div>
+          <div>
+            <h3 style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; font-size: 14px; color: #FFFFFF; margin: 0 0 16px">Recursos</h3>
+            <div style="display: grid; gap: 11px">
+              <a href="#programas" style="font-size: 14.5px; color: #B9CDF2" style-hover="color: #FFFFFF">Programas</a>
+              <a href="#recursos" style="font-size: 14.5px; color: #B9CDF2" style-hover="color: #FFFFFF">Recursos</a>
+              <a href="#comunidad" style="font-size: 14.5px; color: #B9CDF2" style-hover="color: #FFFFFF">Proyectos</a>
+            </div>
+          </div>
+          <div>
+            <h3 style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; font-size: 14px; color: #FFFFFF; margin: 0 0 16px">Contacto</h3>
+            <div style="display: grid; gap: 11px">
+              <a href="#contacto" style="font-size: 14.5px; color: #B9CDF2" style-hover="color: #FFFFFF">Correo</a>
+              <a href="#contacto" style="font-size: 14.5px; color: #B9CDF2" style-hover="color: #FFFFFF">LinkedIn</a>
+              <a href="#contacto" style="font-size: 14.5px; color: #B9CDF2" style-hover="color: #FFFFFF">Facebook</a>
+              <a href="#contacto" style="font-size: 14.5px; color: #B9CDF2" style-hover="color: #FFFFFF">Instagram</a>
+              <a href="#contacto" style="font-size: 14.5px; color: #B9CDF2" style-hover="color: #FFFFFF">YouTube</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="border-top: 1px solid #1B4E9E; padding-top: 26px">
+        <span style="font-size: 13.5px; color: #93AEDF">© 2026 Teaching TIC. Todos los derechos reservados.</span>
+      </div>
+    </div>
+  </footer>
+
+</div></x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;serviciosColumnas&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;2 columnas&quot;,&quot;3 columnas&quot;],&quot;default&quot;:&quot;2 columnas&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Layout&quot;},&quot;mostrarEtiquetasFoto&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Contenido&quot;},&quot;mostrarTestimonios&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Contenido&quot;}}">
+class Component extends DCLogic {
+  state = { w: typeof window !== 'undefined' ? window.innerWidth : 1440, menuOpen: false, modal: null };
+
+  get detalles() {
+    return {
+      s1: { eyebrow: 'Servicio 01', title: 'Formación y capacitación docente',
+        desc: 'Diseñamos talleres, programas y rutas formativas para fortalecer competencias pedagógicas y digitales, con seguimiento y evidencia de aprendizaje.',
+        listTitle: '¿Qué incluye?',
+        items: ['Diagnóstico de competencias docentes', 'Talleres presenciales, virtuales o híbridos', 'Rutas formativas por niveles y áreas', 'Materiales y recursos descargables', 'Certificación y reporte de resultados'] },
+      s2: { eyebrow: 'Servicio 02', title: 'Consultoría en innovación educativa',
+        desc: 'Acompañamos el diagnóstico, diseño, implementación y evaluación de proyectos de transformación educativa en instituciones y organizaciones.',
+        listTitle: '¿Cómo trabajamos?',
+        items: ['Diagnóstico institucional y levantamiento de necesidades', 'Plan de innovación con metas e indicadores', 'Diseño de la propuesta pedagógica y tecnológica', 'Implementación acompañada con equipos internos', 'Evaluación de resultados y ajustes'] },
+      s3: { eyebrow: 'Servicio 03', title: 'Inteligencia Artificial en educación',
+        desc: 'Diseñamos estrategias, programas y soluciones para integrar la IA de manera pedagógica, ética y responsable en la práctica docente y la gestión educativa.',
+        listTitle: 'Líneas de trabajo',
+        items: ['Alfabetización en IA para docentes y directivos', 'Uso de IA para planificación y retroalimentación', 'Lineamientos de uso ético y responsable', 'Asistentes con IA aplicados a procesos educativos', 'Acompañamiento en la implementación'] },
+      s4: { eyebrow: 'Servicio 04', title: 'Diseño de programas educativos',
+        desc: 'Convertimos necesidades educativas en programas estructurados, contextualizados y orientados a resultados, listos para implementarse y escalar.',
+        listTitle: 'Entregables',
+        items: ['Marco pedagógico y perfil de egreso', 'Estructura curricular y secuencia de sesiones', 'Materiales para docentes y participantes', 'Sistema de evaluación e indicadores', 'Plan de implementación y escalamiento'] },
+      s5: { eyebrow: 'Servicio 05', title: 'Diseño de experiencias de aprendizaje',
+        desc: 'Creamos experiencias, recursos, proyectos STEAM y estrategias educativas centradas en docentes y estudiantes, aplicables desde la primera sesión.',
+        listTitle: '¿Qué diseñamos?',
+        items: ['Proyectos STEAM y aprendizaje basado en retos', 'Secuencias didácticas y recursos de aula', 'Experiencias híbridas y actividades con tecnología', 'Instrumentos de evaluación y retroalimentación', 'Pilotaje y ajuste con docentes'] },
+      s6: { eyebrow: 'Servicio 06', title: 'Soluciones EdTech',
+        desc: 'Diseñamos y prototipamos plataformas, asistentes con IA y herramientas digitales para resolver desafíos educativos concretos.',
+        listTitle: 'Proceso',
+        items: ['Definición del desafío y de los usuarios', 'Prototipo funcional y validación con usuarios reales', 'Diseño de la experiencia y de los contenidos', 'Desarrollo e integración con procesos existentes', 'Medición de uso e impacto'] },
+      p1: { eyebrow: 'Formación docente · STEAM', title: 'Pedagogía Digital STEAM',
+        desc: 'Programa de formación docente que integra pensamiento computacional, STEAM y uso pedagógico de la tecnología en instituciones educativas de distintas regiones del país.',
+        listTitle: 'Detalles del proyecto',
+        items: ['Formación docente en metodología STEAM', 'Diseño de proyectos aplicables al aula', 'Acompañamiento durante la implementación', 'Impacto: docentes formados en 12 regiones del Perú'] },
+      r1: { eyebrow: 'Guías', title: 'Guías prácticas para el aula',
+        desc: 'Materiales breves y descargables para aplicar en la siguiente sesión de clase, con ejemplos por nivel y área.',
+        listTitle: 'Contenido de la guía',
+        items: ['Planificación de sesiones con apoyo digital', 'Rúbricas y listas de cotejo listas para usar', 'Estrategias de retroalimentación en el aula', 'Formato editable para adaptar a tu contexto'] },
+      r2: { eyebrow: 'Herramientas', title: 'Selección de herramientas educativas',
+        desc: '¿Qué usar, cuándo y con qué propósito pedagógico? Una selección corta de herramientas gratuitas ordenadas por uso, no por moda.',
+        listTitle: '¿Cómo está organizada?',
+        items: ['Herramientas para planificar y evaluar', 'Herramientas para crear recursos y presentaciones', 'Herramientas de colaboración con estudiantes', 'Criterios de elección: propósito, privacidad y conectividad'] },
+      r3: { eyebrow: 'Recursos de IA', title: 'Inteligencia Artificial aplicada a la enseñanza',
+        desc: 'Usos responsables y ejemplos concretos de IA en la práctica docente, con instrucciones paso a paso y advertencias de uso.',
+        listTitle: '¿Qué encontrarás?',
+        items: ['Instrucciones para generar y adaptar materiales', 'Ejemplos de retroalimentación asistida por IA', 'Pautas de uso ético y protección de datos', 'Actividades para conversar sobre IA con estudiantes'] },
+      r4: { eyebrow: 'STEAM', title: 'Proyectos STEAM listos para adaptar',
+        desc: 'Secuencias de trabajo por proyectos para distintos niveles, con materiales de bajo costo y criterios de evaluación.',
+        listTitle: 'Estructura de cada proyecto',
+        items: ['Reto y pregunta orientadora', 'Secuencia de sesiones y materiales necesarios', 'Producto final y evidencias de aprendizaje', 'Instrumento de evaluación del proyecto'] },
+      p2: { eyebrow: 'Alianza institucional', title: 'Alianza con Concytec',
+        desc: 'Colaboración orientada a fortalecer la cultura científica y tecnológica en la comunidad educativa, articulando formación docente e innovación.',
+        listTitle: 'Detalles de la alianza',
+        items: ['Articulación con actores del ecosistema de ciencia y tecnología', 'Actividades de divulgación y formación', 'Vinculación con instituciones educativas', 'Impacto: fortalecimiento de la cultura científica escolar'] }
+    };
+  }
+
+  componentDidMount() {
+    this._onResize = () => this.setState({ w: window.innerWidth });
+    window.addEventListener('resize', this._onResize);
+    this._onResize();
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this._onResize); }
+
+  renderVals() {
+    const w = this.state.w;
+    const mobile = w < 1080;
+    const narrow = w < 640;
+    const cols = (n, min) => 'repeat(' + n + ', minmax(' + min + ', 1fr))';
+    const open = k => () => this.setState({ modal: k, menuOpen: false });
+    const d = this.state.modal ? this.detalles[this.state.modal] : null;
+    return {
+      openS1: open('s1'), openS2: open('s2'), openS3: open('s3'),
+      openS4: open('s4'), openS5: open('s5'), openS6: open('s6'),
+      openP1: open('p1'), openP2: open('p2'),
+      openR3: open('r3'),
+      openR4: open('r4'),
+      closeModal: () => this.setState({ modal: null }),
+      stop: e => e.stopPropagation(),
+      modalOpen: !!d,
+      modalAlign: mobile ? 'flex-end' : 'center',
+      modalRadius: mobile ? '20px 20px 0 0' : '20px',
+      modalEyebrow: d ? d.eyebrow : '',
+      modalTitle: d ? d.title : '',
+      modalDesc: d ? d.desc : '',
+      modalListTitle: d ? d.listTitle : '',
+      modalItems: d ? d.items : [],
+      menuOpen: mobile && this.state.menuOpen,
+      toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
+      deskNav: mobile ? 'none' : 'inline',
+      burger: mobile ? 'flex' : 'none',
+      heroCols: mobile ? '1fr' : 'minmax(0, 45fr) minmax(0, 55fr)',
+      aboutCols: mobile ? '1fr' : 'minmax(0, 1fr) minmax(0, 1fr)',
+      twoCols: narrow ? '1fr' : cols(2, 0),
+      servicesCols: narrow ? '1fr' : cols(this.props.serviciosColumnas === '3 columnas' ? 3 : 2, 0),
+      programCols: narrow ? '1fr' : (mobile ? cols(2, 0) : cols(4, 0)),
+      projectCols: mobile ? '1fr' : cols(2, 0),
+      phaseCols: narrow ? '1fr' : (mobile ? cols(2, 0) : cols(5, 0)),
+      statCols: narrow ? cols(2, 0) : (mobile ? cols(2, 0) : cols(4, 0)),
+      testimonialCols: mobile ? '1fr' : cols(3, 0),
+      logoCols: narrow ? cols(2, 0) : cols(4, 0),
+      promptCols: mobile ? '1fr' : 'minmax(0, 1fr) auto',
+      resourceCols: mobile ? '1fr' : 'minmax(0, 170px) minmax(0, 1.1fr) minmax(0, 1fr)',
+      footerCols: mobile ? '1fr' : 'minmax(0, 0.9fr) minmax(0, 2.1fr)',
+      footerLinkCols: narrow ? cols(2, 0) : cols(4, 0),
+      showPhotoLabels: this.props.mostrarEtiquetasFoto ?? true,
+      showTestimonios: this.props.mostrarTestimonios ?? true
+    };
+  }
+}
+</script>
+</body>
+</html>

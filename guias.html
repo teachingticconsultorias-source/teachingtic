@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  html, body { margin: 0; background: #FFFFFF; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  * { box-sizing: border-box; }
+  a { color: #0B47CE; text-decoration: none; }
+  a:hover { color: #003889; }
+</style>
+</helmet>
+
+<div style="font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: #202124; background: #FFFFFF; max-width: 100%">
+
+  <header style="position: sticky; top: 0; z-index: 60; background: #FFFFFF; border-bottom: 1px solid #E7ECF5">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 40px); height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 24px">
+      <a href="index.html" style="display: flex; align-items: center; gap: 10px; color: #202124; flex-shrink: 0; white-space: nowrap">
+        <span style="width: 12px; height: 12px; border-radius: 3px; background: #0B47CE; display: block; flex-shrink: 0"></span>
+        <span style="font-weight: 700; font-size: 19px; letter-spacing: -0.01em; white-space: nowrap">Teaching TIC</span>
+      </a>
+      <div style="display: flex; align-items: center; gap: clamp(14px, 2vw, 26px)">
+        <a href="index.html" style="font-size: 14.5px; font-weight: 500; color: #202124; display: {{ deskNav }}">← Volver al inicio</a>
+        <a href="https://wa.me/51921090875" target="_blank" rel="noopener" style="font-size: 14.5px; font-weight: 600; color: #FFFFFF; background: #0B47CE; padding: 11px 20px; border-radius: 8px" style-hover="background: #003889; color: #FFFFFF">Conversemos</a>
+      </div>
+    </div>
+  </header>
+
+  <section style="background: #FFFFFF; padding: clamp(48px, 6vw, 88px) 0 clamp(40px, 5vw, 64px)">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 40px)">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 22px">
+        <span style="width: 28px; height: 2px; background: #0B47CE; display: block"></span>
+        <span style="font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #0B47CE">Recursos · Guías</span>
+      </div>
+      <h1 style="font-weight: 700; font-size: clamp(2.1rem, 4.2vw, 3.4rem); line-height: 1.08; letter-spacing: -0.025em; margin: 0 0 22px; max-width: 24ch; text-wrap: balance">Guías prácticas para el aula</h1>
+      <p style="font-size: clamp(1rem, 1.4vw, 1.15rem); line-height: 1.65; color: #667085; margin: 0; max-width: 56ch; text-wrap: pretty">Materiales elaborados por el equipo de Teaching TIC para aplicar en la próxima sesión de clase. Contenido completo en línea, alineado al CNEB.</p>
+    </div>
+  </section>
+
+  <section style="background: #FFFFFF; padding: 0 0 clamp(56px, 6vw, 88px)">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 40px)">
+      <article style="border: 1px solid #E5E7EB; border-radius: 18px; overflow: hidden; display: grid; grid-template-columns: {{ guideCols }}">
+        <div style="background: #EEF2F7; padding: clamp(28px, 4vw, 44px); display: grid; align-content: space-between; gap: 32px; min-height: 280px">
+          <div>
+            <span style="font-size: 11.5px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #0B47CE; display: block; margin-bottom: 18px">Guía 01 · STEAM</span>
+            <span style="font-weight: 700; font-size: clamp(1.3rem, 2.2vw, 1.7rem); line-height: 1.18; letter-spacing: -0.02em; color: #003889; display: block">Cómo diseñar juegos STEAM que desarrollan competencias</span>
+          </div>
+          <div style="display: grid; gap: 6px">
+            <span style="font-size: 13px; font-weight: 600; color: #202124">Mg. Keytlin García Rurush</span>
+            <span style="font-size: 13px; font-weight: 600; color: #202124">Mg. Gaby Perales</span>
+            <span style="font-size: 12.5px; color: #667085">Teaching TIC · Diseño instruccional · Metodología STEAM</span>
+          </div>
+        </div>
+        <div style="padding: clamp(28px, 4vw, 44px)">
+          <p style="font-size: 1.02rem; line-height: 1.7; color: #202124; margin: 0 0 18px; text-wrap: pretty">Una guía práctica con 17 juegos y una metodología para crear experiencias STEAM en Primaria y Secundaria.</p>
+          <p style="font-size: 0.97rem; line-height: 1.7; color: #667085; margin: 0 0 28px; text-wrap: pretty">Parte de una competencia del CNEB, diseña un reto genuino alrededor de ella y solo al final decide qué materiales o tecnología usar. Cada juego trae competencia explícita, reto con condición de éxito verificable, mecánica paso a paso, una variación para subir o bajar el nivel y una pregunta de reflexión.</p>
+          <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 30px">
+            <span style="font-size: 12.5px; font-weight: 600; color: #0B47CE; background: #EEF2F7; padding: 8px 13px; border-radius: 6px">Primaria y Secundaria</span>
+            <span style="font-size: 12.5px; font-weight: 600; color: #0B47CE; background: #EEF2F7; padding: 8px 13px; border-radius: 6px">Alineada al CNEB</span>
+            <span style="font-size: 12.5px; font-weight: 600; color: #0B47CE; background: #EEF2F7; padding: 8px 13px; border-radius: 6px">17 juegos</span>
+            <span style="font-size: 12.5px; font-weight: 600; color: #0B47CE; background: #EEF2F7; padding: 8px 13px; border-radius: 6px">Plantilla editable</span>
+          </div>
+          <div style="display: flex; flex-wrap: wrap; gap: 12px">
+            <a href="#juegos" style="font-size: 15px; font-weight: 600; color: #FFFFFF; background: #0B47CE; padding: 15px 26px; border-radius: 8px" style-hover="background: #003889; color: #FFFFFF">Ver los 17 juegos</a>
+            <a href="https://wa.me/51921090875" target="_blank" rel="noopener" style="font-size: 15px; font-weight: 600; color: #003889; background: #FFFFFF; border: 1px solid #CFDCF8; padding: 15px 26px; border-radius: 8px" style-hover="border-color: #0B47CE">Solicitar el taller</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="juegos" style="background: #F6F8FC; padding: clamp(56px, 7vw, 96px) 0; scroll-margin-top: 90px">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 40px)">
+      <h2 style="font-weight: 700; font-size: clamp(1.6rem, 3vw, 2.4rem); line-height: 1.14; letter-spacing: -0.02em; color: #003889; margin: 0 0 16px; max-width: 26ch; text-wrap: balance">Los 17 juegos, uno por uno</h2>
+      <p style="font-size: 1rem; line-height: 1.65; color: #667085; margin: 0 0 clamp(36px, 4vw, 56px); max-width: 52ch; text-wrap: pretty">Abre cada juego para ver la competencia del CNEB que desarrolla, el reto, la mecánica paso a paso, la variación de nivel y la pregunta de reflexión.</p>
+      <div style="display: grid; gap: 14px">
+        <sc-for list="{{ juegos }}" as="j" hint-placeholder-count="6">
+          <article style="background: #FFFFFF; border-radius: 14px; padding: clamp(20px, 2.5vw, 30px); border: 1px solid {{ j.borde }}">
+            <button type="button" onClick="{{ j.onClick }}" style="display: grid; gap: 14px 24px; align-items: baseline; width: 100%; text-align: left; background: none; border: 0; padding: 0; cursor: pointer; font-family: inherit; grid-template-columns: {{ headCols }}">
+              <span style="display: flex; align-items: baseline; gap: 16px; min-width: 0">
+                <span style="font-weight: 700; font-size: 13px; letter-spacing: 0.08em; color: #0B47CE; flex-shrink: 0">{{ j.num }}</span>
+                <span style="font-weight: 600; font-size: clamp(1.02rem, 1.5vw, 1.18rem); line-height: 1.3; color: #202124; text-wrap: balance">{{ j.nombre }}</span>
+              </span>
+              <span style="font-size: 0.9rem; color: #667085; line-height: 1.5">{{ j.area }}</span>
+              <span style="display: flex; align-items: center; gap: 12px; justify-self: start">
+                <span style="font-size: 11.5px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #0B47CE; background: #EEF2F7; padding: 6px 11px; border-radius: 5px">{{ j.nivel }}</span>
+                <span style="font-size: 13.5px; font-weight: 600; color: #0B47CE; white-space: nowrap">{{ j.accion }}</span>
+              </span>
+            </button>
+            <div style="display: {{ j.detalle }}; gap: 26px; margin-top: 26px; padding-top: 26px; border-top: 1px solid #E7ECF5; grid-template-columns: {{ detailCols }}">
+              <div style="display: grid; gap: 22px; align-content: start">
+                <div>
+                  <span style="font-size: 11.5px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #0B47CE; display: block; margin-bottom: 8px">Competencia CNEB</span>
+                  <p style="font-size: 0.97rem; line-height: 1.65; color: #202124; margin: 0; text-wrap: pretty">{{ j.competencia }}</p>
+                </div>
+                <div>
+                  <span style="font-size: 11.5px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #0B47CE; display: block; margin-bottom: 8px">El reto</span>
+                  <p style="font-size: 0.97rem; line-height: 1.65; color: #202124; margin: 0; text-wrap: pretty">{{ j.reto }}</p>
+                </div>
+                <div>
+                  <span style="font-size: 11.5px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #0B47CE; display: block; margin-bottom: 8px">Materiales</span>
+                  <p style="font-size: 0.97rem; line-height: 1.65; color: #667085; margin: 0; text-wrap: pretty">{{ j.materiales }}</p>
+                </div>
+              </div>
+              <div style="display: grid; gap: 22px; align-content: start">
+                <div>
+                  <span style="font-size: 11.5px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #0B47CE; display: block; margin-bottom: 12px">Mecánica paso a paso</span>
+                  <ol style="margin: 0; padding: 0 0 0 22px; display: grid; gap: 10px">
+                    <sc-for list="{{ j.mecanica }}" as="paso" hint-placeholder-count="4">
+                      <li style="font-size: 0.97rem; line-height: 1.6; color: #202124; padding-left: 4px">{{ paso }}</li>
+                    </sc-for>
+                  </ol>
+                </div>
+                <div style="background: #F6F8FC; border-radius: 10px; padding: 18px">
+                  <span style="font-size: 11.5px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #0B47CE; display: block; margin-bottom: 8px">Variación de nivel</span>
+                  <p style="font-size: 0.95rem; line-height: 1.6; color: #202124; margin: 0; text-wrap: pretty">{{ j.variacion }}</p>
+                </div>
+                <div>
+                  <span style="font-size: 11.5px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #0B47CE; display: block; margin-bottom: 8px">Pregunta de reflexión</span>
+                  <p style="font-size: 1rem; line-height: 1.6; color: #003889; font-weight: 500; margin: 0; text-wrap: pretty">{{ j.reflexion }}</p>
+                </div>
+              </div>
+            </div>
+          </article>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section style="background: #FFFFFF; padding: clamp(56px, 7vw, 96px) clamp(20px, 4vw, 40px)">
+    <div style="max-width: 1280px; margin: 0 auto; display: grid; gap: clamp(32px, 4vw, 64px); grid-template-columns: {{ twoCols }}">
+      <div>
+        <h2 style="font-weight: 700; font-size: clamp(1.5rem, 2.6vw, 2.1rem); line-height: 1.16; letter-spacing: -0.02em; color: #003889; margin: 0 0 20px; max-width: 22ch; text-wrap: balance">Qué más incluye la guía</h2>
+        <p style="font-size: 0.98rem; line-height: 1.7; color: #667085; margin: 0; max-width: 44ch; text-wrap: pretty">Además del banco de juegos, la guía desarrolla el marco metodológico completo para que puedas diseñar los tuyos.</p>
+      </div>
+      <ul style="margin: 0; padding: 0; list-style: none; display: grid; gap: 14px">
+        <sc-for list="{{ contenidos }}" as="c" hint-placeholder-count="7">
+          <li style="display: flex; align-items: flex-start; gap: 12px; font-size: 1rem; line-height: 1.6; color: #202124; border-bottom: 1px solid #E7ECF5; padding-bottom: 14px">
+            <span style="width: 6px; height: 6px; border-radius: 2px; background: #0B47CE; display: block; flex-shrink: 0; margin-top: 9px"></span>
+            <span>{{ c }}</span>
+          </li>
+        </sc-for>
+      </ul>
+    </div>
+  </section>
+
+  <section style="background: #FFFFFF; padding: 0 clamp(20px, 4vw, 40px) clamp(72px, 8vw, 120px)">
+    <div style="max-width: 1280px; margin: 0 auto; background: #EEF2F7; border-radius: 20px; padding: clamp(36px, 5vw, 72px)">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px">
+        <span style="width: 28px; height: 2px; background: #0B47CE; display: block"></span>
+        <span style="font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #0B47CE">Formación</span>
+      </div>
+      <h2 style="font-weight: 700; font-size: clamp(1.7rem, 3.2vw, 2.6rem); line-height: 1.12; letter-spacing: -0.02em; color: #003889; margin: 0 0 16px; max-width: 26ch; text-wrap: balance">¿Quieres llevar esta guía a tu institución?</h2>
+      <p style="font-size: clamp(0.98rem, 1.3vw, 1.12rem); line-height: 1.6; color: #202124; margin: 0 0 32px; max-width: 46ch; text-wrap: pretty">Diseñamos el taller de acompañamiento para que tu equipo docente aplique la metodología con sus propias unidades didácticas.</p>
+      <a href="https://wa.me/51921090875" target="_blank" rel="noopener" style="font-size: 15px; font-weight: 600; color: #FFFFFF; background: #0B47CE; padding: 15px 26px; border-radius: 8px; display: inline-block" style-hover="background: #003889; color: #FFFFFF">Conversemos sobre tu proyecto</a>
+    </div>
+  </section>
+
+  <footer style="background: #003889; color: #FFFFFF; padding: clamp(40px, 5vw, 64px) clamp(20px, 4vw, 40px) 28px">
+    <div style="max-width: 1280px; margin: 0 auto; display: grid; gap: 22px">
+      <div style="display: flex; align-items: center; gap: 10px">
+        <span style="width: 12px; height: 12px; border-radius: 3px; background: #8B7CF6; display: block"></span>
+        <span style="font-weight: 700; font-size: 19px; letter-spacing: -0.01em; color: #FFFFFF">Teaching TIC</span>
+      </div>
+      <p style="font-size: 0.98rem; line-height: 1.6; color: #B9CDF2; margin: 0; max-width: 34ch">Innovación y tecnología para transformar la educación.</p>
+      <span style="font-size: 13.5px; color: #93AEDF; border-top: 1px solid #1B4E9E; padding-top: 24px">© 2026 Teaching TIC. Todos los derechos reservados.</span>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { w: typeof window !== 'undefined' ? window.innerWidth : 1440, abierto: null };
+
+  componentDidMount() {
+    this._onResize = () => this.setState({ w: window.innerWidth });
+    window.addEventListener('resize', this._onResize);
+    this._onResize();
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this._onResize); }
+
+  get juegosData() {
+    const G = (nombre, area, nivel, competencia, reto, mecanica, variacion, reflexion, materiales) =>
+      ({ nombre, area, nivel, competencia, reto, mecanica, variacion, reflexion, materiales });
+    return [
+      G('El agente que navega el aula', 'Pensamiento computacional · programación', 'Explorar',
+        'Se desenvuelve en entornos virtuales generados por las TIC.',
+        'Llevar a un compañero con los ojos vendados desde la puerta hasta un punto marcado del aula usando solo instrucciones escritas antes de empezar.',
+        ['Marca un punto de partida y una meta, con dos o tres obstáculos en el camino.', 'En parejas, uno escribe la secuencia completa de instrucciones (avanza 3 pasos, gira a la derecha) sin poder hablar después.', 'El otro ejecuta al pie de la letra, sin interpretar.', 'Si falla, la pareja corrige la secuencia y vuelve a intentar.'],
+        'Para subir el nivel: permite solo 8 instrucciones y agrega un bucle ("repite 3 veces"). Para bajarlo: deja que el programador dé una instrucción a la vez.',
+        '¿En qué momento el error fue del que escribió y no del que ejecutó? ¿Cómo lo supieron?',
+        'Cinta de papel, una venda, objetos del aula como obstáculos.'),
+      G('Semáforo inteligente', 'Diseña y construye soluciones tecnológicas', 'Diseñar',
+        'Diseña y construye soluciones tecnológicas para resolver problemas de su entorno.',
+        'Construir un semáforo que cambie de estado en el orden correcto y explicar qué problema del cruce cercano a la escuela resuelve.',
+        ['Observen un cruce real cercano y anoten cuánto tiempo espera un peatón.', 'Diseñen el semáforo en papel antes de tocar materiales: estados, tiempos y para quién.', 'Constrúyanlo con cartón y linternas, con micro:bit o simulado en Tinkercad.', 'Preséntenlo a otro grupo, que actúa como vecinos del cruce.'],
+        'Para subir el nivel: exige un botón de peatón y justificar los tiempos con datos de la observación. Para bajarlo: entrega los tiempos ya definidos.',
+        '¿El semáforo resuelve el problema que observaron o el que imaginaron?',
+        'Cartón, papel celofán de colores, linternas o micro:bit, cronómetro.'),
+      G('La hoja de cálculo detective', 'Gestión de datos e incertidumbre', 'Resolver',
+        'Resuelve problemas de gestión de datos e incertidumbre.',
+        'Encontrar el error escondido en una base de datos del aula y demostrarlo con un gráfico, no con una opinión.',
+        ['Entrega una hoja de cálculo con datos reales del aula y tres errores plantados (una edad imposible, un dato duplicado, un promedio mal calculado).', 'Cada grupo debe hallar los errores y justificar por qué son errores.', 'Construyen un gráfico que hace visible cada error.', 'Presentan el hallazgo en 60 segundos.'],
+        'Para subir el nivel: no digas cuántos errores hay. Para bajarlo: indica la columna donde está cada uno.',
+        '¿Qué habría pasado si nadie revisaba estos datos antes de tomar una decisión?',
+        'Hoja de cálculo (Google Sheets o Excel), un dispositivo por grupo.'),
+      G('Depuradores en parejas', 'Programación · depuración de errores', 'Resolver',
+        'Se desenvuelve en entornos virtuales generados por las TIC.',
+        'Arreglar un programa ajeno que no funciona, sin reescribirlo desde cero, y explicar qué línea causaba el fallo.',
+        ['Prepara en Scratch tres proyectos con errores distintos: uno de orden, uno de condición, uno de repetición.', 'Cada pareja recibe un proyecto roto y una descripción de lo que debería hacer.', 'Solo pueden modificar bloques, no borrar todo y empezar de nuevo.', 'Al terminar, escriben en una línea qué causaba el error.'],
+        'Para subir el nivel: rota los proyectos y pide que documenten la corrección para el siguiente grupo. Para bajarlo: señala el bloque sospechoso.',
+        '¿Fue más difícil entender el programa de otro o encontrar el error?',
+        'Scratch (en línea o instalado), un dispositivo por pareja.'),
+      G('El puente estructural', 'Matemática y Ciencia y Tecnología', 'Diseñar',
+        'Explica el mundo físico basándose en conocimientos sobre los seres vivos, materia y energía.',
+        'Construir un puente de papel que cruce 30 cm y sostenga el mayor peso posible usando máximo 10 hojas.',
+        ['Antes de construir, cada grupo dibuja su diseño y predice cuánto peso soportará.', 'Construyen con la restricción de materiales.', 'Prueban con carga progresiva (monedas o libros) y registran el punto de falla.', 'Comparan predicción con resultado y explican la diferencia.'],
+        'Para subir el nivel: pide calcular la relación peso soportado / peso del puente. Para bajarlo: muestra dos formas de doblar el papel antes de empezar.',
+        '¿Qué característica del diseño explica que unos puentes aguantaran más que otros?',
+        'Hojas de papel, cinta limitada, monedas o pesas, regla.'),
+      G('Prototipo con restricción de presupuesto', 'Diseño de soluciones con restricciones', 'Optimizar',
+        'Diseña y construye soluciones tecnológicas para resolver problemas de su entorno.',
+        'Resolver un problema del aula con un prototipo que no supere un presupuesto ficticio asignado.',
+        ['Asigna precio a cada material y un presupuesto por grupo.', 'Los grupos eligen un problema real del aula (ruido, desorden, calor).', 'Diseñan y compran materiales llevando la cuenta del gasto.', 'Presentan el prototipo junto a su hoja de costos.'],
+        'Para subir el nivel: recorta el presupuesto a la mitad a mitad del reto. Para bajarlo: reduce la lista de materiales a cinco opciones.',
+        '¿Qué tuvieron que dejar fuera por el presupuesto y cómo afectó la solución?',
+        'Materiales reciclados con etiquetas de precio, hoja de costos.'),
+      G('Reto de la torre sísmica', 'Explica el mundo físico · prototipado', 'Diseñar',
+        'Explica el mundo físico basándose en conocimientos sobre materia y energía.',
+        'Levantar la torre más alta que resista 15 segundos de movimiento sobre una bandeja sacudida.',
+        ['Cada grupo construye con fideos y plastilina o palillos y goma.', 'Miden y registran la altura antes de la prueba.', 'La torre se somete al mismo movimiento para todos los grupos.', 'Se registran altura final y tipo de falla.'],
+        'Para subir el nivel: exige una base máxima de 10 cm. Para bajarlo: permite arriostrar con hilo.',
+        '¿Por qué la torre más alta no siempre fue la que resistió más?',
+        'Fideos o palillos, plastilina, bandeja, regla.'),
+      G('Rediseña el envase', 'Diseño, arte y sostenibilidad', 'Optimizar',
+        'Crea proyectos desde los lenguajes artísticos.',
+        'Rediseñar el envase de un producto real para usar menos material sin perder su función ni su identidad visual.',
+        ['Cada grupo trae un envase real y lo desarma para medir cuánto material usa.', 'Proponen un rediseño que reduzca material y lo justifican.', 'Construyen la maqueta del nuevo envase.', 'Comparan material usado antes y después.'],
+        'Para subir el nivel: exige que el envase siga siendo apilable. Para bajarlo: pide solo el rediseño gráfico sobre la forma existente.',
+        '¿El rediseño es mejor para el ambiente, para la empresa o para quien lo compra?',
+        'Envases usados, tijeras, regla, cartulina, colores.'),
+      G('El laboratorio de variables', 'Indaga mediante métodos científicos', 'Resolver',
+        'Indaga mediante métodos científicos para construir conocimientos.',
+        'Descubrir qué variable hace que una semilla germine más rápido, controlando todo lo demás.',
+        ['Cada grupo elige una sola variable (luz, agua, temperatura, tipo de suelo).', 'Preparan un grupo de control y un grupo experimental idénticos salvo esa variable.', 'Registran observaciones diarias durante una semana en la misma tabla.', 'Comparan resultados entre grupos al cierre.'],
+        'Para subir el nivel: pide que identifiquen qué variables no lograron controlar. Para bajarlo: entrega la tabla de registro ya diseñada.',
+        '¿Podemos afirmar que esa variable fue la causa? ¿Qué faltaría para estar seguros?',
+        'Semillas, vasos, algodón o tierra, tabla de registro.'),
+      G('Encuesta con propósito', 'Gestión de datos e incertidumbre', 'Resolver',
+        'Resuelve problemas de gestión de datos e incertidumbre.',
+        'Diseñar y aplicar una encuesta cuyos resultados sirvan para pedir algo concreto a la dirección de la escuela.',
+        ['Definen primero la decisión que quieren influir, después las preguntas.', 'Aplican la encuesta a una muestra real de la escuela.', 'Procesan los datos y eligen el gráfico que mejor comunica el hallazgo.', 'Redactan la solicitud usando los datos como argumento.'],
+        'Para subir el nivel: exige justificar el tamaño de la muestra. Para bajarlo: entrega dos preguntas modelo.',
+        '¿Alguna de sus preguntas empujaba la respuesta hacia lo que querían escuchar?',
+        'Formulario en papel o Google Forms, hoja de cálculo.'),
+      G('CSI del aula: evidencia y argumento', 'Indagación y argumentación', 'Resolver',
+        'Indaga mediante métodos científicos y argumenta con evidencia.',
+        'Determinar cuál de cinco sustancias blancas causó una mancha, usando solo pruebas físicas y químicas seguras.',
+        ['Prepara cinco polvos inocuos (harina, bicarbonato, azúcar, almidón, sal) y una muestra incógnita.', 'Cada grupo diseña su batería de pruebas: agua, vinagre, yodo diluido, tacto.', 'Registran resultados en una matriz antes de concluir.', 'Presentan la conclusión citando qué prueba la sostiene.'],
+        'Para subir el nivel: mezcla dos sustancias en la incógnita. Para bajarlo: reduce a tres sustancias.',
+        '¿Qué diferencia una conclusión de una sospecha?',
+        'Polvos inocuos, vinagre, agua, yodo diluido, matriz de registro.'),
+      G('Modela el ecosistema', 'Explica el mundo físico · modelamiento', 'Diseñar',
+        'Explica el mundo físico basándose en conocimientos sobre los seres vivos.',
+        'Construir un modelo que prediga qué pasa en un ecosistema local si desaparece una especie.',
+        ['Eligen un ecosistema cercano e identifican al menos seis especies y sus relaciones.', 'Construyen el modelo con hilos y tarjetas: cada hilo es una relación.', 'Cortan el hilo de una especie y trazan las consecuencias en cadena.', 'Presentan la predicción y qué evidencia la respalda.'],
+        'Para subir el nivel: pide dos escenarios y comparar impactos. Para bajarlo: entrega la lista de especies.',
+        '¿Su modelo predice o solo describe? ¿Cómo lo comprobarían?',
+        'Tarjetas, hilo o lana, tijeras, papelógrafo.'),
+      G('La escala del plano', 'Forma, movimiento y localización', 'Resolver',
+        'Resuelve problemas de forma, movimiento y localización.',
+        'Dibujar el plano a escala del aula con precisión suficiente para que otro grupo ubique un objeto escondido.',
+        ['Miden el aula y sus elementos con instrumentos reales.', 'Eligen y justifican una escala que quepa en una hoja A4.', 'Dibujan el plano y marcan en secreto la posición de un objeto.', 'Intercambian planos: el otro grupo debe hallar el objeto usando solo el plano.'],
+        'Para subir el nivel: pide dos escalas distintas del mismo espacio. Para bajarlo: entrega la escala ya definida.',
+        '¿Qué errores de medición se notaron solo cuando otro grupo usó el plano?',
+        'Cinta métrica, regla, hoja A4, lápiz.'),
+      G('El presupuesto imposible', 'Resuelve problemas de cantidad', 'Optimizar',
+        'Resuelve problemas de cantidad.',
+        'Organizar una actividad escolar completa con un presupuesto que no alcanza, y sustentar los recortes.',
+        ['Entrega el listado de necesidades con precios reales y un presupuesto insuficiente.', 'Cada grupo decide qué recortar y qué sostener, con criterios escritos.', 'Calculan el total y verifican que cierre.', 'Sustentan la decisión ante el resto como si fuera el comité escolar.'],
+        'Para subir el nivel: introduce un imprevisto de último minuto. Para bajarlo: reduce el número de rubros.',
+        '¿Qué criterio usaron para decidir qué era prescindible?',
+        'Lista de precios, calculadora, hoja de presupuesto.'),
+      G('Patrones que predicen', 'Regularidad, equivalencia y cambio', 'Explorar',
+        'Resuelve problemas de regularidad, equivalencia y cambio.',
+        'Descubrir la regla detrás de una secuencia y usarla para predecir el término 50 sin dibujarlo.',
+        ['Presenta secuencias construidas con material concreto (palillos, fichas).', 'Los grupos completan los siguientes tres términos y buscan la regla.', 'Expresan la regla en palabras y luego con una expresión.', 'Predicen un término lejano y lo verifican con otro grupo.'],
+        'Para subir el nivel: pide secuencias con crecimiento no lineal. Para bajarlo: usa secuencias de suma constante.',
+        '¿Cómo pasaron de "veo el patrón" a "puedo predecirlo"?',
+        'Palillos o fichas, cuaderno, papelógrafo.'),
+      G('Infografía con datos propios', 'Datos, comunicación y arte', 'Optimizar',
+        'Escribe diversos tipos de textos y crea proyectos desde los lenguajes artísticos.',
+        'Comunicar un hallazgo real del aula en una sola imagen que se entienda sin explicación oral.',
+        ['Parten de datos que ellos mismos recogieron en un reto anterior.', 'Definen el único mensaje que la infografía debe transmitir.', 'Diseñan en papel o en Canva, con jerarquía visual clara.', 'Prueban con un lector externo: si necesita explicación, se rediseña.'],
+        'Para subir el nivel: prohíbe usar más de dos colores y un tipo de gráfico. Para bajarlo: entrega una estructura base.',
+        '¿La infografía informa o decora? ¿Qué elemento sobra?',
+        'Canva o papelógrafo, plumones, datos propios.'),
+      G('El reto final STEAM: proyecto integrador', 'Proyecto integrador para feria STEAM', 'Optimizar',
+        'Gestiona su aprendizaje de manera autónoma e integra competencias de varias áreas.',
+        'Resolver un problema real de la comunidad escolar con una solución construida, medida y sustentada ante público externo.',
+        ['Identifican el problema con evidencia recogida, no con suposiciones.', 'Definen criterios de éxito medibles antes de diseñar.', 'Prototipan, prueban, registran fallas e iteran al menos una vez.', 'Presentan en feria: problema, evidencia, solución, medición y siguiente iteración.'],
+        'Para subir el nivel: exige un aliado externo real (padres, municipio, otra escuela). Para bajarlo: acota el problema a un aula.',
+        '¿Qué cambió entre el primer prototipo y el final, y qué dato provocó ese cambio?',
+        'Depende del proyecto; se define en la etapa de diseño.')
+    ];
+  }
+
+  renderVals() {
+    const w = this.state.w;
+    const mobile = w < 900;
+    const narrow = w < 620;
+    const nombres = this.juegosData;
+    return {
+      deskNav: mobile ? 'none' : 'inline',
+      guideCols: mobile ? '1fr' : 'minmax(0, 0.85fr) minmax(0, 1.15fr)',
+      twoCols: mobile ? '1fr' : 'minmax(0, 0.8fr) minmax(0, 1.2fr)',
+      headCols: mobile ? '1fr' : 'minmax(0, 1.4fr) minmax(0, 1fr) auto',
+      detailCols: narrow ? '1fr' : (mobile ? '1fr' : 'minmax(0, 1fr) minmax(0, 1.2fr)'),
+      juegos: nombres.map((j, i) => ({
+        ...j,
+        num: String(i + 1).padStart(2, '0'),
+        abierto: this.state.abierto === i,
+        detalle: this.state.abierto === i ? 'grid' : 'none',
+        accion: this.state.abierto === i ? 'Ocultar el juego' : 'Ver el juego completo →',
+        borde: this.state.abierto === i ? '#0B47CE' : '#E5E7EB',
+        onClick: () => this.setState(s => ({ abierto: s.abierto === i ? null : i }))
+      })),
+      contenidos: [
+        'El principio fundamental: competencia CNEB → reto → mecánica → materiales → tecnología → reflexión',
+        'Tabla de competencias del CNEB que un juego STEAM puede desarrollar, con indicadores de observación',
+        'Los 5 principios de un buen juego STEAM',
+        'Cómo diseñar un juego, paso a paso, con niveles de progresión por ciclo',
+        'El papel del docente durante el juego',
+        'Cómo evaluar sin interrumpir el juego',
+        'Checklist para docentes y plantilla para diseñar tu propio juego STEAM'
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
