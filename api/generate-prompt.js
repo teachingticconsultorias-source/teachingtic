@@ -56,7 +56,10 @@ module.exports = async function handler(req, res) {
         }],
         generationConfig: {
           temperature: 0.35,
-          maxOutputTokens: 3000
+          maxOutputTokens: 4096,
+          thinkingConfig: {
+            thinkingBudget: 0
+          }
         }
       }),
       signal: controller.signal
@@ -65,12 +68,33 @@ module.exports = async function handler(req, res) {
     const data = await geminiResponse.json().catch(() => ({}));
 
     if (!geminiResponse.ok) {
-      console.error('Gemini API error', geminiResponse.status, data?.error?.status || 'UNKNOWN');
-      const status = geminiResponse.status === 429 ? 429 : 502;
-      const message = geminiResponse.status === 429
-        ? 'PromptLab recibió muchas solicitudes. Inténtalo nuevamente en unos momentos.'
-        : 'Gemini no pudo generar el prompt en este momento.';
-      return res.status(status).json({ error: message });
+      const upstreamStatus = geminiResponse.status;
+      const upstreamCode = data?.error?.status || 'UNKNOWN';
+      console.error(
+        'Gemini API error',
+        upstreamStatus,
+        upstreamCode,
+        data?.error?.message || 'Sin detalle'
+      );
+
+      let status = 502;
+      let message = 'Gemini no pudo generar el prompt en este momento.';
+
+      if (upstreamStatus === 401 || upstreamStatus === 403) {
+        message = 'Gemini rechazó la clave. Genera una nueva clave en Google AI Studio, actualiza GEMINI_API_KEY en Vercel y vuelve a desplegar.';
+      } else if (upstreamStatus === 429) {
+        status = 429;
+        message = 'La cuota de Gemini está agotada o recibió demasiadas solicitudes. Revisa la cuota del proyecto e inténtalo más tarde.';
+      } else if (upstreamStatus === 404) {
+        message = 'El modelo de Gemini configurado no está disponible para esta clave.';
+      } else if (upstreamStatus === 400) {
+        message = 'Gemini rechazó la solicitud enviada. Revisa la configuración del modelo.';
+      }
+
+      return res.status(status).json({
+        error: message,
+        code: 'GEMINI_' + upstreamStatus
+      });
     }
 
     const text = data?.candidates?.[0]?.content?.parts
