@@ -1,119 +1,197 @@
-const MODEL = process.env.GEMINI_MODEL || 'gemini-2.5-flash';
-const MAX_INPUT_BYTES = 40000;
-const REQUEST_TIMEOUT_MS = 45000;
+export default async function handler(req, res) {
 
-module.exports = async function handler(req, res) {
-  res.setHeader('Cache-Control', 'no-store');
-
-  if (req.method !== 'POST') {
-    res.setHeader('Allow', 'POST');
-    return res.status(405).json({ error: 'Método no permitido.' });
+  if (req.method !== "POST") {
+    return res.status(405).json({
+      error: "Método no permitido."
+    });
   }
 
   const apiKey = process.env.GEMINI_API_KEY;
+
   if (!apiKey) {
     return res.status(500).json({
-      error: 'PromptLab todavía no tiene configurada la conexión con Gemini.'
+      error: "Falta configurar GEMINI_API_KEY en Vercel."
     });
   }
 
-  let body = req.body;
-  if (typeof body === 'string') {
-    try {
-      body = JSON.parse(body);
-    } catch (_) {
-      return res.status(400).json({ error: 'La solicitud no contiene JSON válido.' });
-    }
+  const { instruction } = req.body || {};
+
+  if (
+    !instruction ||
+    typeof instruction !== "string" ||
+    instruction.trim().length < 20
+  ) {
+    return res.status(400).json({
+      error: "La información enviada no es suficiente."
+    });
   }
 
-  const instruccion = typeof body?.instruccion === 'string'
-    ? body.instruccion.trim()
-    : '';
+  /*
+  =====================================
+  MODELOS
+  =====================================
 
-  if (!instruccion) {
-    return res.status(400).json({ error: 'Falta la información para generar el prompt.' });
+  Primero intentamos Gemini 3 Flash.
+  Si la API key no tiene acceso,
+  usamos Gemini 2.5 Flash.
+  */
+
+  const models = [
+    "gemini-3-flash-preview",
+    "gemini-2.5-flash"
+  ];
+
+
+  async function generarConModelo(model) {
+
+    const url =
+      `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`;
+
+    const response = await fetch(url, {
+
+      method: "POST",
+
+      headers: {
+        "Content-Type": "application/json",
+        "x-goog-api-key": apiKey
+      },
+
+      body: JSON.stringify({
+
+        contents: [
+          {
+            role: "user",
+            parts: [
+              {
+                text: instruction
+              }
+            ]
+          }
+        ],
+
+        generationConfig: {
+          maxOutputTokens: 4000
+        }
+
+      })
+
+    });
+
+
+    const data = await response.json();
+
+    return {
+      response,
+      data,
+      model
+    };
   }
 
-  if (Buffer.byteLength(instruccion, 'utf8') > MAX_INPUT_BYTES) {
-    return res.status(413).json({ error: 'La información enviada es demasiado extensa.' });
-  }
-
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
 
   try {
-    const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(MODEL)}:generateContent`;
-    const geminiResponse = await fetch(endpoint, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-goog-api-key': apiKey
-      },
-      body: JSON.stringify({
-        contents: [{
-          role: 'user',
-          parts: [{ text: instruccion }]
-        }],
-        generationConfig: {
-          temperature: 0.35,
-          maxOutputTokens: 4096,
-          thinkingConfig: {
-            thinkingBudget: 0
-          }
+
+    let ultimoError = null;
+
+
+    for (const model of models) {
+
+      console.log("Intentando modelo:", model);
+
+      const resultado =
+        await generarConModelo(model);
+
+
+      /*
+      ================================
+      SI FUNCIONA
+      ================================
+      */
+
+      if (resultado.response.ok) {
+
+        const text =
+          resultado.data?.candidates?.[0]?.content?.parts
+            ?.map(part => part?.text || "")
+            .join("")
+            .trim();
+
+
+        if (!text) {
+
+          ultimoError =
+            "El modelo respondió pero no generó contenido.";
+
+          continue;
         }
-      }),
-      signal: controller.signal
-    });
 
-    const data = await geminiResponse.json().catch(() => ({}));
 
-    if (!geminiResponse.ok) {
-      const upstreamStatus = geminiResponse.status;
-      const upstreamCode = data?.error?.status || 'UNKNOWN';
-      console.error(
-        'Gemini API error',
-        upstreamStatus,
-        upstreamCode,
-        data?.error?.message || 'Sin detalle'
-      );
+        console.log(
+          "PromptLab funcionando con:",
+          resultado.model
+        );
 
-      let status = 502;
-      let message = 'Gemini no pudo generar el prompt en este momento.';
 
-      if (upstreamStatus === 401 || upstreamStatus === 403) {
-        message = 'Gemini rechazó la clave. Genera una nueva clave en Google AI Studio, actualiza GEMINI_API_KEY en Vercel y vuelve a desplegar.';
-      } else if (upstreamStatus === 429) {
-        status = 429;
-        message = 'La cuota de Gemini está agotada o recibió demasiadas solicitudes. Revisa la cuota del proyecto e inténtalo más tarde.';
-      } else if (upstreamStatus === 404) {
-        message = 'El modelo de Gemini configurado no está disponible para esta clave.';
-      } else if (upstreamStatus === 400) {
-        message = 'Gemini rechazó la solicitud enviada. Revisa la configuración del modelo.';
+        return res.status(200).json({
+
+          text,
+
+          model: resultado.model
+
+        });
+
       }
 
-      return res.status(status).json({
-        error: message,
-        code: 'GEMINI_' + upstreamStatus
-      });
+
+      /*
+      ================================
+      SI EL MODELO NO ESTÁ DISPONIBLE
+      ================================
+      */
+
+      console.error(
+        `Error usando ${model}:`,
+        resultado.data
+      );
+
+
+      ultimoError =
+        resultado.data?.error?.message ||
+        "Modelo no disponible";
+
     }
 
-    const text = data?.candidates?.[0]?.content?.parts
-      ?.map(part => part.text || '')
-      .join('')
-      .trim();
 
-    if (!text) {
-      return res.status(502).json({ error: 'Gemini devolvió una respuesta vacía.' });
-    }
+    /*
+    =====================================
+    NINGÚN MODELO FUNCIONÓ
+    =====================================
+    */
 
-    return res.status(200).json({ text });
+    return res.status(502).json({
+
+      error:
+        "No se pudo conectar con un modelo Gemini disponible.",
+
+      detail: ultimoError
+
+    });
+
+
   } catch (error) {
-    if (error?.name === 'AbortError') {
-      return res.status(504).json({ error: 'Gemini tardó demasiado en responder. Inténtalo nuevamente.' });
-    }
-    console.error('PromptLab server error', error?.message || error);
-    return res.status(500).json({ error: 'No se pudo completar la solicitud con IA.' });
-  } finally {
-    clearTimeout(timeout);
+
+    console.error(
+      "Error PromptLab:",
+      error
+    );
+
+
+    return res.status(500).json({
+
+      error:
+        "Ocurrió un error al conectar PromptLab con Gemini."
+
+    });
+
   }
-};
+
+}
