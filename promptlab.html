@@ -18,12 +18,30 @@
   a { color: #5B4BE0; text-decoration: none; }
   a:hover { color: #3E2FB5; }
   @keyframes plStep { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+  @keyframes plSpin { to { transform: rotate(360deg); } }
+  @keyframes plPulse { 0%, 100% { opacity: .45; } 50% { opacity: 1; } }
   textarea, input, button { font-family: inherit; }
   textarea:focus, input:focus { outline: 2px solid #5B4BE0; outline-offset: 1px; }
 </style>
 </helmet>
 
 <div style="font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: #1B1B33; background: #FFFFFF; max-width: 100%">
+
+  <sc-if value="{{ generando }}" hint-placeholder-val="{{ false }}">
+    <div role="dialog" aria-modal="true" aria-live="polite" style="position: fixed; inset: 0; z-index: 1000; background: rgba(16, 26, 76, 0.58); backdrop-filter: blur(5px); display: grid; place-items: center; padding: 20px">
+      <div style="width: min(92vw, 520px); background: #FFFFFF; border: 1px solid #D9D5FA; border-radius: 22px; padding: clamp(30px, 5vw, 48px); box-shadow: 0 24px 70px rgba(16, 26, 76, 0.24); text-align: center">
+        <div style="width: 58px; height: 58px; margin: 0 auto 22px; border-radius: 999px; border: 5px solid #E7E5F8; border-top-color: #5B4BE0; animation: plSpin 0.9s linear infinite"></div>
+        <span style="font-size: 11.5px; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase; color: #5B4BE0; display: block; margin-bottom: 12px">Teaching TIC · PromptLab</span>
+        <h2 style="font-size: clamp(1.45rem, 4vw, 2rem); line-height: 1.2; color: #101A4C; margin: 0 0 12px">✨ Afinando tu prompt con IA</h2>
+        <p style="font-size: 0.98rem; line-height: 1.65; color: #62627E; margin: 0">Gemini está organizando tus ideas, precisando las funciones y preparando el prompt final.</p>
+        <div style="display: flex; justify-content: center; gap: 7px; margin-top: 24px">
+          <span style="width: 7px; height: 7px; border-radius: 999px; background: #5B4BE0; animation: plPulse 1.2s ease-in-out infinite"></span>
+          <span style="width: 7px; height: 7px; border-radius: 999px; background: #7B61FF; animation: plPulse 1.2s .2s ease-in-out infinite"></span>
+          <span style="width: 7px; height: 7px; border-radius: 999px; background: #00B8C4; animation: plPulse 1.2s .4s ease-in-out infinite"></span>
+        </div>
+      </div>
+    </div>
+  </sc-if>
 
   <header style="position: sticky; top: 0; z-index: 60; background: #FFFFFF; border-bottom: 1px solid #ECEBFA">
     <div style="max-width: 1280px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 40px); height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 24px">
@@ -385,7 +403,10 @@ class Component extends DCLogic {
       if (limpio.length < 200) throw new Error('respuesta corta');
       this.setState({ prompt: limpio, afinado: true, generando: false });
     } catch (e) {
-      this.setState({ generando: false, errorIA: 'No se pudo afinar con IA en este momento. Tu prompt estructurado está listo para usarse.' });
+      this.setState({
+        generando: false,
+        errorIA: e?.message || 'No se pudo afinar con IA. Tu prompt estructurado continúa disponible.'
+      });
     }
   }
 
