@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Valida tu constancia | Teaching TIC</title>
+<meta name="description" content="Verifica y descarga tu constancia del Programa de Capacitación Docente Pedagogía Digital STEAM – Teaching TIC.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#5B4BE0">
+<meta property="og:title" content="Valida tu constancia · Teaching TIC">
+<meta property="og:description" content="Verificación pública de constancias del Programa Pedagogía Digital STEAM.">
+<link rel="icon" href="uploads/logo-teaching-tic-transparente.png">
+<script src="certificados/assets/lib/qrcode.js"></script>
+<script src="certificados/assets/lib/jspdf.umd.min.js"></script>
+<style>
+@font-face{font-family:'Montserrat';font-style:italic;font-weight:400;font-display:swap;src:url(certificados/assets/fonts/montserrat-latin-400-italic.woff2) format('woff2')}
+@font-face{font-family:'Montserrat';font-style:normal;font-weight:400;font-display:swap;src:url(certificados/assets/fonts/montserrat-latin-400-normal.woff2) format('woff2')}
+@font-face{font-family:'Montserrat';font-style:normal;font-weight:600;font-display:swap;src:url(certificados/assets/fonts/montserrat-latin-600-normal.woff2) format('woff2')}
+@font-face{font-family:'Montserrat';font-style:normal;font-weight:700;font-display:swap;src:url(certificados/assets/fonts/montserrat-latin-700-normal.woff2) format('woff2')}
+@font-face{font-family:'Lato';font-style:normal;font-weight:400;font-display:swap;src:url(certificados/assets/fonts/lato-latin-400-normal.woff2) format('woff2')}
+@font-face{font-family:'Lato';font-style:normal;font-weight:700;font-display:swap;src:url(certificados/assets/fonts/lato-latin-700-normal.woff2) format('woff2')}
+@font-face{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:400;font-display:swap;src:url(certificados/assets/fonts/plus-jakarta-sans-latin-400-normal.woff2) format('woff2')}
+@font-face{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:500;font-display:swap;src:url(certificados/assets/fonts/plus-jakarta-sans-latin-500-normal.woff2) format('woff2')}
+@font-face{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:600;font-display:swap;src:url(certificados/assets/fonts/plus-jakarta-sans-latin-600-normal.woff2) format('woff2')}
+@font-face{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:700;font-display:swap;src:url(certificados/assets/fonts/plus-jakarta-sans-latin-700-normal.woff2) format('woff2')}
+@font-face{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:800;font-display:swap;src:url(certificados/assets/fonts/plus-jakarta-sans-latin-800-normal.woff2) format('woff2')}
+:root{
+  --brand:#5B4BE0;--brand-d:#3E2FB5;--ink:#1B1B33;--muted:#5F6077;--line:#ECEBFA;--soft:#F6F5FF;
+  --navy:#1F4E79;--purple:#7D329C;--orange:#F7941D;--green:#4BB647;--cyan:#2BB5CC;
+  --ok:#137a43;--ok-bg:#E9F8EF;--bad:#B42318;--bad-bg:#FEF1F0;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:#fff;color:var(--ink);font-family:'Plus Jakarta Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:var(--brand);text-decoration:none}a:hover{color:var(--brand-d)}
+button,input{font:inherit}
+:focus-visible{outline:2px solid var(--brand);outline-offset:3px;border-radius:6px}
+.stripe{height:6px;background:linear-gradient(90deg,var(--purple) 0 20%,var(--orange) 20% 40%,var(--green) 40% 60%,var(--cyan) 60% 80%,var(--navy) 80%)}
+header{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 clamp(16px,4vw,40px)}
+.head{height:76px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.head img{height:44px;display:block}
+.back{font-size:14px;font-weight:600;color:#43435C;display:inline-flex;gap:8px;align-items:center}
+.hero{background:radial-gradient(1200px 400px at 85% -10%,#ECE9FF 0,transparent 60%),radial-gradient(800px 300px at 0% 0%,#FFF3E3 0,transparent 55%);padding:clamp(40px,7vw,80px) 0 clamp(28px,4vw,40px)}
+.kicker{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--brand);background:#fff;border:1px solid #DCD7FB;padding:7px 12px;border-radius:999px}
+h1{font-size:clamp(32px,5vw,54px);line-height:1.05;letter-spacing:-1.5px;margin:18px 0 14px;max-width:760px}
+h1 span{color:var(--brand)}
+.lead{font-size:clamp(16px,1.6vw,18px);line-height:1.65;color:var(--muted);max-width:640px;margin:0}
+.search{margin-top:28px;background:#fff;border:1px solid #E2DFFA;border-radius:20px;padding:10px;display:flex;gap:10px;max-width:680px;box-shadow:0 20px 50px rgba(91,75,224,.10)}
+.search input{flex:1;min-width:0;border:0;outline:0;padding:14px 14px;font-size:17px;font-weight:600;letter-spacing:.5px;background:transparent;color:var(--ink)}
+.search input::placeholder{font-weight:500;letter-spacing:0;color:#9A9BB0}
+.btn{border:0;cursor:pointer;border-radius:12px;padding:14px 22px;font-weight:700;font-size:15px;display:inline-flex;align-items:center;justify-content:center;gap:8px;white-space:nowrap;transition:background .15s,transform .05s}
+.btn:active{transform:translateY(1px)}
+.btn.primary{background:var(--brand);color:#fff}.btn.primary:hover{background:var(--brand-d)}
+.btn.ghost{background:#fff;color:var(--brand-d);border:1px solid #D9D5FA}.btn.ghost:hover{border-color:var(--brand)}
+.btn[disabled]{opacity:.6;cursor:progress}
+.hint{font-size:13px;color:var(--muted);margin:12px 4px 0}
+.msg{margin-top:16px;max-width:680px;padding:14px 16px;border-radius:14px;font-size:14px;line-height:1.55;display:none}
+.msg.show{display:block}.msg.err{background:var(--bad-bg);color:var(--bad);border:1px solid #FBD5D1}.msg.info{background:var(--soft);color:#43435C;border:1px solid var(--line)}
+main{padding:10px 0 70px}
+.result{display:none;scroll-margin-top:96px}.result.show{display:block}
+.vcard{display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center;border:1px solid #CDEFD9;background:linear-gradient(135deg,#F3FCF6,#fff 60%);border-radius:22px;padding:clamp(18px,3vw,28px);margin-bottom:22px}
+.vbadge{display:inline-flex;align-items:center;gap:8px;background:var(--ok-bg);color:var(--ok);font-weight:800;font-size:13px;padding:7px 12px;border-radius:999px}
+.vname{font-size:clamp(22px,3vw,30px);font-weight:800;margin:12px 0 4px;letter-spacing:-.5px}
+.vprog{color:var(--muted);font-size:15px}
+.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:18px}
+.fact{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.fact small{display:block;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#8A8BA3}
+.fact b{display:block;margin-top:4px;font-size:15px;word-break:break-word}
+.vqr{background:#fff;border:1px solid var(--line);border-radius:16px;padding:10px;width:132px;text-align:center}
+.vqr canvas{width:110px;height:110px;display:block;margin:0 auto}
+.vqr span{font-size:11px;color:var(--muted)}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 18px}
+.pages{display:grid;gap:18px}
+.sheet{position:relative;border-radius:16px;overflow:hidden;border:1px solid #E6E6F0;box-shadow:0 24px 60px rgba(27,27,51,.10);background:#fff}
+.sheet canvas,.sheet img{display:block;width:100%;height:auto}
+.sheet .tag{position:absolute;top:12px;right:12px;background:rgba(27,27,51,.72);color:#fff;font-size:12px;font-weight:700;padding:6px 10px;border-radius:999px}
+.how{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:44px}
+.how div{border:1px solid var(--line);border-radius:18px;padding:20px;background:#fff}
+.how i{font-style:normal;display:grid;place-items:center;width:38px;height:38px;border-radius:12px;background:var(--soft);color:var(--brand);font-weight:800;margin-bottom:10px}
+.how h3{margin:0 0 6px;font-size:16px}.how p{margin:0;color:var(--muted);font-size:14px;line-height:1.55}
+footer{border-top:1px solid var(--line);padding:26px 0;color:#8A8BA3;font-size:13px}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;padding:12px 18px;border-radius:12px;font-size:14px;font-weight:600;opacity:0;pointer-events:none;transition:.2s;z-index:50}
+.toast.show{opacity:1;transform:translateX(-50%)}
+.spin{width:16px;height:16px;border:2px solid rgba(255,255,255,.5);border-top-color:#fff;border-radius:50%;animation:s .8s linear infinite}@keyframes s{to{transform:rotate(360deg)}}
+@media (max-width:860px){.facts{grid-template-columns:1fr 1fr}.vcard{grid-template-columns:1fr}.vqr{display:none}.how{grid-template-columns:1fr}}
+@media (max-width:520px){.search{flex-direction:column}.search .btn{width:100%}.actions .btn{flex:1 1 calc(50% - 10px)}.back span{display:none}}
+@media print{header,.hero,.actions,.how,footer,.vcard{display:none!important}.sheet{box-shadow:none;border:0;break-after:page}}
+</style>
+</head>
+<body>
+<div class="stripe"></div>
+<header>
+  <div class="wrap head">
+    <a href="/" aria-label="Teaching TIC – inicio"><img src="uploads/logo-teaching-tic-transparente.png" alt="Teaching TIC · Innovación para educar"></a>
+    <a class="back" href="/">← <span>Volver a Teaching TIC</span></a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="kicker">✓ Verificación oficial</span>
+    <h1>Valida y descarga tu <span>constancia</span></h1>
+    <p class="lead">Programa de Capacitación Docente <b>Pedagogía Digital STEAM</b> · Clubes de Ciencia y Tecnología – CONCYTEC. Ingresa el código que recibiste por correo o tu DNI.</p>
+    <form class="search" id="form" autocomplete="off">
+      <input id="q" inputmode="text" aria-label="Código de constancia o DNI" placeholder="Ej. PDS26-7K3M9Q o tu DNI" maxlength="20">
+      <button class="btn primary" id="go" type="submit">Verificar</button>
+    </form>
+    <p class="hint">El código aparece en tu correo y en la parte inferior de la constancia. También puedes escanear el QR.</p>
+    <div class="msg" id="msg" role="status"></div>
+  </div>
+</section>
+
+<main class="wrap">
+  <section class="result" id="result" aria-live="polite">
+    <div class="vcard">
+      <div>
+        <span class="vbadge">✓ Constancia válida · emitida por Teaching TIC</span>
+        <div class="vname" id="rName"></div>
+        <div class="vprog">Programa de Capacitación Docente: Pedagogía Digital STEAM</div>
+        <div class="facts">
+          <div class="fact"><small>Código</small><b id="rCode"></b></div>
+          <div class="fact"><small>Tipo</small><b id="rType"></b></div>
+          <div class="fact"><small>Horas pedagógicas</small><b id="rHours"></b></div>
+          <div class="fact"><small>Fecha de emisión</small><b id="rDate"></b></div>
+        </div>
+      </div>
+      <div class="vqr"><canvas id="miniQr" width="220" height="220"></canvas><span>Enlace de verificación</span></div>
+    </div>
+    <div class="actions">
+      <button class="btn primary" id="bPdf">⬇ Descargar PDF</button>
+      <button class="btn ghost" id="bPng">Descargar imagen</button>
+      <button class="btn ghost" id="bCopy">Copiar enlace</button>
+      <a class="btn ghost" id="bIn" target="_blank" rel="noopener">Agregar a LinkedIn</a>
+      <a class="btn ghost" id="bWa" target="_blank" rel="noopener">Compartir por WhatsApp</a>
+    </div>
+    <div class="pages">
+      <div class="sheet"><canvas id="front" width="1999" height="1545" aria-label="Anverso de la constancia"></canvas><span class="tag">Anverso</span></div>
+      <div class="sheet"><img id="back" src="certificados/assets/reverso.jpg" alt="Reverso: temario del programa" loading="lazy"><span class="tag">Reverso</span></div>
+    </div>
+  </section>
+
+  <section class="how">
+    <div><i>1</i><h3>Ingresa tu código o DNI</h3><p>Lo encuentras en el correo que te envió Teaching TIC. Tu DNI no se guarda ni se muestra en esta página.</p></div>
+    <div><i>2</i><h3>Verifica la autenticidad</h3><p>Cada constancia tiene un código único y un QR que lleva a esta página de validación.</p></div>
+    <div><i>3</i><h3>Descárgala</h3><p>Obtén tu constancia en PDF (anverso y temario) o como imagen para compartir.</p></div>
+  </section>
+</main>
+
+<footer><div class="wrap"><span>© 2026 Teaching TIC Consultorías · Innovación para educar</span><span>¿Algún dato incorrecto? Escríbenos al <a href="https://wa.me/51921090875" target="_blank" rel="noopener">WhatsApp +51 921 090 875</a></span></div></footer>
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+const BASE = location.origin + '/certificados';
+const SALT = 'teachingtic-pds26';
+const W = 1999, H = 1545;
+const $ = s => document.querySelector(s);
+let DB = null, current = null;
+const imgFront = new Image(); imgFront.src = 'certificados/assets/anverso-base.jpg';
+const imgBack  = new Image(); imgBack.src  = 'certificados/assets/reverso.jpg';
+const ready = (img) => img.complete && img.naturalWidth ? Promise.resolve() : new Promise((r,j)=>{img.onload=r;img.onerror=j;});
+
+async function loadDb(){
+  if(DB) return DB;
+  const r = await fetch('certificados/data/constancias.json', {cache:'no-cache'});
+  DB = await r.json(); return DB;
+}
+function toast(t){ const el=$('#toast'); el.textContent=t; el.classList.add('show'); clearTimeout(toast._t); toast._t=setTimeout(()=>el.classList.remove('show'),2200); }
+function msg(t, kind){ const el=$('#msg'); if(!t){el.className='msg';return;} el.className='msg show '+(kind||'info'); el.innerHTML=t; }
+const verifyUrl = c => BASE + '?c=' + encodeURIComponent(c);
+
+async function dniHash(dni){
+  const enc = new TextEncoder();
+  const key = await crypto.subtle.importKey('raw', enc.encode(dni), 'PBKDF2', false, ['deriveBits']);
+  const bits = await crypto.subtle.deriveBits({name:'PBKDF2', hash:'SHA-256', salt:enc.encode(SALT), iterations:100000}, key, 256);
+  return Array.from(new Uint8Array(bits)).map(b=>b.toString(16).padStart(2,'0')).join('').slice(0,24);
+}
+
+async function search(raw){
+  const q = String(raw||'').trim().toUpperCase().replace(/\s+/g,'');
+  if(!q){ msg('Ingresa tu código o DNI.', 'err'); return; }
+  const btn = $('#go'); btn.disabled = true; btn.innerHTML = '<span class="spin"></span> Verificando';
+  try{
+    const db = await loadDb();
+    let found = null;
+    if(/^\d{7,9}$/.test(q)){
+      const h = await dniHash(q.padStart(8,'0'));
+      found = db.constancias.find(x=>x.d===h);
+    } else {
+      let code = q.replace(/^PDS26(?!-)/,'PDS26-');
+      found = db.constancias.find(x=>x.c===code);
+    }
+    if(!found){
+      $('#result').classList.remove('show');
+      msg('<b>No encontramos una constancia con ese dato.</b><br>Revisa que el código esté bien escrito (letras y números, sin espacios). Si el problema continúa, escríbenos por WhatsApp.', 'err');
+      return;
+    }
+    msg('');
+    await show(found);
+  } catch(e){
+    console.error(e); msg('No se pudo cargar la información. Revisa tu conexión e inténtalo de nuevo.', 'err');
+  } finally { btn.disabled=false; btn.textContent='Verificar'; }
+}
+
+/* ---------- QR ---------- */
+function qrMatrix(text){ const q = qrcode(0,'M'); q.addData(text); q.make(); return q; }
+function drawQr(ctx, text, x, y, size, color){
+  const q = qrMatrix(text), n = q.getModuleCount(), quiet = 2, cell = size/(n+quiet*2);
+  ctx.fillStyle='#fff'; ctx.fillRect(x,y,size,size);
+  ctx.fillStyle=color||'#1F4E79';
+  for(let r=0;r<n;r++) for(let c=0;c<n;c++) if(q.isDark(r,c))
+    ctx.fillRect(Math.floor(x+(c+quiet)*cell), Math.floor(y+(r+quiet)*cell), Math.ceil(cell), Math.ceil(cell));
+}
+
+/* ---------- Texto enriquecido centrado ---------- */
+function richParagraph(ctx, runs, cx, y, maxW, lh, size){
+  const words=[];
+  let gap=true; // ¿hubo espacio antes del siguiente token?
+  runs.forEach(([t,b])=>t.split(/([ ]+)/).forEach(w=>{ if(!w) return; if(/^ +$/.test(w)){ gap=true; return; } words.push({w,b,glue:!gap&&words.length>0}); gap=false; }));
+  const font = b => `${b?700:400} ${size}px Lato, sans-serif`;
+  ctx.font=font(false); const sp = ctx.measureText(' ').width;
+  const lines=[]; let line=[], lw=0;
+  words.forEach(o=>{ ctx.font=font(o.b); o.width=ctx.measureText(o.w).width;
+    const add = (line.length&&!o.glue?sp:0)+o.width;
+    if(lw+add>maxW && line.length && !o.glue){ lines.push([line,lw]); line=[o]; lw=o.width; } else { line.push(o); lw+=add; } });
+  if(line.length) lines.push([line,lw]);
+  lines.forEach(([ln,w],i)=>{ let x=cx-w/2;
+    ln.forEach((o,j)=>{ if(j>0&&!o.glue) x+=sp; ctx.font=font(o.b); ctx.fillStyle=o.b?'#3B4656':'#5A6473'; ctx.fillText(o.w,x,y+i*lh); x+=o.width; }); });
+  return y + (lines.length-1)*lh;
+}
+
+async function renderFront(c){
+  await Promise.all([ready(imgFront), document.fonts.load('700 60px Montserrat'), document.fonts.load('italic 400 30px Montserrat'), document.fonts.load('400 30px Lato'), document.fonts.load('700 30px Lato'), document.fonts.load('600 30px Montserrat')]);
+  const cv = $('#front'), ctx = cv.getContext('2d');
+  ctx.clearRect(0,0,W,H); ctx.drawImage(imgFront,0,0,W,H);
+  ctx.textAlign='center'; ctx.textBaseline='alphabetic';
+  // Subtítulo
+  ctx.fillStyle='#7D329C'; ctx.font='700 33px Montserrat, sans-serif';
+  ctx.fillText('PROGRAMA DE CAPACITACIÓN DOCENTE: PEDAGOGÍA DIGITAL STEAM', W/2, 506);
+  ctx.fillStyle='#4D5562'; ctx.font='italic 400 32px Montserrat, sans-serif';
+  ctx.fillText('Se otorga la presente a:', W/2, 590);
+  // Nombre (ajuste automático)
+  let fs=66; ctx.font=`700 ${fs}px Montserrat, sans-serif`;
+  while(ctx.measureText(c.n).width>1320 && fs>40){ fs-=2; ctx.font=`700 ${fs}px Montserrat, sans-serif`; }
+  ctx.fillStyle='#1F4E79'; ctx.fillText(c.n, W/2, 718);
+  ctx.fillStyle='#F7941D'; ctx.fillRect(456,750,1092,5);
+  // Cuerpo
+  ctx.textAlign='left';
+  const prog=[['Capacitación Docente Pedagogía Digital STEAM',1]];
+  const dirigido=[[', dirigido a docentes asesores y directivos de los Clubes de Ciencia y Tecnología registrados en el ',0],['SIGECYT\u00A0–\u00A0CONCYTEC',1],[', desarrollado en modalidad virtual en 10 sesiones sincrónicas',0]];
+  let runs;
+  if(c.t==='aprobacion'){
+    runs=[['Por haber participado y aprobado satisfactoriamente el Programa de ',0],...prog,...dirigido,[', con una duración de ',0],['20\u00A0horas pedagógicas.',1]];
+  } else {
+    const s=c.s, ses = s===1?'1\u00A0sesión':`${s}\u00A0sesiones`;
+    runs=[['Por su participación en el Programa de ',0],...prog,...dirigido,[', habiendo asistido a ',0],[ses,1],[', equivalente'+(s===1?'':'s')+' a ',0],[`${c.h}\u00A0horas pedagógicas.`,1]];
+  }
+  const endY = richParagraph(ctx, runs, W/2, 830, 1300, 46, 31);
+  ctx.textAlign='center'; ctx.fillStyle='#4D5562'; ctx.font='italic 400 31px Montserrat, sans-serif';
+  ctx.fillText(`${DB.lugar}, ${DB.fecha}`, W/2, Math.max(endY+76, 1016));
+  // QR central entre firmas
+  const qs=196, qx=W/2-qs/2, qy=1118;
+  ctx.fillStyle='#fff'; ctx.strokeStyle='#DDE3EC'; ctx.lineWidth=2;
+  roundRect(ctx,qx-12,qy-12,qs+24,qs+24,18); ctx.fill(); ctx.stroke();
+  drawQr(ctx, verifyUrl(c.c), qx, qy, qs, '#1F4E79');
+  ctx.fillStyle='#6B7380'; ctx.font='600 20px Montserrat, sans-serif';
+  ctx.fillText('Escanea para verificar', W/2, qy+qs+46);
+  // Código
+  ctx.textAlign='left'; ctx.fillStyle='#4D5562'; ctx.font='600 23px Montserrat, sans-serif';
+  ctx.fillText(`Código: ${c.c}`, 88, 1448);
+  ctx.fillStyle='#8A93A0'; ctx.font='400 19px Lato, sans-serif';
+  ctx.fillText('Verifica en teachingtic.vercel.app/certificados', 88, 1478);
+}
+function roundRect(ctx,x,y,w,h,r){ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath();}
+
+async function show(c){
+  current=c;
+  $('#rName').textContent=c.n; $('#rCode').textContent=c.c;
+  $('#rType').textContent = c.t==='aprobacion' ? 'Aprobación' : 'Participación';
+  $('#rHours').textContent = c.t==='aprobacion' ? '20 h (10 sesiones)' : `${c.h} h (${c.s} ${c.s===1?'sesión':'sesiones'})`;
+  $('#rDate').textContent = DB.fecha;
+  const m=$('#miniQr').getContext('2d'); drawQr(m, verifyUrl(c.c), 0, 0, 220, '#1B1B33');
+  const url = verifyUrl(c.c);
+  $('#bIn').href = 'https://www.linkedin.com/profile/add?' + new URLSearchParams({startTask:'CERTIFICATION_NAME', name:'Programa de Capacitación Docente: Pedagogía Digital STEAM', organizationName:'Teaching TIC', issueYear:'2026', issueMonth:'10', certUrl:url, certId:c.c});
+  $('#bWa').href = 'https://wa.me/?text=' + encodeURIComponent(`Mi constancia del Programa Pedagogía Digital STEAM (Teaching TIC): ${url}`);
+  history.replaceState(null,'', location.pathname + '?c=' + encodeURIComponent(c.c));
+  $('#q').value=c.c;
+  await renderFront(c);
+  $('#result').classList.add('show');
+  $('#result').scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function fileBase(){ return 'Constancia_PDS_' + current.n.normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^A-Za-z0-9]+/g,'_') ; }
+async function downloadPdf(){
+  if(!current) return;
+  if(!window.jspdf){ toast('No se pudo cargar el generador de PDF. Revisa tu conexión.'); return; }
+  const b=$('#bPdf'); b.disabled=true; b.innerHTML='<span class="spin"></span> Generando…';
+  try{
+    await ready(imgBack);
+    const pdf = new window.jspdf.jsPDF({orientation:'landscape', unit:'mm', format:'letter', compress:true});
+    const pw=279.4, ph=215.9;
+    pdf.addImage($('#front').toDataURL('image/jpeg',0.92),'JPEG',0,0,pw,ph,undefined,'FAST');
+    pdf.link(pw/2-13.7, 156.2, 27.4, 27.4, {url: verifyUrl(current.c)});
+    pdf.addPage('letter','landscape');
+    pdf.addImage(imgBack,'JPEG',0,0,pw,ph,undefined,'FAST');
+    pdf.setProperties({title:`Constancia ${current.c} – ${current.n}`, subject:'Pedagogía Digital STEAM', author:'Teaching TIC', keywords:current.c});
+    pdf.save(fileBase()+'.pdf');
+  } finally { b.disabled=false; b.innerHTML='⬇ Descargar PDF'; }
+}
+function downloadPng(){ if(!current) return; const a=document.createElement('a'); a.download=fileBase()+'.png'; a.href=$('#front').toDataURL('image/png'); a.click(); }
+async function copyLink(){ if(!current) return; try{ await navigator.clipboard.writeText(verifyUrl(current.c)); toast('Enlace copiado'); }catch(e){ prompt('Copia el enlace:', verifyUrl(current.c)); } }
+
+$('#form').addEventListener('submit', e=>{ e.preventDefault(); search($('#q').value); });
+$('#bPdf').addEventListener('click', downloadPdf);
+$('#bPng').addEventListener('click', downloadPng);
+$('#bCopy').addEventListener('click', copyLink);
+const p = new URLSearchParams(location.search).get('c') || new URLSearchParams(location.search).get('codigo');
+if(p){ $('#q').value=p; search(p); } else { loadDb().catch(()=>{}); }
+})();
+</script>
+</body>
+</html>
